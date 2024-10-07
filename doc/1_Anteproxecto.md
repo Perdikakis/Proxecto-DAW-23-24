@@ -4,37 +4,37 @@
 
 - [Anteproxecto fin de ciclo](#anteproxecto-fin-de-ciclo)
 
-- [1- Descrición do proxecto](#1--descrición-do-proxecto)
+- [1- Descrición do proxecto](#1--descripción-del-projecto)
 
 - [2- Empresa](#2--empresa)
 
 - [2.1- Idea de negocio](#21--idea-de-negocio)
 
-- [2.2- Xustificación da idea](#22--xustificación-da-idea)
+- [2.2- Xustificación da idea](#22--justificación-de-la-idea)
 
 - [2.3- Segmento de clientes](#23--segmento-de-clientes)
 
 - [2.4- Competencia](#24--competencia)
 
-- [2.5- Proposta de valor](#25--proposta-de-valor)
+- [2.5- Proposta de valor](#25--propuesta-de-valor)
 
-- [2.6- Forma xurídica](#26--forma-xurídica)
+- [2.6- Forma xurídica](#26--forma-jurídica)
 
-- [2.7- Investimentos](#27--investimentos)
+- [2.7- Investimentos](#27--inversiones)
 
-- [2.7.1- Custos](#271--custos)
+- [2.7.1- Custos](#271--costes)
 
 - [2.7.2- Ingresos](#272--ingresos)
 
-- [2.8- Viabilidade](#28--viabilidade)
+- [2.8- Viabilidade](#28--viabilidad)
 
-- [2.8.1- Viabilidade técnica](#281--viabilidade-técnica)
+- [2.8.1- Viabilidade técnica](#281--viabilidad-técnica)
 
-- [2.8.2 - Viabilidade económica](#282---viabilidade-económica)
+- [2.8.2 - Viabilidade económica](#282---viabilidad-económica)
 
 - [2.8.3- Conclusión](#283--conclusión)
 
-- [3- Requirimentos técnicos](#3--requirimentos-técnicos)
+- [3- Requirimentos técnicos](#3--requisitos-técnicos)
 
 - [4- Planificación](#4--planificación)
 
