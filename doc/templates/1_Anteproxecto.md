@@ -34,7 +34,7 @@ La idea se basa en la venta de réplicas de camisetas de fútbol y la oferta de 
 
 ### 2.2- Justificación de la idea
 
-Esta idea surge de que actualmente la demanda de réplicas de camisetas de fútbol retro está en aumento y de que no hay ninguna tienda/página bien posicionada en el mercado. Además, gran parte de los aficionados del fútbol utilizan otros servicios como los mencionados anteriormente (aplicaciones para consultar resultados de partidos en directo y ligas fantasy) y no hay ninguna plataforma que cubra todas esas necesidades de forma individual.
+Esta idea surge de que actualmente la demanda de réplicas de camisetas de fútbol retro está en aumento y de que no hay ninguna tienda física u online bien posicionada en el mercado. Además, gran parte de los aficionados del fútbol utilizan otros servicios como los mencionados anteriormente (aplicaciones para consultar resultados de partidos en directo y ligas fantasy) y no hay ninguna plataforma que cubra todas esas necesidades de forma individual.
 
 ![DAFO](../img/dafo.jpg)
 
@@ -60,7 +60,7 @@ La forma jurídica más adecuada sería una Sociedad Limitada, ya que permite un
 
 ### 2.7- Inversiones
 
-- **Desarrollo de la plataforma:** 20 000€ en salarios y 3 000€ en equipos informáticos
+- **Desarrollo de la plataforma:** 20 000€ en salarios (14 pagas x 1 trabajador) y 3 000€ en equipos informáticos
 - **Publicidad** *(campaña redes sociales)* **:** 7 000€
 - **Stock inicial de productos:** 7900€ *(7.90€/ud.)*
   - Camisetas: 1000 unidades x 5€ - 5000€
@@ -71,7 +71,7 @@ La forma jurídica más adecuada sería una Sociedad Limitada, ya que permite un
 
 #### 2.7.1- Costes
 
-- **Gastos fijos:** *(3 262.50€)*
+- **Gastos fijos:** *(3 262.50€/mes)*
   - Hosting web: 50€
   - API's externas: 50€
   - Teléfono + Internet: 100€
