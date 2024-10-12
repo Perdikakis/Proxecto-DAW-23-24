@@ -38,6 +38,9 @@ Esta idea surge de que actualmente la demanda de réplicas de camisetas de fútb
 
 ![DAFO](../img/dafo.jpg)
 
+Segun Statista, en 2023 las ventas en e-commerce ascendieron hasta los 5.7 billones de dolares, mientras que en 2014 fue de 1.33 billones lo que implica un crecimiento del 430%.
+
+No existen cifras exactas sobre la venta de réplicas, pero sí están experimentando un crecimiento exponencial debido al aumento de popularidad del fútbol en los mercados asiáticos y norteamericanos, impulsado por la aparición de nuevos proveedores en el primer mercado anteriormente mencionado.
 ### 2.3- Segmento de clientes
 
 Mi público objetivo son principalmente los aficionados del fútbol con la capacidad económica de gastar dinero en camisetas ya que, usualmente, el que compra camisetas de fútbol no solo compra una vez si no que también es coleccionista. Por otra parte el objetivo de clientes de otras secciones como consultar estadísticas en directo son aficionados de todas las edades y nivel económico (en este caso serían usuarios).
@@ -56,22 +59,21 @@ Mi propuesta de valor se basa en:
   
 ### 2.6- Forma jurídica
 
-La forma jurídica más adecuada sería una Sociedad Limitada, ya que permite un crecimiento a largo plazo, la inversión inicial requerida no es desorbitada (3000€) y sus ventajas fiscales como el impuesto de sociedades (menor al IRPF) o ventajas para empresas nuevas.
+La forma jurídica más adecuada sería una Sociedad Limitada, ya que permite un crecimiento a largo plazo, la inversión inicial requerida no es desorbitada (3000€) y sus ventajas fiscales como el impuesto de sociedades(25%) (menor al IRPF, 30% a partir de 20 000€ de beneficio) o ventajas para empresas nuevas.
 
 ### 2.7- Inversiones
 
 - **Desarrollo de la plataforma:** 20 000€ en salarios (14 pagas x 1 trabajador) y 3 000€ en equipos informáticos
 - **Publicidad** *(campaña redes sociales)* **:** 7 000€
-- **Stock inicial de productos:** 7900€ *(7.90€/ud.)*
+- **Stock inicial de productos:** 9076€ *(9.76€/ud.)*
   - Camisetas: 1000 unidades x 5€ - 5000€
   - Flete marítimo: 2000€
-  - Aduanas origen: 200€
-  - Aduanas destino: 400€
+  - Aduanas: 1776€
   - Transporte a almacén: 300€
 
 #### 2.7.1- Costes
 
-- **Gastos fijos:** *(3 262.50€/mes)*
+- **Gastos fijos(mensuales):** *(3 262.50€)*
   - Hosting web: 50€
   - API's externas: 50€
   - Teléfono + Internet: 100€
@@ -79,18 +81,18 @@ La forma jurídica más adecuada sería una Sociedad Limitada, ya que permite un
   - Salarios: 2500€
   - Amortizaciones: 62.50€ (durante 60 meses)
 
-- **Gastos variables:** *(11.50€)*
-  - Camiseta: 7.9€
+- **Gastos variables(por unidad de camiseta):** *(12.68€)*
+  - Camiseta: 9.76€
   - Embalaje y envío: 0.20€ +3€
   - Comisiones por pago: 2% del pago + 0.25€
 
 #### 2.7.2- Ingresos
 
  Precio camiseta:  20€
- Coste camiseta: 11.50€
- Margen de beneficio: 8.50€
+ Coste camiseta: 12.68€
+ Margen de beneficio: 7.32€
 
-Umbral de rentabilidad: 384 unidades mensuales vendidas
+Umbral de rentabilidad: 446 unidades mensuales vendidas
 
 - **Previsión de ventas:** *(cifras en unidades)*
 
@@ -109,7 +111,11 @@ Crecimientos importantes en los meses de agosto/septiembre debido al inicio de l
 
 **Requisitos técnicos:**
 
-- **Desarrollo del software**
+- **Desarrollo del software:**
+  - Raect para el frontend
+  - API en laravel para el backend
+  - MariaDB para la base de datos
+  - Servidor VPS para el despliegue
 - **Proveedores:** Tanto de camisetas (como Putian Jizhi Trade Co., Ltd) como de estadísticas (como Opta, Stats Perform, etc.).
 
 **Impedimentos técnicos:**
