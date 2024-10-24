@@ -7,7 +7,7 @@ use Illuminate\Http\JsonResponse;
 
 class PedidoController extends Controller
 {
-    /*public function getCamisetas($pedidoId): JsonResponse
+    public function getCamisetas($pedidoId): JsonResponse
     {
         // Obtener el pedido junto con las camisetas y tallas
         $pedido = Pedido::with(['camisetas' => function ($query) {
@@ -33,5 +33,5 @@ class PedidoController extends Controller
         });
 
         return response()->json($pedido);
-    }*/
+    }
 }

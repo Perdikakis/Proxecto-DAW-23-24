@@ -18,7 +18,8 @@ class CORSMiddleware
         $response = $next($request);
 
         // Agregar los encabezados CORS a la respuesta
-        $response->headers->set('Access-Control-Allow-Origin', 'https://camikakis.es');
+        //$response->headers->set('Access-Control-Allow-Origin', 'https://camikakis.es');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
