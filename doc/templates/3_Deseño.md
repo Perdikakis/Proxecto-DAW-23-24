@@ -39,4 +39,6 @@ Prototipo en figma:
 
 https://www.figma.com/proto/FytukNCsbBHkR7oJKZpEJ2/Camikakis?node-id=185-153&node-type=frame&t=H3X9zCY1yNbbbjk3-8&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=185%3A153&hide-ui=1
 
+En la parte del marcador, clicar en la primera liga, para ver un partido clic en el primer partido de la jornada 7 y para ver 1 equipo en el primer equipo de la clasificación.
+
 La parte que se va a implementar es la de **tienda** y como mejora futura y en caso de tener tiempo la de **marcador**.
