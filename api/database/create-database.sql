@@ -12,6 +12,7 @@ CREATE TABLE usuarios (
     direccion VARCHAR(255),
     telefono VARCHAR(15),
     rol VARCHAR(50),
+    password VARCHAR(255),
     fecha_alta DATETIME,
     fecha_ultimo_acceso DATETIME
 );
@@ -84,11 +85,17 @@ CREATE TABLE pedido_camiseta_talla (
     camiseta_id INT,
     talla_id INT,
     cantidad INT,
+    dorsal INT,
+    nombre_camiseta VARCHAR(16);
     PRIMARY KEY (pedido_id, camiseta_id, talla_id), -- Clave primaria compuesta
     FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE,
     FOREIGN KEY (camiseta_id) REFERENCES camisetas(id) ON DELETE CASCADE,
     FOREIGN KEY (talla_id) REFERENCES tallas(id) ON DELETE CASCADE
 );
+
+ALTER TABLE pedido_camiseta_talla 
+ADD COLUMN dorsal INT,
+ADD COLUMN nombre_camiseta VARCHAR(100);
 
 CREATE TABLE tipos_imageable (
     id INT AUTO_INCREMENT PRIMARY KEY,
