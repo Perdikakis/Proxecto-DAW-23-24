@@ -6,15 +6,37 @@ const App = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    axios.get("http://localhost:8000/pedidos/1/camisetas")
-      .then(response => {
-        setData(response.data);
-        console.log(response.data)
-      })
-      .catch(error => {
-        setError("Error al obtener los datos de la API");
+  function ajaxAxios(options) {
+    let { url, method, fsuccess, ferror, data } = options;
+    axios(url, {
+      method: method || "GET",
+      headers: {
+        "Content-type": "application/json; charset=utf-8"
+      },
+      data: JSON.stringify(data),
+    })
+      .then((resp) => fsuccess(resp.data))
+      .catch((error) => {
+        ferror({
+          status: error.response.status,
+          statusText: error.response.statusText,
+        });
       });
+  }
+
+  useEffect(() => {
+    ajaxAxios({
+      url: "http://localhost:8000/login",
+      method: "POST",
+      data: {
+        usuario: "user1",
+        password: "abc123"
+      },
+      fsuccess: (data) => console.log(data),
+      ferror: (err) => {
+        console.log(err)
+      },
+    });
   }, []); // El array vacío asegura que useEffect solo se ejecute una vez.
 
   return (
