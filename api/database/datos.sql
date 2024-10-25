@@ -6,11 +6,11 @@ INSERT INTO `camisetas` (`id`, `equipo_id`, `year_inicio`, `year_fin`, `version`
 (2, 2, 2021, 2022, 'Segunda', 35.00);
 
 -- Volcado de datos para la tabla `camiseta_talla`
-INSERT INTO `camiseta_talla` (`camiseta_id`, `talla_id`) VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(2, 4);
+INSERT INTO `camiseta_talla` (`camiseta_id`, `talla_id`, `stock`) VALUES
+(1, 1, 10),
+(1, 2, 5),
+(2, 3, 8),
+(2, 4, 2);
 
 -- Volcado de datos para la tabla `competiciones`
 INSERT INTO `competiciones` (`id`, `localizacion`, `nombre`) VALUES

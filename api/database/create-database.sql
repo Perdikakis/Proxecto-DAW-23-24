@@ -74,6 +74,7 @@ CREATE TABLE tallas (
 CREATE TABLE camiseta_talla (
     camiseta_id INT,
     talla_id INT,
+    stock INT,
     PRIMARY KEY (camiseta_id, talla_id), -- Clave primaria compuesta
     FOREIGN KEY (camiseta_id) REFERENCES camisetas(id) ON DELETE CASCADE,
     FOREIGN KEY (talla_id) REFERENCES tallas(id) ON DELETE CASCADE

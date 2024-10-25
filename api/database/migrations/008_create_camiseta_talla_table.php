@@ -12,6 +12,7 @@ return new class extends Migration
             $table->foreignId('camiseta_id')->constrained('camisetas')->onDelete('cascade');
             $table->foreignId('talla_id')->constrained('tallas')->onDelete('cascade');
             $table->primary(['camiseta_id', 'talla_id']);
+            $table->integer('stock');
             $table->timestamps();
         });
     }
