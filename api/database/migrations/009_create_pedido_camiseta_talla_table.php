@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('nombre_camiseta', 16)->nullable();
             $table->integer('dorsal')->nullable();
             $table->primary(['pedido_id', 'camiseta_id', 'talla_id']);
-            $table->timestamps();
         });
     }
 

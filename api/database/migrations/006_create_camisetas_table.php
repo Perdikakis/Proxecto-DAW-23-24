@@ -15,7 +15,7 @@ return new class extends Migration
             $table->integer('year_fin');
             $table->string('version', 100);
             $table->decimal('precio', 10, 2);
-            $table->timestamps();
+            $table->string('estado');
         });
     }
 

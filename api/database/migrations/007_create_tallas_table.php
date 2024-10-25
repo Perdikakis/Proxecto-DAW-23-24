@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->string('talla', 50);
             $table->string('medidas', 100)->nullable();
-            $table->timestamps();
         });
     }
 

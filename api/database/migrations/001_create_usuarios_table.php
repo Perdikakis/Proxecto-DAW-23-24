@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('rol', 50)->nullable();
             $table->dateTime('fecha_alta')->nullable();
             $table->dateTime('fecha_ultimo_acceso')->nullable();
-            $table->timestamps();
         });
     }
 

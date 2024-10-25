@@ -26,13 +26,15 @@ const App = () => {
 
   useEffect(() => {
     ajaxAxios({
-      url: "http://localhost:8000/login",
-      method: "POST",
-      data: {
+      url: "http://localhost:8000/barsa",
+      method: "GET",
+      /*data: {
         usuario: "user1",
         password: "abc123"
+      },*/
+      fsuccess: (data) => {
+        setData(data)
       },
-      fsuccess: (data) => console.log(data),
       ferror: (err) => {
         console.log(err)
       },
@@ -40,7 +42,11 @@ const App = () => {
   }, []); // El array vacío asegura que useEffect solo se ejecute una vez.
 
   return (
-    <></>
+    <>
+      <div key={data.equipo_id}>
+         <img src={`http://localhost:8000/${data.imagenes}`} alt={`Imagen ${data.equipo_id}`} />
+      </div>
+    </>
   );
 };
 

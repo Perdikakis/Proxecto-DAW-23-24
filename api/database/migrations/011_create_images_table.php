@@ -10,12 +10,11 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('imageable_type_id')->constrained('tipos_imageable')->onDelete('cascade');
+            $table->string('imageable_type');
             $table->integer('imageable_id');
             $table->string('ruta', 255);
             $table->string('nombre_archivo', 255);
             $table->string('tipo_mime', 100);
-            $table->timestamps();
         });
     }
 

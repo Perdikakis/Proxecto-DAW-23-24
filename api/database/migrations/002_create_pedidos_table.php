@@ -17,7 +17,6 @@ return new class extends Migration
             $table->dateTime('fecha_finalizado')->nullable();
             $table->string('estado', 50)->nullable();
             $table->decimal('total', 10, 2);
-            $table->timestamps();
         });
     }
 

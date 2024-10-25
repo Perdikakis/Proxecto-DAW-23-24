@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->string('localizacion', 100)->nullable();
             $table->string('nombre', 100);
-            $table->timestamps();
         });
     }
 

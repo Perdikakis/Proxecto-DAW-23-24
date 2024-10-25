@@ -12,7 +12,6 @@ return new class extends Migration
             $table->foreignId('equipo_id')->constrained('equipos')->onDelete('cascade');
             $table->foreignId('competicion_id')->constrained('competiciones')->onDelete('cascade');
             $table->primary(['equipo_id', 'competicion_id']);
-            $table->timestamps();
         });
     }
 

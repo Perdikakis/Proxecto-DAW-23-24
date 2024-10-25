@@ -15,6 +15,11 @@ class Equipo extends Model
         'nombre',
     ];
 
+    public function images()
+    {
+        return $this->morphMany(Imagen::class, 'imageable');
+    }
+
     public function competiciones()
     {
         return $this->belongsToMany(Competicion::class, 'equipo_competicion');
