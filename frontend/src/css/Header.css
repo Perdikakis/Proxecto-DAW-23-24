@@ -1,0 +1,85 @@
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.nav ul {
+    width: 80vw;
+    display: flex; /* Hacer la lista horizontal */
+    list-style: none; /* Quitar los estilos de lista */
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0;
+}
+
+.logo {
+    margin-right: 3vw;
+    margin-left: 3vw;
+    height: 90px;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 80px;
+    width: auto;
+}
+.nav li {
+    background-color: rgba(192, 192, 192, 0.6);
+    height: 2vw;
+    width: 10vw;
+    border-radius: 2px;
+
+    transition: color 0.3s ease;
+    transform: skewX(15deg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav li a {
+    color: rgba(13, 12, 12, 0.6);
+    font-size: 1.46vw;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    transform: skewX(-15deg);
+}
+
+.nav li:hover {
+    background-color: rgba(192, 192, 192, 1);
+}
+
+.nav a:hover {
+    color: rgba(13, 12, 12, 1);
+}
+
+.carrito {
+    position: absolute;
+    top: 13px;
+    right: 20px; /* Ajusta según sea necesario */
+    display: flex;
+    align-items: center;
+}  
+
+.carrito img{
+    width: 64px;
+    height: auto;
+    transition: opacity 300ms ease-in-out;
+}
+
+.icono-hover {
+    position: absolute;
+    opacity: 0;
+}
+  
+.carrito:hover .icono-default {
+    opacity: 0;
+}
+
+.carrito:hover .icono-hover {
+    opacity: 1;
+}

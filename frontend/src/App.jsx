@@ -1,6 +1,9 @@
 // src/App.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Header from "./componentes/Header";
+import Footer from "./componentes/Footer";
+import Main from "./componentes/Main";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -43,9 +46,9 @@ const App = () => {
 
   return (
     <>
-      <div key={data.equipo_id}>
-         <img src={`http://localhost:8000/${data.imagenes}`} alt={`Imagen ${data.equipo_id}`} />
-      </div>
+        <Header />
+        <Main />
+        <Footer />
     </>
   );
 };
