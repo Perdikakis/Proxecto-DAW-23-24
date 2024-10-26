@@ -20,3 +20,7 @@
     overflow: hidden;
     object-position: center;
 }
+
+.slide figcaption {
+    display: none;
+}

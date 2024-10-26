@@ -24,13 +24,14 @@ const Slider = ({ images, autoScrollSpeed }) => {
   }, [currentIndex]);
 
   return (
-    <div className="slider" ref={sliderRef}>
+    <section className="slider" ref={sliderRef} aria-label="Slider Venezia">
       {images.map((image, index) => (
-        <div key={index} className="slide">
+        <figure key={index} className={`slide ${index === currentIndex ? 'active' : ''}`}>
           <img src={image} alt={`Imagen ${index + 1}`} />
-        </div>
+          <figcaption>{`Image ${index+1}`}</figcaption>
+        </figure>
       ))}
-    </div>
+    </section>
   );
 };
 

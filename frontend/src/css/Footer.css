@@ -1,0 +1,43 @@
+footer a {
+    color: #ffffff;
+    opacity: 0.4;
+    text-decoration-line: underline;
+    transition: opacity 300ms ease-in-out;
+}
+footer a:hover {
+    opacity: 1;
+}
+
+footer p{
+    text-align: left;
+}
+
+footer div p:nth-of-type(2) {
+    opacity: 0.4;
+    align-self: flex-end;
+}
+
+.location, .contact {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.location img, .contact img {
+    margin-right: 10px;
+    width: 40px;
+    height: auto;
+    grid-row: span 2;
+}
+
+.social-media img {
+    width: 32px;
+    height: auto;
+    margin: 0 10px;
+    opacity: 0.1;
+    transition: opacity 300ms ease-in-out;
+}
+
+.social-media img:hover {
+    opacity: 1;
+}

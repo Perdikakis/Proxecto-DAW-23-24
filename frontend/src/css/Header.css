@@ -1,11 +1,11 @@
-nav{
+header nav{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-.nav ul {
+header .nav ul {
     width: 80vw;
     display: flex; /* Hacer la lista horizontal */
     list-style: none; /* Quitar los estilos de lista */
@@ -14,7 +14,7 @@ nav{
     padding: 0;
 }
 
-.logo {
+header .logo {
     margin-right: 3vw;
     margin-left: 3vw;
     height: 90px;
@@ -23,11 +23,11 @@ nav{
     align-items: center;
 }
 
-.logo img {
+header .logo img {
     height: 80px;
     width: auto;
 }
-.nav li {
+header .nav li {
     background-color: rgba(192, 192, 192, 0.6);
     height: 2vw;
     width: 10vw;
@@ -41,7 +41,7 @@ nav{
     justify-content: center;
 }
 
-.nav li a {
+header .nav li a {
     color: rgba(13, 12, 12, 0.6);
     font-size: 1.46vw;
     text-decoration: none;
@@ -49,37 +49,37 @@ nav{
     transform: skewX(-15deg);
 }
 
-.nav li:hover {
+header .nav li:hover {
     background-color: rgba(192, 192, 192, 1);
 }
 
-.nav a:hover {
+header .nav a:hover {
     color: rgba(13, 12, 12, 1);
 }
 
-.carrito {
+header .carrito {
     position: absolute;
     top: 13px;
-    right: 20px; /* Ajusta según sea necesario */
+    right: 20px;
     display: flex;
     align-items: center;
 }  
 
-.carrito img{
+header .carrito img{
     width: 64px;
     height: auto;
-    transition: opacity 300ms ease-in-out;
+    transition: opacity 100ms ease-in-out;
 }
 
-.icono-hover {
+header .icono-hover {
     position: absolute;
     opacity: 0;
 }
   
-.carrito:hover .icono-default {
+header .carrito:hover .icono-default {
     opacity: 0;
 }
 
-.carrito:hover .icono-hover {
+header .carrito:hover .icono-hover {
     opacity: 1;
 }
