@@ -6,20 +6,35 @@ const Slider = ({ images, autoScrollSpeed }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
+  // cambia la imagen a mostrar cada autoScrollSpeed tiempo
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, autoScrollSpeed);
 
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [images.length, autoScrollSpeed]);
 
+  // animacion al deslizar el carrusel
   useEffect(() => {
     if (sliderRef.current) {
-      sliderRef.current.scrollTo({
-        left: currentIndex * sliderRef.current.clientWidth,
-        behavior: 'smooth'
-      });
+      let start = sliderRef.current.scrollLeft;
+      let end = currentIndex * sliderRef.current.clientWidth;
+      let change = end - start;
+      let duration = 1000;
+      let startTime = performance.now();
+
+      const animateScroll = (currentTime) => {
+        let timeElapsed = currentTime - startTime;
+        let progress = Math.min(timeElapsed / duration, 1);
+        sliderRef.current.scrollLeft = start + change * progress;
+
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        }
+      };
+
+      requestAnimationFrame(animateScroll);
     }
   }, [currentIndex]);
 

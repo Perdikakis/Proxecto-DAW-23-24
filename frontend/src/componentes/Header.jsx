@@ -1,10 +1,14 @@
-import React from "react";
 import '../css/Header.css';
+import React, { useState } from 'react';
 
 const Header = () => {
   return (
     <header>
       
+      <div className="hamburger-menu">
+        <img src="../public/icons/burger-bar.png" alt="" />
+      </div>
+
       <nav className="nav">
         <ul>
             <li><a href="/">Tienda</a></li>
