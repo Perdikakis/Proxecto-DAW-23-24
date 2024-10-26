@@ -1,0 +1,22 @@
+.slider {
+    display: flex;
+    overflow-x: scroll;
+    width: 100vw;
+}
+
+.slide {
+    width: 100vw;
+    height: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.slide img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    object-position: center;
+}
