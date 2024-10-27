@@ -13,12 +13,12 @@ footer {
     text-align: center;
     align-items: center;
     flex-wrap: wrap;
-    color: #ffffff;
+    color: #f0f0f0;
     font-size: 16px;
   }
 
 footer a {
-    color: #ffffff;
+    color: #f0f0f0;
     opacity: 0.4;
     text-decoration-line: underline;
     transition: opacity 300ms ease-in-out;

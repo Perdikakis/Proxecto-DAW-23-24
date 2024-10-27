@@ -6,7 +6,7 @@ const Header = () => {
     <header>
       
       <div className="hamburger-menu">
-        <img src="../public/icons/burger-bar.png" alt="" />
+        <img src="../public/icons/burger-bar.svg" alt="" />
       </div>
 
       <nav className="nav">
@@ -22,8 +22,8 @@ const Header = () => {
       </nav>
 
       <div className="carrito">
-        <img src="../public/icons/basket.png" alt="Carrito" className="icono-default"/>
-        <img src="../public/icons/basket1.png" alt="Carrito Hover" className="icono-hover" />
+        <img src="../public/icons/basket.svg" alt="Carrito" className="icono-default"/>
+        <img src="../public/icons/basket1.svg" alt="Carrito Hover" className="icono-hover" />
       </div>
 
     </header>

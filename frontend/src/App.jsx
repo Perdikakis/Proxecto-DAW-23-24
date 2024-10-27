@@ -9,6 +9,14 @@ const App = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
 
+  // scroll inicial
+  useEffect(() => {
+    window.scrollTo({
+      top: 300,
+      behavior: 'smooth'
+    });
+  }, []);
+
   function ajaxAxios(options) {
     let { url, method, fsuccess, ferror, data } = options;
     axios(url, {
@@ -42,7 +50,7 @@ const App = () => {
         console.log(err)
       },
     });
-  }, []); // El array vacío asegura que useEffect solo se ejecute una vez.
+  }, []);
 
   return (
     <>

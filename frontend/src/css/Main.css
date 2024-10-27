@@ -1,4 +1,67 @@
 main {
     min-height: 100vh;
     flex: 1 0 auto;
-  }
+}
+
+.main {
+  position: relative;
+  min-width: 100vw;
+  min-height: 900px;
+  background-color: #0D0C0C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  color: #f0f0f0;
+  padding: 60px;
+}
+
+/*doble fondo*/
+.main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../public/img/fondos/camisetas.webp");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+h1 {
+  font-size: 56px;
+  text-transform: uppercase;
+  box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.25);
+  letter-spacing: 5px;
+}
+
+.caracteristicas{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.caracteristicas p {
+  font-size: 24px;
+  text-align: center;
+  max-width: 20vw;
+}
+
+.caracteristicas img {
+  width: 64px;
+  height: auto;
+}
+
+.caracteristicas div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.caracteristicas p:nth-of-type(2) {
+  color: #f0f0f040;
+}
