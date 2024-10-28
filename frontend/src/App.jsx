@@ -35,14 +35,14 @@ const App = () => {
       });
   }
 
-  useEffect(() => {
+  /*useEffect(() => {
     ajaxAxios({
       url: "http://localhost:8000/barsa",
       method: "GET",
-      /*data: {
+      data: {
         usuario: "user1",
         password: "abc123"
-      },*/
+      },
       fsuccess: (data) => {
         setData(data)
       },
@@ -50,7 +50,7 @@ const App = () => {
         console.log(err)
       },
     });
-  }, []);
+  }, []);*/
 
   return (
     <>

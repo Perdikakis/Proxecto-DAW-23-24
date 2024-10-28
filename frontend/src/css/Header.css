@@ -20,6 +20,7 @@ header nav{
 
 header .nav ul {
     width: 80vw;
+    max-width: 1600px;
     display: flex;
     list-style: none;
     justify-content: space-evenly;
@@ -128,31 +129,31 @@ header .carrito:hover .icono-hover {
 }
 
 @media (min-width: 1921px) {
-    header {
-        height: 180px;
+    header .nav li {
+        background-color: rgba(192, 192, 192, 0.6);
+        height: 25%;
+        width: 10vw;
+        max-width: 250px;
+        border-radius: 2px;
+    
+        transition: color 0.3s ease;
+        transform: skewX(15deg);
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    header .nav li a {
+        font-size: 28px;
     }
 
     header .logo {
-        margin-right: 3vw;
-        margin-left: 3vw;
-        height: 180px;
+        margin-right: 50px;
+        margin-left: 50px;
+        height: 90px;
         width: auto;
         display: flex;
         align-items: center;
-    }
-    
-    header .logo img {
-        height: 160px;
-        width: auto;
-    }
-
-    header .carrito {
-        top: 26px;
-        right: 40px;
-    }  
-    
-    header .carrito img{
-        width: 128px;
-        height: auto;
     }
 }

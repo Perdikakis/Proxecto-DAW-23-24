@@ -76,22 +76,8 @@ footer div p:nth-of-type(2) {
 }
 
 @media (min-width: 1921px) {
-    footer {
-        font-size: 24px;
-        height: 180px;
-    }
-
     .social-media img {
-        width: 64px;
         height: auto;
-        margin: 0 20px;
-        opacity: 0.1;
-        transition: opacity 300ms ease-in-out;
-    }
-
-    .location img, .contact img {
-        margin-right: 20px;
-        width: 80px;
-        height: auto;
+        margin: 0 1vw;
     }
 }
