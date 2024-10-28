@@ -2,11 +2,22 @@ import '../css/Header.css';
 import React, { useState } from 'react';
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <header>
       
-      <div className="hamburger-menu">
-        <img src="../public/icons/burger-bar.svg" alt="" />
+      <div className="hamburger-menu" onClick={toggleMenu}>
+        <img src="../public/icons/burger-bar.svg" alt="Menu" />
+        <ul className={`menu ${menuOpen ? 'show' : ''}`}>
+            <li><a href="/">Tienda</a></li>
+            <li><a href="/">Marcador</a></li>
+            <li><a href="/">Fantasy</a></li>
+            <li><a href="/">Perfil</a></li>
+        </ul>
       </div>
 
       <nav className="nav">
