@@ -143,7 +143,7 @@ header .carrito:hover .icono-hover {
         padding-bottom: 15px;
         width: 104px;
         height: 256px;
-        background-color: rgba(13, 12, 12, 0.8);
+        background-color: rgba(13, 12, 12, 1);
         text-align: center;
     }
 
@@ -158,7 +158,7 @@ header .carrito:hover .icono-hover {
     
     header .hamburger-menu li a {
         color: #f0f0f0;
-        font-size: 2vw;
+        font-size: 14px;
         text-decoration: none;
         transition: color 0.3s ease;
     }
