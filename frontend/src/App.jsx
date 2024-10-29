@@ -12,7 +12,7 @@ const App = () => {
   // scroll inicial
   useEffect(() => {
     window.scrollTo({
-      top: 300,
+      top: window.innerWidth * 0.3,
       behavior: 'smooth'
     });
   }, []);

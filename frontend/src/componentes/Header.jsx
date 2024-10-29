@@ -11,7 +11,7 @@ const Header = () => {
     <header>
       
       <div className="hamburger-menu" onClick={toggleMenu}>
-        <img src="../public/icons/burger-bar.svg" alt="Menu" />
+        <img src="/icons/burger-bar.svg" alt="Menu" />
         <ul className={`menu ${menuOpen ? 'show' : ''}`}>
             <li><a href="/">Tienda</a></li>
             <li><a href="/">Marcador</a></li>
@@ -25,7 +25,7 @@ const Header = () => {
             <li><a href="/">Tienda</a></li>
             <li><a href="/about">Marcador</a></li>
             <div className="logo">
-                <img src="../public/img/logo.png" alt="Logo" />
+                <img src="/img/logo.png" alt="Logo" />
             </div>
             <li><a href="/services">Fantasy</a></li>
             <li><a href="/contact">Perfil</a></li>
@@ -33,8 +33,8 @@ const Header = () => {
       </nav>
 
       <div className="carrito">
-        <img src="../public/icons/basket.svg" alt="Carrito" className="icono-default"/>
-        <img src="../public/icons/basket1.svg" alt="Carrito Hover" className="icono-hover" />
+        <img src="/icons/basket.svg" alt="Carrito" className="icono-default"/>
+        <img src="/icons/basket1.svg" alt="Carrito Hover" className="icono-hover" />
       </div>
 
     </header>
