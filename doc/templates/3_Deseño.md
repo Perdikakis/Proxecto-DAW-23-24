@@ -30,9 +30,12 @@ Diagrama de casos de uso
 Modelo Entidad-Relación
 >  - ![modelo entidad-relacion](../img/modeloER.png)
 
+> La relación imageable representa una relación polimórfica, esto se debe a que en la tabla imagenes se guardarán imagenes de varios tipos de entidades distintas (equipos, camisetas, competiciones, usuarios, etc.). Ej.: Tenemos almacenada en la tabla imagenes la imagen de id 1 y url /ruta/img.webp pero no sabemos si pertenece al usuario de id 1, a la camiseta de id 1... La relación polimórfica nos permite saber a que tipo de entidad pertenece.
+
 Modelo Relacional
 >  - ![modelo relacional](../img/modelo-relacional.png)
 
+Se ha eliminado la tabla tipos_imageable y se usa directamente images con un campo imageable_type que almacenará un string de este tipo para poder definir la relación polimórfica con Eloquent (el ORM de laravel): "App\Models\Camiseta"
 ## 4- Deseño de interface de usuarios
 
 Prototipo en figma:
