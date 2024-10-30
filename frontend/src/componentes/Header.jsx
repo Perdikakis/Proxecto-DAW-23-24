@@ -13,22 +13,22 @@ const Header = () => {
       <div className="hamburger-menu" onClick={toggleMenu}>
         <img src="/icons/burger-bar.svg" alt="Menu" />
         <ul className={`menu ${menuOpen ? 'show' : ''}`}>
-            <li><a href="/">Tienda</a></li>
-            <li><a href="/">Marcador</a></li>
-            <li><a href="/">Fantasy</a></li>
-            <li><a href="/">Perfil</a></li>
+            <li><a href="#">Tienda</a></li>
+            <li><a href="#">Marcador</a></li>
+            <li><a href="#">Fantasy</a></li>
+            <li><a href="#">Perfil</a></li>
         </ul>
       </div>
 
       <nav className="nav">
         <ul>
-            <li><a href="/">Tienda</a></li>
-            <li><a href="/about">Marcador</a></li>
+            <li><a href="#">Tienda</a></li>
+            <li><a href="#">Marcador</a></li>
             <div className="logo">
                 <img src="/img/logo.png" alt="Logo" />
             </div>
-            <li><a href="/services">Fantasy</a></li>
-            <li><a href="/contact">Perfil</a></li>
+            <li><a href="#">Fantasy</a></li>
+            <li><a href="#">Perfil</a></li>
         </ul>
       </nav>
 
