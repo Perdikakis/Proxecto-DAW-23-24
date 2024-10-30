@@ -33,8 +33,8 @@ const Header = () => {
       </nav>
 
       <div className="carrito">
-        <img src="/icons/basket.svg" alt="Carrito" className="icono-default"/>
-        <img src="/icons/basket1.svg" alt="Carrito Hover" className="icono-hover" />
+        <img src="/icons/basket.svg" alt="Carrito" className="carrito-default"/>
+        <img src="/icons/basket1.svg" alt="Carrito Hover" className="carrito-hover" />
       </div>
 
     </header>

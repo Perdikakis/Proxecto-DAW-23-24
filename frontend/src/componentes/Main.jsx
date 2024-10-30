@@ -20,6 +20,10 @@ const Main = () => {
 
   return (
     <main>
+      <button id="boton-catalogo-fixed">
+        <figure><img src="/icons/search.svg" alt="Lupa" /></figure>
+        <span>Buscar camisetas</span> 
+      </button>
       <Slider images={galeria1} autoScrollSpeed={3000} />
       <section className="main">
         <h1>consulta el catálogo completo</h1>
@@ -40,6 +44,13 @@ const Main = () => {
             <p>Recibe tu pedido en un plazo de 5 a 10 días hábiles</p>
           </div>
         </article>
+        <button id="boton-catalogo">
+          <figure>
+            <img src="/icons/tshirt1.svg" alt="Camiseta" className="camiseta-default"/>
+            <img src="/icons/tshirt2.svg" alt="Camiseta Hover" className="camiseta-hover" />
+          </figure>
+          <span>Catálogo</span> 
+        </button>
       </section>
       <Slider images={galeria2} autoScrollSpeed={3000} />
     </main>

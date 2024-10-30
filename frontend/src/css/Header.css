@@ -4,7 +4,6 @@ header{
     width: 100vw;
     position: fixed;
     box-shadow: -4px 8px 6px rgba(0, 0, 0, 0.25);
-    z-index: 1;
 }
 
 .hamburger-menu {
@@ -83,19 +82,19 @@ header .carrito {
 header .carrito img{
     width: 64px;
     height: auto;
-    transition: opacity 100ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
 }
 
-header .icono-hover {
+header .carrito-hover {
     position: absolute;
     opacity: 0;
 }
   
-header .carrito:hover .icono-default {
+header .carrito:hover .carrito-default {
     opacity: 0;
 }
 
-header .carrito:hover .icono-hover {
+header .carrito:hover .carrito-hover {
     opacity: 1;
 }
 
@@ -148,7 +147,7 @@ header .carrito:hover .icono-hover {
     }
 
     header .hamburger-menu ul li {
-        display: flex; /* Alinear los elementos verticalmente */
+        display: flex;
         align-items: center;
         justify-content: center;
         visibility: visible;
