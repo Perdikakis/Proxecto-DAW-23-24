@@ -74,10 +74,13 @@ footer {
 
 
 @media (max-width: 1200px) {
+    footer {
+        height: auto;
+    }
+    
     .footerElements {
         font-size: 12px;
         flex-wrap: wrap;
-        min-height: 90px;
         height: auto;
     }
 
