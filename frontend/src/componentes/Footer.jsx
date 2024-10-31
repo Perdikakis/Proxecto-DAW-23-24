@@ -1,9 +1,24 @@
 import React from "react";
 import '../css/Footer.css';
+import { useRef, useState, useEffect } from "react";
 
 const Footer = () => {
+  // margin-top dinamico para que el footer se sobreponga al contenido y se mantenga al final de la pagina
+  const containerRef = useRef(null); 
+  const [marginTop, setMarginTop] = useState(0); 
+  useEffect(() => { 
+    const updateMarginTop = () => { 
+      const containerHeight = containerRef.current.offsetHeight; 
+      setMarginTop(-containerHeight); 
+    }; 
+    const observer = new ResizeObserver(updateMarginTop); 
+    observer.observe(containerRef.current); // Actualiza la primera vez que se monta el componente 
+    updateMarginTop();
+    return () => observer.disconnect();
+   }, [containerRef]);
+
 return (
-  <footer>
+  <footer ref={containerRef} style={{ marginTop: `${marginTop}px`}}>
     <section className="footerElements">
     <div className="copyright">
       <p>Copyright &copy; 2024, All Rights Reserved</p>
