@@ -1,0 +1,127 @@
+.mosaico {
+    display: grid;
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(100, 1fr);
+    width: 100vw;
+    height: 71vw;
+}
+
+.celda img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
+    transition: transform 0.5s ease;
+}
+
+.celda:hover img { 
+    transform: scale(1.2);
+}
+
+.celda {
+    background-color: rgba(12, 13, 13, 0.6);
+    position: relative;
+    box-shadow: inset 0 0 0 2px #000000;
+    overflow: hidden;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.celda::before {
+    content: ""; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background-color: rgba(12, 13, 13, 0.6); 
+    z-index: 1; 
+    box-shadow: inset 0 0 0 2px #000000;
+    transition: background-color 0.5s ease;
+}
+
+.celda:hover::before { 
+    background-color: transparent;
+}
+
+.celda figcaption { 
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    transform: translate(5%, -105%);
+    color: #F0F0F0; 
+    opacity: 0; 
+    transition: opacity 0.5s ease; 
+    z-index: 2;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000, 4px 4px 6px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.celda figcaption:hover {
+    opacity: 1;
+}
+
+.celda1 {
+    grid-column: span 18;
+    grid-row: span 35;
+    
+}
+
+.celda2 {
+    grid-column: span 18;
+    grid-row: span 35;
+    
+}
+
+.celda3 {
+    grid-column: span 36;
+    grid-row: span 35;
+    
+}
+
+.celda4 {
+    grid-column: span 28;
+    grid-row: span 69;
+    
+}
+
+.celda5 {
+    grid-column: span 42;
+    grid-row: span 34;
+    
+}
+
+.celda6 {
+    grid-column: span 30;
+    grid-row: span 65;
+    
+}
+
+.celda7 {
+    grid-column: span 42;
+    grid-row: span 31;
+    
+}
+  
+.celda8 {
+    grid-column: span 28;
+    grid-row: span 31;
+    
+}
+
+@media (min-width: 1440px) {
+    .celda figcaption {  
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .celda figcaption {
+        font-size: 14px;
+    }
+}

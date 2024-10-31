@@ -1,6 +1,7 @@
 import React from "react";
 import '../css/Main.css';
 import Slider from './Slider'
+import Mosaico from "./Mosaico";
 
 const Main = () => {
   const galeria1=[
@@ -16,6 +17,26 @@ const Main = () => {
     "/img/fondos/galeria2/2.webp",
     "/img/fondos/galeria2/3.webp",
     "/img/fondos/galeria2/4.webp",
+  ];
+  const imageUrls = [
+    "/img/fondos/mosaico/barcelona.webp",
+    "/img/fondos/mosaico/spain.webp",
+    "/img/fondos/mosaico/madrid.webp",
+    "/img/fondos/mosaico/liverpool.webp",
+    "/img/fondos/mosaico/united.webp",
+    "/img/fondos/mosaico/inter.webp",
+    "/img/fondos/mosaico/brasil.webp",
+    "/img/fondos/mosaico/milan.webp",
+  ];
+  const hoverTexts = [ 
+    'FC Barcelona 05/06', 
+    'España 2010', 
+    'Real Madrid 06/07', 
+    'Liverpool FC 06/07', 
+    'Manchester United 06/07',
+    'Inter Milan 06/07', 
+    'Brasil 2002', 
+    'AC Milan 06/07', 
   ];
 
   return (
@@ -52,6 +73,7 @@ const Main = () => {
           <span>Catálogo</span> 
         </button>
       </section>
+      <Mosaico imageUrls={imageUrls} hoverTexts={hoverTexts}/>
       <Slider images={galeria2} autoScrollSpeed={3000} />
     </main>
   );
