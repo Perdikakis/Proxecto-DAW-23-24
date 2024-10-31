@@ -10,12 +10,12 @@ const App = () => {
   const [error, setError] = useState(null);
 
   // scroll inicial
-  useEffect(() => {
+  /*useEffect(() => {
     window.scrollTo({
       top: window.innerWidth * 0.3,
       behavior: 'smooth'
     });
-  }, []);
+  }, []);*/
 
   function ajaxAxios(options) {
     let { url, method, fsuccess, ferror, data } = options;

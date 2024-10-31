@@ -70,8 +70,22 @@ const Main = () => {
             <img src="/icons/tshirt1.svg" alt="Camiseta" className="camiseta-default"/>
             <img src="/icons/tshirt2.svg" alt="Camiseta Hover" className="camiseta-hover" />
           </figure>
-          <span>Catálogo</span> 
+          <span>Catálogo</span>
         </button>
+        <article id="galerias" className="caracteristicas">
+          <div>
+            <p>Linea retro</p>
+            <img src="/icons/car.png" alt="Sin coste" />
+          </div>
+          <div>
+            <p>Gama Venezia FC</p>
+            <img src="/icons/venice.png" alt="Sin coste" />
+          </div>
+          <div>
+            <p>Real Madrid 24/25</p>
+            <img src="/icons/real-madrid.png" alt="Sin coste" />
+          </div>
+        </article>
       </section>
       <Mosaico imageUrls={imageUrls} hoverTexts={hoverTexts}/>
       <Slider images={galeria2} autoScrollSpeed={3000} />
