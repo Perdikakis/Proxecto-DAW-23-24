@@ -1,4 +1,7 @@
 header{
+    display: flex;
+    justify-content: center;
+
     background-color: rgba(13, 12, 12, 0.8);
     height: 90px;
     width: 100vw;
@@ -16,11 +19,11 @@ header nav{
     justify-content: center;
     align-items: center;
     height: 100%;
+    max-width: 1500px;
 }
 
 header .nav ul {
     width: 80vw;
-    max-width: 1600px;
     display: flex;
     list-style: none;
     justify-content: space-evenly;

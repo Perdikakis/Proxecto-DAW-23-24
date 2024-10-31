@@ -160,6 +160,7 @@ h1 {
 
 .caracteristicas{
   width: 100%;
+  max-width: 1500px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

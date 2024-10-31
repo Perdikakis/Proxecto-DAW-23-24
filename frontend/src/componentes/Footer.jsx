@@ -4,6 +4,7 @@ import '../css/Footer.css';
 const Footer = () => {
 return (
   <footer>
+    <section className="footerElements">
     <div className="copyright">
       <p>Copyright &copy; 2024, All Rights Reserved</p>
       <a href="#">Aviso legal</a>
@@ -23,6 +24,7 @@ return (
       <a href="" alt="Twitter"><img src="/icons/twitter.svg" alt="Twitter" /></a>
       <a href="" alt="TikTok"><img src="/icons/tik-tok.svg" alt="TikTok" /></a>
     </div>
+    </section>
   </footer>
 );
 };
