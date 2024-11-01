@@ -12,12 +12,12 @@ const App = () => {
 
   useEffect(() => {
     // Simulamos la carga de datos
-    /*setTimeout(() => {
-      setLoading(false);
-    }, 1000);*/
+    setTimeout(() => {
+      setLoadingScreen(false);
+    }, 1000);
 
     /* Función AJAX */
-    ajaxAxios({
+    /*ajaxAxios({
       url: "http://localhost:8000/test-loading-screen",
       method: "GET",
       data: {
@@ -33,7 +33,7 @@ const App = () => {
         setError(err);
         setLoadingScreen(false); // Termina la carga incluso si hay un error
       },
-    });
+    });*/
     
   }, []);
 
