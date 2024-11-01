@@ -78,7 +78,7 @@ const Main = () => {
             <img src="/icons/car.png" alt="Sin coste" />
           </div>
           <div>
-            <p>Gama Venezia FC</p>
+            <p>Conjunto Venezia FC</p>
             <img src="/icons/venice.png" alt="Sin coste" />
           </div>
           <div>
