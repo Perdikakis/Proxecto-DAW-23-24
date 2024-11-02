@@ -196,6 +196,9 @@ h1 {
   margin-bottom: 5%;
 }
 
+#galerias div {
+  cursor: pointer;
+}
 
 @media (max-width: 768px) {
   .main {

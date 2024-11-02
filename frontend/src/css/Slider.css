@@ -1,8 +1,15 @@
+.slider-container {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    overflow: hidden; /* Oculta el desbordamiento para mantener el botón en su lugar */
+}
+
 .slider {
     height: 100%;
     display: flex;
     overflow-x: scroll;
-    width: 100vw;
+    width: 100%;
 }
 
 .slide {
@@ -24,4 +31,58 @@
 
 .slide figcaption {
     display: none;
+}
+
+.boton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(90deg, rgba(235, 185, 58, 0.8) 50%, rgba(13, 12, 12, 0.8) 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: #EBB93A;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 50vw;
+    width: 400px;
+    height: 60px;
+    border-radius: 4px;
+    transition: background-position 0.4s ease;
+    font-size: 24px;
+    font-family: 'Aldrich', sans-serif;
+    text-align: center;
+    box-shadow: -4px 8px 6px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+}
+
+.boton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 4px;
+    background-color: transparent;
+    transition: box-shadow 0.3s ease;
+    z-index: -1;
+}
+
+.boton:hover {
+    background-position: left bottom; /* Cambia la posición del fondo al hacer hover */
+    color: #0D0C0C;
+}
+/*
+.boton:hover::after {
+    box-shadow: inset 0 0 0 1px #EBB93A;
+}
+*/
+@media (max-width: 768px) {
+    .boton {
+        font-size: 14px;
+    }
 }

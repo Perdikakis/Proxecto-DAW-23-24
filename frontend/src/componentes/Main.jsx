@@ -39,13 +39,21 @@ const Main = () => {
     'AC Milan 06/07', 
   ];
 
+  const scrollToElement = (id) => { 
+    document.getElementById(id).scrollIntoView({ 
+      behavior: 'smooth' 
+    }); 
+  };
+
+  
+
   return (
     <main>
       <button id="boton-catalogo-fixed">
         <figure><img src="/icons/search.svg" alt="Lupa" /></figure>
         <span>Buscar camisetas</span> 
       </button>
-      <Slider images={galeria1} autoScrollSpeed={3000} />
+      <Slider images={galeria1} autoScrollSpeed={3000} id={"slider1"} nombreBoton={"Nueva coleccion Venezia FC"}/>
       <section className="main">
         <h1>consulta el catálogo completo</h1>
         <article className="caracteristicas">
@@ -73,22 +81,22 @@ const Main = () => {
           <span>Catálogo</span>
         </button>
         <article id="galerias" className="caracteristicas">
-          <div>
+          <div onClick={() => scrollToElement('mosaico')}>
             <p>Linea retro</p>
             <img src="/icons/car.png" alt="Sin coste" />
           </div>
-          <div>
+          <div onClick={() => scrollToElement('slider1')}>
             <p>Conjunto Venezia FC</p>
             <img src="/icons/venice.png" alt="Sin coste" />
           </div>
-          <div>
+          <div onClick={() => scrollToElement('slider2')}>
             <p>Real Madrid 24/25</p>
             <img src="/icons/real-madrid.png" alt="Sin coste" />
           </div>
         </article>
       </section>
-      <Mosaico imageUrls={imageUrls} hoverTexts={hoverTexts}/>
-      <Slider images={galeria2} autoScrollSpeed={3000} />
+      <Mosaico imageUrls={imageUrls} hoverTexts={hoverTexts} id={"mosaico"}/>
+      <Slider images={galeria2} autoScrollSpeed={3000} id={"slider2"} nombreBoton={"Coleccion Real Madrid 24/25"}/>
     </main>
   );
 };
