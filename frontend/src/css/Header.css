@@ -107,8 +107,11 @@ header .carrito:hover .carrito-hover {
 }
   
 @media (max-width: 768px) {
-    header .carrito img {
+    header .carrito {
         top: 21px;
+    }
+    
+    header .carrito img {
         width: 48px;
     }
 
