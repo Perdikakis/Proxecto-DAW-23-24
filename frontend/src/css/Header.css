@@ -135,12 +135,12 @@ header .carrito:hover .carrito-hover {
     }
 
     header .hamburger-menu ul {
-        display: none; /* Ocultar el menú principal */
+        display: none;
         flex-direction: column;
     }
 
     header .hamburger-menu ul.show {
-        display: flex; /* Mostrar el menú desplegable */
+        display: flex;
         flex-direction: column;
         justify-content: flex-end;
         gap: 20px;

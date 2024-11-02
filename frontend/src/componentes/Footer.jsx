@@ -9,8 +9,13 @@ const Footer = () => {
   useEffect(() => { 
     const updateMarginTop = () => { 
       const containerHeight = containerRef.current.offsetHeight; 
-      setMarginTop(-containerHeight); 
+      if(window.innerWidth >= 514){
+        setMarginTop(-containerHeight)
+      } else {
+        setMarginTop(0);
+      }
     }; 
+
     const observer = new ResizeObserver(updateMarginTop); 
     observer.observe(containerRef.current); // Actualiza la primera vez que se monta el componente 
     updateMarginTop();

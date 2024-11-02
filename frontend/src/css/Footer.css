@@ -89,10 +89,15 @@ footer {
 }
 
 @media (max-width: 513px){
+    footer {
+        background-color: rgb(13, 12, 12);
+    }
+
     .footerElements {
         display: flex;
         flex-direction: column;
     }
+
 }
 
 @media (min-width: 1921px) {
