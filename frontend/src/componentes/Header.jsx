@@ -11,7 +11,7 @@ const Header = () => {
     <header>
       <div className="hamburger-menu" onClick={toggleMenu}>
         <img src="/icons/burger-bar.svg" alt="Menu" />
-        <ul className={`menu ${menuOpen ? 'show' : ''}`}>
+        <ul className={`menu ${menuOpen ? 'show' : ''}`} onClick={(e) => e.stopPropagation()}>
             <li><a href="#">Tienda</a></li>
             <li><a href="#">Marcador</a></li>
             <li><a href="#">Fantasy</a></li>
