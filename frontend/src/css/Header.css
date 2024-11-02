@@ -108,7 +108,7 @@ header .carrito:hover .carrito-hover {
   
 @media (max-width: 768px) {
     header .carrito img {
-        width: 64px;
+        width: 48px;
     }
 
     header nav ul li {
@@ -129,7 +129,7 @@ header .carrito:hover .carrito-hover {
     }
 
     .hamburger-menu img {
-        width: 64px;
+        width: 48px;
         height: auto;
         z-index: 1;
     }
