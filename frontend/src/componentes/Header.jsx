@@ -1,5 +1,6 @@
 import '../css/Header.css';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,23 +13,25 @@ const Header = () => {
       <div className="hamburger-menu" onClick={toggleMenu}>
         <img src="/icons/burger-bar.svg" alt="Menu" />
         <ul className={`menu ${menuOpen ? 'show' : ''}`} onClick={(e) => e.stopPropagation()}>
-            <li><a href="#">Tienda</a></li>
-            <li><a href="#">Marcador</a></li>
-            <li><a href="#">Fantasy</a></li>
-            <li><a href="#">Perfil</a></li>
+          <li><Link to="/tienda">Tienda</Link></li>
+          <li><Link to="/">Marcador</Link></li>
+          <li><Link to="/">Fantasy</Link></li>
+          <li><Link to="/">Perfil</Link></li>
         </ul>
       </div>
 
-      <figure className="logo">
-        <img src="/img/logo.png" alt="Logo" />
-      </figure>
+      <Link to="/">
+        <figure className="logo">
+          <img src="/img/logo.png" alt="Logo" />
+        </figure>
+      </Link>
 
       <nav className="nav">
         <ul>
-            <li><a href="#">Tienda</a></li>
-            <li><a href="#">Marcador</a></li>
-            <li><a href="#">Fantasy</a></li>
-            <li><a href="#">Perfil</a></li>
+          <li><Link to="/tienda">Tienda</Link></li>
+          <li><Link to="/">Marcador</Link></li>
+          <li><Link to="/">Fantasy</Link></li>
+          <li><Link to="/">Perfil</Link></li>
         </ul>
       </nav>
 
@@ -36,7 +39,6 @@ const Header = () => {
         <img src="/icons/basket.svg" alt="Carrito" className="carrito-default"/>
         <img src="/icons/basket1.svg" alt="Carrito Hover" className="carrito-hover" />
       </div>
-
     </header>
   );
 };

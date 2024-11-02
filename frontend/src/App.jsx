@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "./componentes/Header";
 import Footer from "./componentes/Footer";
-import Main from "./componentes/Main";
+import Main from "./componentes/Landing";
 import LoadingScreen from "./componentes/LoadingScreen";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Tienda from "./componentes/Tienda"; // Asegúrate de que la ruta sea correcta
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -38,18 +40,20 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <Router>
       <div style={{ opacity: loading ? 1 : 0, transition: 'opacity 1s ease', pointerEvents: loading ? 'auto' : 'none' }}>
         <LoadingScreen />
       </div>
       <div style={{ opacity: loading ? 0 : 1, transition: 'opacity 1s ease' }}>
         <Header />
-        <Main />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/tienda" element={<Tienda />} /> {/* Define la ruta para el nuevo componente */}
+        </Routes>
         <Footer />
       </div>
-    </>
+    </Router>
   );
-  
 };
 
 function ajaxAxios(options) { 

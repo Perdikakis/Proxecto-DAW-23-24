@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import '../css/Main.css';
+import '../css/Landing.css'
 import Slider from './Slider'
 import Mosaico from "./Mosaico";
 
@@ -49,10 +51,12 @@ const Main = () => {
 
   return (
     <main>
-      <button id="boton-catalogo-fixed">
-        <figure><img src="/icons/search.svg" alt="Lupa" /></figure>
-        <span>Buscar camisetas</span> 
-      </button>
+      <Link to="/tienda">
+        <button id="boton-catalogo-fixed">
+          <figure><img src="/icons/search.svg" alt="Lupa" /></figure>
+          <span>Buscar camisetas</span> 
+        </button>
+      </Link>
       <Slider images={galeria1} autoScrollSpeed={3000} id={"slider1"} nombreBoton={"Nueva coleccion Venezia FC"}/>
       <section className="main">
         <h1>consulta el catálogo completo</h1>
