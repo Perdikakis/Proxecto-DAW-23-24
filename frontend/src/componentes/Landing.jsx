@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import '../css/Main.css';
 import '../css/Landing.css'
 import Slider from './Slider'
 import Mosaico from "./Mosaico";
 
-const Main = () => {
+const Landing = () => {
   const galeria1=[
     "/img/fondos/galeria1/1.webp",
     "/img/fondos/galeria1/2.webp",
@@ -105,4 +104,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Landing;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "./componentes/Header";
 import Footer from "./componentes/Footer";
-import Main from "./componentes/Landing";
+import Landing from "./componentes/Landing";
 import LoadingScreen from "./componentes/LoadingScreen";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Tienda from "./componentes/Tienda"; // Asegúrate de que la ruta sea correcta
@@ -47,7 +47,7 @@ const App = () => {
       <div style={{ opacity: loading ? 0 : 1, transition: 'opacity 1s ease' }}>
         <Header />
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/tienda" element={<Tienda />} /> {/* Define la ruta para el nuevo componente */}
         </Routes>
         <Footer />
