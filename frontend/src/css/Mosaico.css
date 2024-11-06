@@ -40,12 +40,12 @@
     z-index: 1; 
     box-shadow: inset 0 0 0 2px #000000;
     transition: background-color 0.5s ease;
-    pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
+    pointer-events: none;
 }
 
 .celda:hover::before { 
     background-color: transparent;
-    pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
+    pointer-events: none;
 }
 
 .celda figcaption { 

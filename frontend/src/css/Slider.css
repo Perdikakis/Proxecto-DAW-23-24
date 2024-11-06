@@ -70,11 +70,11 @@
     background-color: transparent;
     transition: box-shadow 0.3s ease;
     z-index: -1;
-    pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
+    pointer-events: none;
 }
 
 .boton:hover {
-    background-position: left bottom; /* Cambia la posición del fondo al hacer hover */
+    background-position: left bottom;
     color: #0D0C0C;
 }
 /*

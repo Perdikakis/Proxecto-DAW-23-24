@@ -58,6 +58,11 @@
   color: #FFFFFF;
 }
 
+.boton:hover {
+    background-position: left bottom; /* Cambia la posición del fondo al hacer hover */
+    color: #0D0C0C;
+}
+
 .botonBlanco::after {
   content: '';
   position: absolute;

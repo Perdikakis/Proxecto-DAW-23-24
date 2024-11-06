@@ -30,7 +30,7 @@
   }
   .campo input:disabled + label, 
   .campo label[for="competicion"]:disabled { 
-    color: rgba(255, 255, 255, 0.6); /* Blanco con 60% de opacidad */ 
+    color: rgba(255, 255, 255, 0.6);
   }
 
   .campo input.input-valido {
