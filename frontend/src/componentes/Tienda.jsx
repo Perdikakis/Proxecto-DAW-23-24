@@ -4,11 +4,22 @@ import Destacadas from "./Destacadas";
 import Buscador from "./Buscador";
 import TopVentas from "./TopVentas";
 
+const destacadas=[
+  "/img/fondos/destacadas/barcelona.webp",
+  "/img/fondos/destacadas/madrid.webp",
+  "/img/fondos/destacadas/españa.webp",
+  "/img/fondos/destacadas/brasil.webp",
+  "/img/fondos/destacadas/madrid2.webp",
+  "/img/fondos/destacadas/venezia.webp",
+  "/img/fondos/destacadas/venezia2.webp",
+];
+
 const Tienda = () => {
   return (
     <main className="main-tienda">
       <h1>Camisetas destacadas</h1>
       {/*<Destacadas />*/}
+      <Destacadas images={destacadas} autoScrollSpeed={3000}/>
       <Buscador />
       <section className="top-ventas">
         

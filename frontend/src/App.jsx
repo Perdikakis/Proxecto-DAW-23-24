@@ -33,7 +33,7 @@ const App = () => {
       ferror: (err) => {
         console.log(err);
         setError(err);
-        setLoadingScreen(false); // Termina la carga incluso si hay un error
+        setLoadingScreen(false); // Termina la carga si hay un error
       },
     });
     

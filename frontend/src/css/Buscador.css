@@ -57,12 +57,29 @@
 }
 
 .sugerencias li {
+  height: 30px;
   padding: 8px;
   font-size: 10px;
   cursor: pointer;
   border-bottom: 1px solid #f0f0f0;
+  background-color: #1f1c1c;
 }
 
 .sugerencias li:hover {
   background: #000000;
+}
+
+@media (max-width: 767px){
+  .buscador {
+    flex-direction: column;
+  }
+
+  .buscador .campo{
+    width: 100%;
+  }
+
+  .main-tienda {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 }

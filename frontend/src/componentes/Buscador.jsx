@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import BotonBlanco from "./BotonBlanco";
 import '../css/Buscador.css';
 
@@ -9,7 +9,6 @@ const Buscador = () => {
   const [sugerenciasCompeticion, setSugerenciasCompeticion] = useState([]);
   const [equipoValido, setEquipoValido] = useState(false);
   const [competicionValida, setCompeticionValida] = useState(false);
-  const containerRef = useRef(null);
 
   const equipos = ['Real Madrid', 'Barcelona', 'Atletico Madrid', 'Celta Vigo', 'Valencia', 'Sevilla', 'Betis'];
   const competiciones = ['La Liga', 'Premier League', 'Bundesliga', 'Serie A', 'Ligue 1'];
@@ -34,6 +33,10 @@ const Buscador = () => {
     setSugerencias(suggestions);
   };
 
+  const handleBlur = (clearSugerencias) => {
+    setTimeout(() => clearSugerencias([]), 1); // Timeout porque al hacer clic en el desplegable, este se cierra antes de que pueda seleccionarse algo
+  };
+
   const handleSugerenciaClick = (sugerencia, setInput, clearSugerencias, setValido) => {
     setInput(sugerencia);
     clearSugerencias([]);
@@ -45,22 +48,8 @@ const Buscador = () => {
     console.log({ equipo, competicion });
   };
 
-  const handleClickOutside = (event) => {
-    if (containerRef.current && !containerRef.current.contains(event.target)) {
-      setSugerenciasEquipo([]);
-      setSugerenciasCompeticion([]);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   return (
-    <form className="buscador" onSubmit={handleSubmit} ref={containerRef}>
+    <form className="buscador" onSubmit={handleSubmit}>
       <div className="campo">
         <label htmlFor="equipo">Equipo:</label>
         <input 
@@ -69,6 +58,7 @@ const Buscador = () => {
           value={equipo} 
           onChange={handleEquipoChange} 
           onFocus={() => handleFocus(setSugerenciasEquipo, equipos)} 
+          onBlur={() => handleBlur(setSugerenciasEquipo)}
           autoComplete="off"
           className={equipo ? (equipoValido ? "input-valido" : "input-invalido") : ""}
         />
@@ -102,6 +92,7 @@ const Buscador = () => {
           value={competicion} 
           onChange={handleCompeticionChange} 
           onFocus={() => handleFocus(setSugerenciasCompeticion, competiciones)} 
+          onBlur={() => handleBlur(setSugerenciasCompeticion)}
           autoComplete="off"
           className={competicion ? (competicionValida ? "input-valido" : "input-invalido") : ""}
           disabled={!!equipo}
