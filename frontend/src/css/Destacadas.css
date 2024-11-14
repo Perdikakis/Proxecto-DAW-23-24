@@ -1,34 +1,21 @@
 .destacadas {
-    overflow: hidden;
-    width: 50%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    overflow: hidden;
+    overflow-x: hidden;
+    position: relative;
+    width: 75%;
+    max-width: 1000px;
 }
-
-.destacadas .slider-container {
-    display: flex;
-    width: 100%;
-    overflow-x: scroll;
-    gap: 50px;
-}
-
-.destacadas .destacada {
+  
+.destacada {
     width: 100px;
     height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-shrink: 0;
+    margin-right: 50px;
 }
-
-.destacadas .destacada img {
+  
+.destacadas img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    overflow: hidden;
 }
-  

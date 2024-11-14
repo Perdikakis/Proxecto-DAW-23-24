@@ -18,8 +18,7 @@ const Tienda = () => {
   return (
     <main className="main-tienda">
       <h1>Camisetas destacadas</h1>
-      {/*<Destacadas />*/}
-      <Destacadas images={destacadas} autoScrollSpeed={3000}/>
+      <Destacadas images={destacadas} autoScrollSpeed={30}/>
       <Buscador />
       <section className="top-ventas">
         

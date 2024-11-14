@@ -1,7 +1,7 @@
 import '../css/Slider.css';
 import React, { useEffect, useState, useRef } from 'react';
 
-const Slider = ({ images, autoScrollSpeed, id, nombreBoton }) => {
+const Slider = ({ images, autoScrollSpeed = 2000, id, nombreBoton }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
