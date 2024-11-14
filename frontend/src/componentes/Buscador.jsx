@@ -1,36 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BotonBlanco from "./BotonBlanco";
 import '../css/Buscador.css';
 
 const Buscador = () => {
   const [equipo, setEquipo] = useState('');
   const [competicion, setCompeticion] = useState('');
+  const [temporada, setTemporada] = useState('');
+
   const [sugerenciasEquipo, setSugerenciasEquipo] = useState([]);
   const [sugerenciasCompeticion, setSugerenciasCompeticion] = useState([]);
+  const [sugerenciasTemporada, setSugerenciasTemporada] = useState([]);
+
   const [equipoValido, setEquipoValido] = useState(false);
   const [competicionValida, setCompeticionValida] = useState(false);
+  const [temporadaValida, setTemporadaValida] = useState(false);
 
   const equipos = ['Real Madrid', 'Barcelona', 'Atletico Madrid', 'Celta Vigo', 'Valencia', 'Sevilla', 'Betis'];
   const competiciones = ['La Liga', 'Premier League', 'Bundesliga', 'Serie A', 'Ligue 1'];
+  // generar temporadas de prueba
+  const [temporadas, setListaTemporadas] = useState([]);
+  useEffect(() => {
+    const yearMin = 1970;
+    const yearMax = 2024;
+    const temporadasList = [];
+    for (let year = yearMin; year <= yearMax; year++) {
+      const nextYear = year + 1;
+      temporadasList.push(`${year}/${nextYear}`);
+    }
+    setListaTemporadas(temporadasList);
+  }, []);
 
-  const handleEquipoChange = (e) => {
+  const handleCambio = (e, tipo) => {
     const value = e.target.value;
-    setEquipo(value);
-    const sugerencias = equipos.filter(equipo => equipo.toLowerCase().includes(value.toLowerCase()));
-    setSugerenciasEquipo(sugerencias);
-    setEquipoValido(equipos.includes(value));
-  };
+  
+    switch (tipo) {
+      case "equipo":
+        setEquipo(value);
+        setSugerenciasEquipo(equipos.filter(item => item.toLowerCase().includes(value.toLowerCase())));
+        setEquipoValido(equipos.includes(value));
+        break;
+  
+      case "competicion":
+        setCompeticion(value);
+        setSugerenciasCompeticion(competiciones.filter(item => item.toLowerCase().includes(value.toLowerCase())));
+        setCompeticionValida(competiciones.includes(value));
+        break;
+  
+      case "temporada":
+        setTemporada(value);
+        setSugerenciasTemporada(temporadas.filter(item => item.toLowerCase().includes(value.toLowerCase())));
+        setTemporadaValida(temporadas.includes(value));
+        break;
+  
+      default:
+        break;
+    }
+  };  
 
-  const handleCompeticionChange = (e) => {
-    const value = e.target.value;
-    setCompeticion(value);
-    const sugerencias = competiciones.filter(competicion => competicion.toLowerCase().includes(value.toLowerCase()));
-    setSugerenciasCompeticion(sugerencias);
-    setCompeticionValida(competiciones.includes(value));
-  };
-
-  const handleFocus = (setSugerencias, suggestions) => {
-    setSugerencias(suggestions);
+  const handleFocus = (setSugerencias, sugerencias) => {
+    setSugerencias(sugerencias);
   };
 
   const handleBlur = (clearSugerencias) => {
@@ -45,7 +73,33 @@ const Buscador = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ equipo, competicion });
+    console.log({ equipo, competicion, temporada });
+  };
+
+  const isButtonDisabled = () => {
+    return (
+      (equipo && !equipoValido) || 
+      (competicion && !competicionValida) || 
+      (temporada && !temporadaValida)
+    );
+  };
+
+  const renderSugerencias = (sugerencias, tipo) => {
+    return sugerencias.length > 0 && (
+      <ul className="sugerencias">
+        {sugerencias.map((item, index) => (
+          <li 
+            key={index} 
+            onMouseDown={() => handleSugerenciaClick(item, 
+              tipo == "equipo" ? setEquipo : tipo == "competicion" ? setCompeticion : setTemporada, 
+              tipo == "equipo" ? setSugerenciasEquipo : tipo == "competicion" ? setSugerenciasCompeticion : setSugerenciasTemporada, 
+              tipo == "equipo" ? setEquipoValido : tipo == "competicion" ? setCompeticionValida : setTemporadaValida)}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    );
   };
 
   return (
@@ -56,24 +110,13 @@ const Buscador = () => {
           type="text" 
           id="equipo" 
           value={equipo} 
-          onChange={handleEquipoChange} 
+          onChange={(e) => handleCambio(e, "equipo")} 
           onFocus={() => handleFocus(setSugerenciasEquipo, equipos)} 
           onBlur={() => handleBlur(setSugerenciasEquipo)}
           autoComplete="off"
           className={equipo ? (equipoValido ? "input-valido" : "input-invalido") : ""}
         />
-        {sugerenciasEquipo.length > 0 && (
-          <ul className="sugerencias">
-            {sugerenciasEquipo.map((el, index) => (
-              <li 
-                key={index} 
-                onClick={() => handleSugerenciaClick(el, setEquipo, setSugerenciasEquipo, setEquipoValido)}
-              >
-                {el}
-              </li>
-            ))}
-          </ul>
-        )}
+        {renderSugerencias(sugerenciasEquipo, "equipo")}
       </div>
 
       <div className="campo">
@@ -81,7 +124,14 @@ const Buscador = () => {
         <input 
           type="text" 
           id="temporada"
+          value={temporada}
+          onChange={(e) => handleCambio(e, "temporada")}
+          onFocus={() => handleFocus(setSugerenciasTemporada, temporadas)} 
+          onBlur={() => handleBlur(setSugerenciasTemporada)}
+          autoComplete="off"
+          className={temporada ? (temporadaValida ? "input-valido" : "input-invalido") : ""}
         />
+        {renderSugerencias(sugerenciasTemporada, "temporada")}
       </div>
 
       <div className="campo">
@@ -90,32 +140,21 @@ const Buscador = () => {
           type="text" 
           id="competicion" 
           value={competicion} 
-          onChange={handleCompeticionChange} 
+          onChange={(e) => handleCambio(e, "competicion")} 
           onFocus={() => handleFocus(setSugerenciasCompeticion, competiciones)} 
           onBlur={() => handleBlur(setSugerenciasCompeticion)}
           autoComplete="off"
           className={competicion ? (competicionValida ? "input-valido" : "input-invalido") : ""}
           disabled={!!equipo}
         />
-        {sugerenciasCompeticion.length > 0 && (
-          <ul className="sugerencias">
-            {sugerenciasCompeticion.map((el, index) => (
-              <li 
-                key={index} 
-                onClick={() => handleSugerenciaClick(el, setCompeticion, setSugerenciasCompeticion, setCompeticionValida)}
-              >
-                {el}
-              </li>
-            ))}
-          </ul>
-        )}
+        {renderSugerencias(sugerenciasCompeticion, "competicion")}
       </div>
 
       <BotonBlanco 
         texto="buscar" 
         icono="/icons/search1.svg" 
         iconoHover="/icons/search.svg" 
-        disabled={equipo && !equipoValido || competicion && !competicionValida} 
+        disabled={isButtonDisabled()} 
       />
     </form>
   );
