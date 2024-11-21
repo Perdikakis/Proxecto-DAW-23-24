@@ -76,13 +76,15 @@ const Landing = () => {
             <p>Recibe tu pedido en un plazo de 5 a 10 días hábiles</p>
           </div>
         </article>
-        <button id="boton-catalogo">
-          <figure>
-            <img src="/icons/tshirt1.svg" alt="Camiseta" className="camiseta-default"/>
-            <img src="/icons/tshirt2.svg" alt="Camiseta Hover" className="camiseta-hover" />
-          </figure>
-          <span>Catálogo</span>
-        </button>
+        <Link to="/tienda">
+          <button id="boton-catalogo">
+            <figure>
+              <img src="/icons/tshirt1.svg" alt="Camiseta" className="camiseta-default"/>
+              <img src="/icons/tshirt2.svg" alt="Camiseta Hover" className="camiseta-hover" />
+            </figure>
+            <span>Catálogo</span>
+          </button>
+        </Link>
         <article id="galerias" className="caracteristicas">
           <div onClick={() => scrollToElement('mosaico')}>
             <p>Linea retro</p>
