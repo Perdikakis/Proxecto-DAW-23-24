@@ -14,9 +14,9 @@ const Header = () => {
         <img src="/icons/burger-bar.svg" alt="Menu" />
         <ul className={`menu ${menuOpen ? 'show' : ''}`} onClick={(e) => e.stopPropagation()}>
           <li><Link to="/tienda" onClick={toggleMenu}>Tienda</Link></li>
-          <li><Link to="/a" onClick={toggleMenu}>Marcador</Link></li>
-          <li><Link to="/a" onClick={toggleMenu}>Fantasy</Link></li>
-          <li><Link to="/a" onClick={toggleMenu}>Perfil</Link></li>
+          <li><Link to="/" onClick={toggleMenu}>Marcador</Link></li>
+          <li><Link to="/" onClick={toggleMenu}>Fantasy</Link></li>
+          <li><Link to="/" onClick={toggleMenu}>Perfil</Link></li>
         </ul>
       </div>
 
@@ -29,9 +29,9 @@ const Header = () => {
       <nav className="nav">
         <ul>
           <li><Link to="/tienda">Tienda</Link></li>
-          <li><Link to="/a">Marcador</Link></li>
-          <li><Link to="/a">Fantasy</Link></li>
-          <li><Link to="/a">Perfil</Link></li>
+          <li><Link to="/">Marcador</Link></li>
+          <li><Link to="/">Fantasy</Link></li>
+          <li><Link to="/">Perfil</Link></li>
         </ul>
       </nav>
 

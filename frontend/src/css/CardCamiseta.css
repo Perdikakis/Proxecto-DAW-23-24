@@ -1,0 +1,66 @@
+.card-camiseta {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.camiseta-img {
+    width: 100%;
+    height: auto;
+}
+
+.icon-top-left, .icon-top-right {
+    width: 30px;
+    position: absolute;
+    top: 10px;
+}
+
+.icon-top-left {
+    left: 10px;
+}
+
+.icon-top-right {
+    right: 10px;
+}
+
+.info-left, .info-right {
+    width: 50%;
+    align-content: center;
+    font-size: 14px;
+}
+
+.info-left {
+    text-align: right;
+    text-decoration: line-through;
+    color: rgba(240, 240, 240, 0.4);
+}
+
+.info-right {
+    text-align: left;
+    color: #379342;
+}
+
+.info-container {
+    display: flex;
+    width: 100%;
+}
+
+.bottom-text {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .info-left, .info-right {
+        font-size: 10px;
+    }
+
+    .bottom-text {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+    }
+}

@@ -1,14 +1,22 @@
 import React from "react";
+import '../css/TopVentas.css';
 import CardCamiseta from "./CardCamiseta";
+import BotonBlanco from "./BotonBlanco";
 
 const TopVentas = ({ liga }) => {
   return (
-    <article>
+    <article className="top">
         <h2>Top Ventas {liga}</h2>
         <CardCamiseta idCamiseta="1"/>
         <CardCamiseta idCamiseta="1"/>
         <CardCamiseta idCamiseta="1"/>
         <CardCamiseta idCamiseta="1"/>
+        <BotonBlanco 
+        texto="ver más" 
+        icono="/icons/application.svg" 
+        iconoHover="/icons/application-hover.svg" 
+        disabled={false} 
+      />
     </article>
   );
 };

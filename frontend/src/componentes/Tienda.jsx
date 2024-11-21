@@ -21,6 +21,11 @@ const Tienda = () => {
       <Destacadas images={destacadas} autoScrollSpeed={30}/>
       <Buscador />
       <section className="top-ventas">
+        <TopVentas liga="laliga"/>
+        <TopVentas liga="premier"/>
+        <TopVentas liga="selecciones"/>  
+      </section>
+      <section className="top-ventas">
         
       </section>
     </main>

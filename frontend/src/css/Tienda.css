@@ -34,3 +34,23 @@ h1 {
     box-shadow: none;
     font-size: 32px;
 }
+
+.top-ventas {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+  .top-ventas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top {
+    width: 80% !important;
+    margin-bottom: 100px;
+  }
+}

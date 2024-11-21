@@ -26,8 +26,7 @@ const Destacadas = ({ images, autoScrollSpeed = 2000 }) => {
 
   return (
     <section className="destacadas" ref={destacadasRef}>
-      {/* bucle visual */}
-      {[...images, ...images].map((image, index) => (
+      {/*images*2 => bulce 'infinito'*/[...images, ...images].map((image, index) => (
         <figure className="destacada" key={index}>
           <img src={image} alt={`Imagen ${index + 1}`} />
         </figure>
