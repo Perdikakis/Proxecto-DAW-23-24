@@ -12,6 +12,7 @@
 }
 
 .icon-top-left, .icon-top-right {
+    cursor: pointer;
     width: 30px;
     position: absolute;
     top: 10px;
