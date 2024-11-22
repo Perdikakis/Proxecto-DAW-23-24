@@ -1,0 +1,81 @@
+.main-camiseta {
+    position: relative;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #0D0C0C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    color: #f0f0f0;
+    padding: 60px;
+    padding-top: 120px;
+    z-index: 0;
+}
+
+/* doble fondo */
+.main-camiseta::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/fondos/camisetas.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.05;
+    z-index: -1;
+    pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
+}
+
+.main-camiseta .images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.main-camiseta .images .card-camiseta {
+    width: 25%;
+    min-width: 200px;
+}
+
+.main-camiseta .icon-top-left, .main-camiseta .icon-top-right {
+    display: none;
+}
+
+.main-camiseta .image {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-camiseta .image img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+}
+
+
+@media (max-width: 768px) {
+    .main-camiseta .images {
+      overflow-x: auto; /* Permite el desplazamiento horizontal */
+      gap: 20px;
+    }
+
+    .main-camiseta .image {
+      min-width: 200px; /* Ajusta el tamaño mínimo según sea necesario */
+    }
+
+    .main-camiseta .bottom-text {
+        font-size: 12px;
+    }
+
+    .main-camiseta .info-container {
+        font-size: 10px;
+    }
+}

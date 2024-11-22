@@ -7,10 +7,10 @@ const TopVentas = ({ liga }) => {
   return (
     <article className="top">
         <h2>Top Ventas {liga}</h2>
-        <CardCamiseta idCamiseta="1"/>
-        <CardCamiseta idCamiseta="1"/>
-        <CardCamiseta idCamiseta="1"/>
-        <CardCamiseta idCamiseta="1"/>
+        <CardCamiseta id={1}/>
+        <CardCamiseta id={1}/>
+        <CardCamiseta id={1}/>
+        <CardCamiseta id={1}/>
         <BotonBlanco 
         texto="ver más" 
         icono="/icons/application.svg" 

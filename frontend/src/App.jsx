@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Header from "./componentes/Header";
 import Footer from "./componentes/Footer";
 import Landing from "./componentes/Landing";
 import LoadingScreen from "./componentes/LoadingScreen";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Tienda from "./componentes/Tienda"; // Asegúrate de que la ruta sea correcta
+import Tienda from "./componentes/Tienda";
+import Camiseta from "./componentes/Camiseta";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -49,6 +50,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/tienda" element={<Tienda />} /> {/* Define la ruta para el nuevo componente */}
+          <Route path="/camiseta/:id" element={<Camiseta />} />
         </Routes>
         <Footer />
       </div>

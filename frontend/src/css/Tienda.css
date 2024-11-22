@@ -24,6 +24,7 @@
     background-image: url("/img/fondos/camisetas.webp");
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     opacity: 0.05;
     z-index: -1;
     pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
@@ -50,7 +51,13 @@ h1 {
   }
 
   .top {
-    width: 80% !important;
+    width: 60% !important;
     margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 500px) {
+  .top {
+    width: 100% !important;
   }
 }
