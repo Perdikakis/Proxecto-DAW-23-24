@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ajaxAxios } from "../utils/ajaxAxios";
 import BotonBlanco from "./BotonBlanco";
 import '../css/Buscador.css';
 
@@ -15,73 +16,105 @@ const Buscador = () => {
   const [competicionValida, setCompeticionValida] = useState(false);
   const [temporadaValida, setTemporadaValida] = useState(false);
 
-  const equipos = ['Real Madrid', 'Barcelona', 'Atletico Madrid', 'Celta Vigo', 'Valencia', 'Sevilla', 'Betis'];
-  const competiciones = ['La Liga', 'Premier League', 'Bundesliga', 'Serie A', 'Ligue 1'];
-  // generar temporadas de prueba
+  const [equipos, setEquipos] = useState([]);
+  const [competiciones, setCompeticiones] = useState([]);
   const [temporadas, setListaTemporadas] = useState([]);
+
   useEffect(() => {
-    const yearMin = 1970;
-    const yearMax = 2024;
-    const temporadasList = [];
-    for (let year = yearMin; year <= yearMax; year++) {
-      const nextYear = year + 1;
-      temporadasList.push(`${year}/${nextYear}`);
-    }
-    setListaTemporadas(temporadasList);
+    ajaxAxios({
+      url: 'http://localhost:8000/equipos',
+      method: 'GET',
+      fsuccess: (data) => {
+        setEquipos(data);
+      },
+      ferror: (error) => {
+        console.error('Error fetching equipos:', error);
+      }
+    });
+
+    ajaxAxios({
+      url: 'http://localhost:8000/competiciones',
+      method: 'GET',
+      fsuccess: (data) => {
+        setCompeticiones(data);
+      },
+      ferror: (error) => {
+        console.error('Error fetching competiciones:', error);
+      }
+    });
+
+    ajaxAxios({
+      url: 'http://localhost:8000/temporadas',
+      method: 'GET',
+      fsuccess: (data) => {
+        setListaTemporadas(data);
+      },
+      ferror: (error) => {
+        console.error('Error fetching temporadas:', error);
+      }
+    });
   }, []);
 
   const handleCambio = (e, tipo) => {
     const value = e.target.value;
-  
     switch (tipo) {
       case "equipo":
         setEquipo(value);
-        setSugerenciasEquipo(equipos.filter(item => item.toLowerCase().includes(value.toLowerCase())));
-        setEquipoValido(equipos.includes(value));
+        const equiposFiltrados = equipos.filter(item => item.nombre.toLowerCase().includes(value.toLowerCase()));
+        setSugerenciasEquipo(equiposFiltrados);
+        setEquipoValido(equiposFiltrados.some(item => item.nombre === value));
+        if (equiposFiltrados.length === 1) {
+          const equipoSeleccionado = equiposFiltrados[0];
+          const competicionesDeEquipo = competiciones.filter(competicion => equipoSeleccionado.competiciones.includes(competicion.id));
+          if (competicionesDeEquipo.length === 1) {
+            setCompeticion(competicionesDeEquipo[0].nombre);
+            setCompeticionValida(true);
+          }
+        }
         break;
-  
       case "competicion":
         setCompeticion(value);
-        setSugerenciasCompeticion(competiciones.filter(item => item.toLowerCase().includes(value.toLowerCase())));
-        setCompeticionValida(competiciones.includes(value));
+        const competicionesFiltradas = competiciones.filter(item => item.nombre.toLowerCase().includes(value.toLowerCase()));
+        setSugerenciasCompeticion(competicionesFiltradas);
+        setCompeticionValida(competicionesFiltradas.some(item => item.nombre === value));
+        if (competicionesFiltradas.length === 1) {
+          const competicionSeleccionada = competicionesFiltradas[0];
+          const equiposDeCompeticion = equipos.filter(equipo => equipo.competiciones.includes(competicionSeleccionada.id));
+          setSugerenciasEquipo(equiposDeCompeticion);
+        } else {
+          setSugerenciasEquipo([]);
+        }
         break;
-  
       case "temporada":
         setTemporada(value);
         setSugerenciasTemporada(temporadas.filter(item => item.toLowerCase().includes(value.toLowerCase())));
         setTemporadaValida(temporadas.includes(value));
         break;
-  
       default:
         break;
     }
-  };  
+  };
 
-  const handleFocus = (setSugerencias, sugerencias) => {
-    setSugerencias(sugerencias);
+  const handleFocus = (setSugerencias, sugerencias, tipo) => {
+    if (tipo === "equipo" && competicionValida) {
+      const competicionSeleccionada = competiciones.find(item => item.nombre === competicion);
+      if (competicionSeleccionada) {
+        const equiposDeCompeticion = equipos.filter(equipo => equipo.competiciones.includes(competicionSeleccionada.id));
+        setSugerencias(equiposDeCompeticion);
+      }
+    } else if (tipo === "competicion" && equipoValido) {
+      const equipoSeleccionado = equipos.find(item => item.nombre === equipo);
+      if (equipoSeleccionado) {
+        const competicionesDeEquipo = competiciones.filter(competicion => equipoSeleccionado.competiciones.includes(competicion.id));
+        setSugerencias(competicionesDeEquipo);
+      }
+    } else {
+      setSugerencias(sugerencias);
+    }
   };
 
   const handleBlur = (clearSugerencias) => {
     setTimeout(() => clearSugerencias([]), 1); // Timeout porque al hacer clic en el desplegable, este se cierra antes de que pueda seleccionarse algo
-  };
-
-  const handleSugerenciaClick = (sugerencia, setInput, clearSugerencias, setValido) => {
-    setInput(sugerencia);
-    clearSugerencias([]);
-    setValido(true);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log({ equipo, competicion, temporada });
-  };
-
-  const isButtonDisabled = () => {
-    return (
-      (equipo && !equipoValido) || 
-      (competicion && !competicionValida) || 
-      (temporada && !temporadaValida)
-    );
   };
 
   const renderSugerencias = (sugerencias, tipo) => {
@@ -90,20 +123,49 @@ const Buscador = () => {
         {sugerencias.map((item, index) => (
           <li 
             key={index} 
-            onMouseDown={() => handleSugerenciaClick(item, 
-              tipo == "equipo" ? setEquipo : tipo == "competicion" ? setCompeticion : setTemporada, 
-              tipo == "equipo" ? setSugerenciasEquipo : tipo == "competicion" ? setSugerenciasCompeticion : setSugerenciasTemporada, 
-              tipo == "equipo" ? setEquipoValido : tipo == "competicion" ? setCompeticionValida : setTemporadaValida)}
-          >
-            {item}
+            onMouseDown={() => handleSugerenciaClick(item, tipo)}>
+            {item.nombre || item}
           </li>
         ))}
       </ul>
     );
   };
 
+  const handleSugerenciaClick = (item, tipo) => {
+    switch (tipo) {
+      case "equipo":
+        setEquipo(item.nombre);
+        setSugerenciasEquipo([]);
+        setEquipoValido(true);
+        const competicionesDeEquipo = competiciones.filter(competicion => item.competiciones.includes(competicion.id));
+        if (competicionesDeEquipo.length === 1) {
+          setCompeticion(competicionesDeEquipo[0].nombre);
+          setCompeticionValida(true);
+        }
+        break;
+      case "competicion":
+        setCompeticion(item.nombre);
+        setSugerenciasCompeticion([]);
+        setCompeticionValida(true);
+        const equiposDeCompeticion = equipos.filter(equipo => equipo.competiciones.includes(item.id));
+        setSugerenciasEquipo(equiposDeCompeticion);
+        break;
+      case "temporada":
+        setTemporada(item);
+        setSugerenciasTemporada([]);
+        setTemporadaValida(true);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const isButtonDisabled = () => {
+    return document.querySelectorAll('.input-invalido').length > 0;
+  };
+
   return (
-    <form className="buscador" onSubmit={handleSubmit}>
+    <form className="buscador">
       <div className="campo">
         <label htmlFor="equipo">Equipo:</label>
         <input 
@@ -111,27 +173,12 @@ const Buscador = () => {
           id="equipo" 
           value={equipo} 
           onChange={(e) => handleCambio(e, "equipo")} 
-          onFocus={() => handleFocus(setSugerenciasEquipo, equipos)} 
+          onFocus={() => handleFocus(setSugerenciasEquipo, equipos, "equipo")} 
           onBlur={() => handleBlur(setSugerenciasEquipo)}
           autoComplete="off"
           className={equipo ? (equipoValido ? "input-valido" : "input-invalido") : ""}
         />
         {renderSugerencias(sugerenciasEquipo, "equipo")}
-      </div>
-
-      <div className="campo">
-        <label htmlFor="temporada">Temporada:</label>
-        <input 
-          type="text" 
-          id="temporada"
-          value={temporada}
-          onChange={(e) => handleCambio(e, "temporada")}
-          onFocus={() => handleFocus(setSugerenciasTemporada, temporadas)} 
-          onBlur={() => handleBlur(setSugerenciasTemporada)}
-          autoComplete="off"
-          className={temporada ? (temporadaValida ? "input-valido" : "input-invalido") : ""}
-        />
-        {renderSugerencias(sugerenciasTemporada, "temporada")}
       </div>
 
       <div className="campo">
@@ -141,20 +188,35 @@ const Buscador = () => {
           id="competicion" 
           value={competicion} 
           onChange={(e) => handleCambio(e, "competicion")} 
-          onFocus={() => handleFocus(setSugerenciasCompeticion, competiciones)} 
+          onFocus={() => handleFocus(setSugerenciasCompeticion, competiciones, "competicion")} 
           onBlur={() => handleBlur(setSugerenciasCompeticion)}
           autoComplete="off"
           className={competicion ? (competicionValida ? "input-valido" : "input-invalido") : ""}
-          disabled={!!equipo}
+          disabled={equipoValido} // Bloquea el input si un equipo válido está seleccionado
         />
         {renderSugerencias(sugerenciasCompeticion, "competicion")}
+      </div>
+
+      <div className="campo">
+        <label htmlFor="temporada">Temporada:</label>
+        <input 
+          type="text" 
+          id="temporada" 
+          value={temporada} 
+          onChange={(e) => handleCambio(e, "temporada")} 
+          onFocus={() => handleFocus(setSugerenciasTemporada, temporadas, "temporada")} 
+          onBlur={() => handleBlur(setSugerenciasTemporada)}
+          autoComplete="off"
+          className={temporada ? (temporadaValida ? "input-valido" : "input-invalido") : ""}
+        />
+        {renderSugerencias(sugerenciasTemporada, "temporada")}
       </div>
 
       <BotonBlanco 
         texto="buscar" 
         icono="/icons/search1.svg" 
         iconoHover="/icons/search.svg" 
-        disabled={isButtonDisabled()} 
+        disabled={isButtonDisabled()}
       />
     </form>
   );

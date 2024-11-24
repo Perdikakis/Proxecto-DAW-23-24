@@ -3,6 +3,7 @@ import '../css/Camiseta.css';
 import { useParams } from "react-router-dom";
 import CardCamiseta from "./CardCamiseta";
 import BotonBlanco from "./BotonBlanco";
+import { ajaxAxios } from "../utils/ajaxAxios";
 
 const Camiseta = () => {
   const { id } = useParams();
@@ -14,7 +15,21 @@ const Camiseta = () => {
   const [sugerenciasTalla, setSugerenciasTalla] = useState([]);
   const [tallaValida, setTallaValida] = useState(false);
 
-  const tallas = ['S', 'M', 'L'];
+  const [tallas, setTallas] = useState([]);
+
+  useEffect(() => {
+    ajaxAxios({
+      url: 'http://localhost:8000/tallas',
+      method: 'GET',
+      fsuccess: (data) => {
+        setTallas(data);
+        console.log('Tallas:', data);
+      },
+      ferror: (error) => {
+        console.error('Error fetching tallas:', error);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const imagesContainer = imagesRef.current;
@@ -112,17 +127,17 @@ const Camiseta = () => {
     <main className="main-camiseta" ref={mainRef}>
       <section className="images" ref={imagesRef}>
         <figure className="image">
-          <img src="/img/fondos/camisetas/barcelona-3.webp" alt="" />
+          <img src="/img/camisetas/barcelona-3.webp" alt="" />
         </figure>
         <figure className="image">
-          <img src="/img/fondos/camisetas/barcelona-1.webp" alt="" />
+          <img src="/img/camisetas/barcelona-1.webp" alt="" />
         </figure>
         <CardCamiseta id={id} />
         <figure className="image">
-          <img src="/img/fondos/camisetas/barcelona-2.webp" alt="" />
+          <img src="/img/camisetas/barcelona-2.webp" alt="" />
         </figure>
         <figure className="image">
-          <img src="/img/fondos/camisetas/barcelona-4.webp" alt="" />
+          <img src="/img/camisetas/barcelona-4.webp" alt="" />
         </figure>
       </section>
       <section className="datos">
@@ -156,7 +171,7 @@ const Camiseta = () => {
             texto="añadir al carrito" 
             icono="/icons/add-to-cart.svg" 
             iconoHover="/icons/add-to-cart-1.svg" 
-            disabled={/*isButtonDisabled*/false} 
+            disabled={isButtonDisabled} 
           />
         </form>
       </section>

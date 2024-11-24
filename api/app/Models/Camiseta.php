@@ -12,10 +12,11 @@ class Camiseta extends Model
     protected $table = 'camisetas';
 
     protected $fillable = [
+        'nombre',
         'equipo_id',
         'year_inicio',
         'year_fin',
-        'version',
+        'estado',
         'precio',
     ];
 
@@ -33,6 +34,11 @@ class Camiseta extends Model
     {
         return $this->belongsToMany(Pedido::class, 'pedido_camiseta_talla')
                     ->withPivot('talla_id', 'cantidad');
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Imagen::class, 'imageable');
     }
 }
 

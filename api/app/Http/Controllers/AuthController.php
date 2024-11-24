@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         // Validar las credenciales
         $validator = Validator::make($request->all(), [
             'usuario' => 'required|string', // Validación de usuario: requerido y debe ser un string

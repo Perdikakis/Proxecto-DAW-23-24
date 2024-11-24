@@ -4,11 +4,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use Illuminate\Http\Request;
 
-Route::get('pedidos/{pedido}/camisetas', [Controllers\PedidoController::class, 'getCamisetas']);
+Route::get('/equipos', [Controllers\EquipoController::class, 'getEquipos']);
 
-Route::post('/login', [Controllers\AuthController::class, 'login']);
+Route::get('/competiciones', [Controllers\CompeticionController::class, 'getCompeticiones']);
 
-Route::get('/barsa', [Controllers\EquipoController::class, 'getEscudo']);
+Route::get('/temporadas', [Controllers\CamisetaController::class, 'getTemporadas']);
+Route::post('/camisetas', [Controllers\CamisetaController::class, 'getCamisetas']);
+
+Route::get('/tallas', [Controllers\TallaController::class, 'getTallas']);
+
+
+
+
+
+
+
 
 Route::post('/upload', function (Request $request) {
     $request->validate([

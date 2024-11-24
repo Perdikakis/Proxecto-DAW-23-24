@@ -39,6 +39,7 @@ h1 {
 .top-ventas {
   width: 100%;
   margin-top: 50px;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
