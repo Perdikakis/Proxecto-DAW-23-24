@@ -37,6 +37,7 @@
     align-items: center;
     width: 100%;
     max-width: 1500px;
+    margin-bottom: 50px;
 }
 
 .main-camiseta .images .card-camiseta {
@@ -60,15 +61,98 @@
     height: auto;
 }
 
+.formulario-camiseta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.formulario-camiseta .form-group {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.formulario-camiseta label {
+    display: block;
+    width: 300px;
+    font-size: 32px;
+    align-self: center;
+}
+
+.formulario-camiseta input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #EBB93A;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #f0f0f0;
+    font-size: 28px;
+    transition: box-shadow 0.2s ease;
+}
+
+.formulario-camiseta input:focus {
+    box-shadow: 0 0 0 1px #EBB93A inset;
+    outline: none;
+}
+
+.formulario-camiseta button {
+    width: 300px;
+}
+
+.tallas {
+    position: absolute;
+    top: 100%;
+    left: 300px;
+    right: 0;
+    background: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 10;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 300px;
+}
+  
+.tallas li {
+    height: 30px;
+    padding: 8px;
+    font-size: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #1f1c1c;
+}
+
+.tallas li:hover {
+    background: #000000;
+}
+
+.form-group input.input-valido {
+    border: 1px solid #379342;
+}
+.form-group input.input-valido:focus {
+    box-shadow: 0 0 0 1px #379342 inset;
+    outline: none;
+}
+
+.form-group input.input-invalido {
+    border: 1px solid #D63030;
+}
+.form-group input.input-invalido:focus {
+    box-shadow: 0 0 0 1px #D63030 inset;
+    outline: none;
+}
 
 @media (max-width: 768px) {
     .main-camiseta .images {
-      overflow-x: auto; /* Permite el desplazamiento horizontal */
+      overflow-x: auto;
       gap: 20px;
     }
 
     .main-camiseta .image {
-      min-width: 200px; /* Ajusta el tamaño mínimo según sea necesario */
+      min-width: 200px;
     }
 
     .main-camiseta .bottom-text {
@@ -77,5 +161,16 @@
 
     .main-camiseta .info-container {
         font-size: 10px;
+    }
+
+    .formulario-camiseta .form-group {
+        flex-direction: column;
+    }
+    .formulario-camiseta label {
+        text-align: center;
+    }
+
+    .tallas {
+        left: 0;
     }
 }
