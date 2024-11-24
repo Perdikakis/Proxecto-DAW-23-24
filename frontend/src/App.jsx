@@ -7,6 +7,8 @@ import Landing from "./componentes/Landing";
 import LoadingScreen from "./componentes/LoadingScreen";
 import Tienda from "./componentes/Tienda";
 import Camiseta from "./componentes/Camiseta";
+import Custom404 from "./componentes/Custom404";
+import Perfil from "./componentes/Perfil";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -49,8 +51,10 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/tienda" element={<Tienda />} /> {/* Define la ruta para el nuevo componente */}
+          <Route path="/tienda" element={<Tienda />} />
           <Route path="/camiseta/:id" element={<Camiseta />} />
+          <Route path="/perfil" element={<Perfil />} />
+          <Route path="*" element={<Custom404 />} />
         </Routes>
         <Footer />
       </div>

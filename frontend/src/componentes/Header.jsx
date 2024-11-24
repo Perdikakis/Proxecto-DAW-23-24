@@ -16,7 +16,7 @@ const Header = () => {
           <li><Link to="/tienda" onClick={toggleMenu}>Tienda</Link></li>
           <li><Link to="/" onClick={toggleMenu}>Marcador</Link></li>
           <li><Link to="/" onClick={toggleMenu}>Fantasy</Link></li>
-          <li><Link to="/" onClick={toggleMenu}>Perfil</Link></li>
+          <li><Link to="/perfil" onClick={toggleMenu}>Perfil</Link></li>
         </ul>
       </div>
 
@@ -31,7 +31,7 @@ const Header = () => {
           <li><Link to="/tienda">Tienda</Link></li>
           <li><Link to="/">Marcador</Link></li>
           <li><Link to="/">Fantasy</Link></li>
-          <li><Link to="/">Perfil</Link></li>
+          <li><Link to="/perfil">Perfil</Link></li>
         </ul>
       </nav>
 

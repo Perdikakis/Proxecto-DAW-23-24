@@ -1,0 +1,160 @@
+.main-perfil {
+    position: relative;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #0D0C0C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: space-around;*/
+    gap: 40px;
+    color: #f0f0f0;
+    padding: 60px;
+    padding-top: 120px;
+    z-index: 0;
+}
+
+  /* doble fondo */
+.main-perfil::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/fondos/fondo-perfil.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.05;
+    z-index: 0;
+    pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
+}
+
+.panel {
+    background-color: #EBB93A;
+    width: 100%;
+    height: 60px !important;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.panel .opciones {
+    width: 60%;
+    height: 100%;
+}
+
+.panel .opciones ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.panel .opciones ul li {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    border-bottom: 5px solid transparent;
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+    cursor: pointer;
+}
+.panel .opciones ul li:hover {
+    background-color: #B9912B;
+    border-bottom-color: #0D0C0C;
+}
+
+.opciones figure {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opciones figure img {
+    width: auto;
+    height: 100%;
+}
+
+.opciones span {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #0D0C0C;
+}
+
+.panel .selected {
+    background-color: #B9912B;
+    border-bottom-color: #0D0C0C;
+}
+
+.panel .usuario {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 100%;
+}
+
+.panel .usuario span {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #0D0C0C;
+}
+
+.panel .usuario figure {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.panel .usuario figure img {
+    width: auto;
+    height: 100%;
+}
+
+.logout {
+    border-bottom: 5px solid transparent;
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+    cursor: pointer;
+}
+
+.logout .icono-default {
+    display: block;
+}
+
+.logout .icono-hover {
+    display: none;
+}
+
+.logout:hover .icono-default {
+    display: none;
+}
+
+.logout:hover .icono-hover {
+    display: block;
+}
+
+.logout:hover {
+    background-color: #DF3C31;
+    border-bottom-color: #f0f0f0;
+}
