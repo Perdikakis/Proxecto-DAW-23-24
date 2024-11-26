@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
+
+.error-page {
+  font-family: 'Aldrich', sans-serif;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.error-page h1,
+.error-page a {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.error-page figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.error-page img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.error-page ::-webkit-scrollbar {
+  display: none;
+}

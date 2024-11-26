@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import '../css/Custom404.css';
 
 const Custom404 = () => {
   return (
