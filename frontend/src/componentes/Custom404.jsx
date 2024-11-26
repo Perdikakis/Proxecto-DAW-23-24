@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+
 const Custom404 = () => {
   useEffect(() => {
     window.location.href = '/custom_404.html';

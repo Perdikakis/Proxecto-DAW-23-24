@@ -18,7 +18,8 @@ class Talla extends Model
 
     public function camisetas()
     {
-        return $this->belongsToMany(Camiseta::class, 'camiseta_talla');
+        return $this->belongsToMany(Camiseta::class, 'camiseta_talla')
+                    ->withPivot('stock', 'ventas');
     }
 
     public function pedidos()

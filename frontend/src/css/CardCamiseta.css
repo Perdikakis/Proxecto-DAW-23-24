@@ -4,10 +4,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 200px;
 }
 
 .card-camiseta figure {
-    max-width: 200px;
+    /*min-height: 230px;*/
+    display: flex;
+    align-items: center;
 }
 
 .camiseta-img {

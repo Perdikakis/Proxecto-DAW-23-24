@@ -10,6 +10,7 @@
     color: #f0f0f0;
     padding: 60px;
     padding-top: 120px;
+    padding-bottom: 200px;
     z-index: 0;
 }
 
@@ -172,5 +173,11 @@
 
     .tallas {
         left: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-camiseta {
+        padding-bottom: 0px;
     }
 }

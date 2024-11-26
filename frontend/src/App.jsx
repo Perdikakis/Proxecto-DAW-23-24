@@ -22,7 +22,7 @@ const App = () => {
     }, 1000);*/
     
     /* Función AJAX */
-    ajaxAxios({
+    /*ajaxAxios({
       url: `${import.meta.env.VITE_API_URL}/test-loading-screen`,
       method: "GET",
       data: {
@@ -38,16 +38,16 @@ const App = () => {
         setError(err);
         setLoadingScreen(false); // Termina la carga si hay un error
       },
-    });
+    });*/
     
   }, []);
 
   return (
     <Router>
-      <div style={{ opacity: loading ? 1 : 0, transition: 'opacity 1s ease', pointerEvents: loading ? 'auto' : 'none' }}>
+      {/*<div style={{ opacity: loading ? 1 : 0, transition: 'opacity 1s ease', pointerEvents: loading ? 'auto' : 'none' }}>
         <LoadingScreen />
-      </div>
-      <div style={{ opacity: loading ? 0 : 1, transition: 'opacity 1s ease' }}>
+      </div>*/}
+      <div style={{ /*opacity: loading ? 0 : 1*/ opacity: 1, transition: 'opacity 1s ease' }}>
         <Header />
         <Routes>
           <Route path="/" element={<Landing />} />

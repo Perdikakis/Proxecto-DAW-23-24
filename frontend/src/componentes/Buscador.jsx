@@ -3,7 +3,7 @@ import { ajaxAxios } from "../utils/ajaxAxios";
 import BotonBlanco from "./BotonBlanco";
 import '../css/Buscador.css';
 
-const Buscador = () => {
+const Buscador = ({onResultadosBusqueda}) => {
   const [equipo, setEquipo] = useState('');
   const [competicion, setCompeticion] = useState('');
   const [temporada, setTemporada] = useState('');
@@ -64,12 +64,7 @@ const Buscador = () => {
         setSugerenciasEquipo(equiposFiltrados);
         setEquipoValido(equiposFiltrados.some(item => item.nombre === value));
         if (equiposFiltrados.length === 1) {
-          const equipoSeleccionado = equiposFiltrados[0];
-          const competicionesDeEquipo = competiciones.filter(competicion => equipoSeleccionado.competiciones.includes(competicion.id));
-          if (competicionesDeEquipo.length === 1) {
-            setCompeticion(competicionesDeEquipo[0].nombre);
-            setCompeticionValida(true);
-          }
+          setCompeticionValida(false);
         }
         break;
       case "competicion":
@@ -77,13 +72,7 @@ const Buscador = () => {
         const competicionesFiltradas = competiciones.filter(item => item.nombre.toLowerCase().includes(value.toLowerCase()));
         setSugerenciasCompeticion(competicionesFiltradas);
         setCompeticionValida(competicionesFiltradas.some(item => item.nombre === value));
-        if (competicionesFiltradas.length === 1) {
-          const competicionSeleccionada = competicionesFiltradas[0];
-          const equiposDeCompeticion = equipos.filter(equipo => equipo.competiciones.includes(competicionSeleccionada.id));
-          setSugerenciasEquipo(equiposDeCompeticion);
-        } else {
-          setSugerenciasEquipo([]);
-        }
+        
         break;
       case "temporada":
         setTemporada(value);
@@ -137,18 +126,12 @@ const Buscador = () => {
         setEquipo(item.nombre);
         setSugerenciasEquipo([]);
         setEquipoValido(true);
-        const competicionesDeEquipo = competiciones.filter(competicion => item.competiciones.includes(competicion.id));
-        if (competicionesDeEquipo.length === 1) {
-          setCompeticion(competicionesDeEquipo[0].nombre);
-          setCompeticionValida(true);
-        }
+        setCompeticionValida(true);
         break;
       case "competicion":
         setCompeticion(item.nombre);
         setSugerenciasCompeticion([]);
         setCompeticionValida(true);
-        const equiposDeCompeticion = equipos.filter(equipo => equipo.competiciones.includes(item.id));
-        setSugerenciasEquipo(equiposDeCompeticion);
         break;
       case "temporada":
         setTemporada(item);
@@ -160,12 +143,36 @@ const Buscador = () => {
     }
   };
 
+  const handleBusqueda = (e) => {
+    e.preventDefault();
+    const equipoSeleccionado = equipos.find(item => item.nombre === equipo);
+    const competicionSeleccionada = competiciones.find(item => item.nombre === competicion);
+
+    const data = {
+      equipo_id: equipoSeleccionado ? equipoSeleccionado.id : null,
+      competicion_id: competicionSeleccionada ? competicionSeleccionada.id : null,
+      temporada
+    };
+
+    ajaxAxios({
+      url: `${import.meta.env.VITE_API_URL}/camisetasFiltradas`,
+      method: 'POST',
+      data: data,
+      fsuccess: (response) => {
+        onResultadosBusqueda(response);
+      },
+      ferror: (error) => {
+        console.error('Error fetching camisetas:', error);
+      }
+    });
+  };
+
   const isButtonDisabled = () => {
     return document.querySelectorAll('.input-invalido').length > 0;
   };
 
   return (
-    <form className="buscador">
+    <form className="buscador" onSubmit={handleBusqueda}>
       <div className="campo">
         <label htmlFor="equipo">Equipo:</label>
         <input 
@@ -217,6 +224,7 @@ const Buscador = () => {
         icono="/icons/search1.svg" 
         iconoHover="/icons/search.svg" 
         disabled={isButtonDisabled()}
+        onClick={handleBusqueda}
       />
     </form>
   );

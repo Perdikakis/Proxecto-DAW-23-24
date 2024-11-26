@@ -9,9 +9,9 @@ Route::get('/equipos', [Controllers\EquipoController::class, 'getEquipos']);
 Route::get('/competiciones', [Controllers\CompeticionController::class, 'getCompeticiones']);
 
 Route::get('/temporadas', [Controllers\CamisetaController::class, 'getTemporadas']);
-Route::post('/camisetas', [Controllers\CamisetaController::class, 'getCamisetas']);
+Route::post('/camisetasFiltradas', [Controllers\CamisetaController::class, 'getCamisetasFiltradas']);
 
-Route::get('/tallas', [Controllers\TallaController::class, 'getTallas']);
+Route::get('/tallasCamiseta/{id}', [Controllers\TallaController::class, 'getTallas']);
 
 
 

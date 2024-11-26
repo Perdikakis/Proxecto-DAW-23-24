@@ -16,10 +16,11 @@ const Camiseta = () => {
   const [tallaValida, setTallaValida] = useState(false);
 
   const [tallas, setTallas] = useState([]);
+  const [camisetaData, setCamisetaData] = useState(null);
 
   useEffect(() => {
     ajaxAxios({
-      url: `${import.meta.env.VITE_API_URL}/tallas`,
+      url: `${import.meta.env.VITE_API_URL}/tallasCamiseta/${id}`,
       method: 'GET',
       fsuccess: (data) => {
         const formattedTallas = data.map((item) => `${item.talla} ${item.medidas}`);
@@ -29,23 +30,41 @@ const Camiseta = () => {
         console.error('Error fetching tallas:', error);
       }
     });
+
+    ajaxAxios({
+      url: `${import.meta.env.VITE_API_URL}/camisetasFiltradas`,
+      method: 'POST',
+      data: { camiseta_id: id},
+      fsuccess: (data) => {
+        if (data.length > 0) {
+          setCamisetaData(data[0]);
+        } else {
+          console.error(`Camiseta de id ${id} no encontrada.`);
+        }
+      },
+      ferror: (error) => {
+        console.error('Error fetching camiseta data:', error);
+      }
+    });
   }, []);
 
   useEffect(() => {
     const imagesContainer = imagesRef.current;
     const mainContainer = mainRef.current;
-
+  
     if (imagesContainer && mainContainer) {
       const cardCamiseta = imagesContainer.querySelector('.card-camiseta');
-      const cardCamisetaOffset = cardCamiseta.offsetLeft;
-      const cardCamisetaWidth = cardCamiseta.offsetWidth;
-      const mainWidth = mainContainer.offsetWidth;
-
-      const scrollLeft = cardCamisetaOffset - (mainWidth / 2) + (cardCamisetaWidth / 2);
-
-      imagesContainer.scrollLeft = scrollLeft;
+      if (cardCamiseta) {
+        const cardCamisetaOffset = cardCamiseta.offsetLeft;
+        const cardCamisetaWidth = cardCamiseta.offsetWidth;
+        const mainWidth = mainContainer.offsetWidth;
+  
+        const scrollLeft = cardCamisetaOffset - (mainWidth / 2) + (cardCamisetaWidth / 2);
+  
+        imagesContainer.scrollLeft = scrollLeft;
+      }
     }
-  }, []);
+  }, [camisetaData]);
 
   const validarNombre = () => {
     const nombre = document.getElementById('nombre').value;
@@ -123,22 +142,29 @@ const Camiseta = () => {
     validarEnvio();
   };
 
+  const renderImagen = (num) =>{
+    if (camisetaData && camisetaData.imagenes[num]) {
+      return (
+        <figure className="image">
+          <img src={camisetaData.imagenes[num]} alt={`Imagen ${num}`} />
+        </figure>
+      );
+    } else {
+      return (
+        <figure className="image">
+        </figure>
+      );
+    }
+  }
+
   return (
     <main className="main-camiseta" ref={mainRef}>
       <section className="images" ref={imagesRef}>
-        <figure className="image">
-          <img src="/img/camisetas/barcelona-3.webp" alt="" />
-        </figure>
-        <figure className="image">
-          <img src="/img/camisetas/barcelona-1.webp" alt="" />
-        </figure>
-        <CardCamiseta id={id} />
-        <figure className="image">
-          <img src="/img/camisetas/barcelona-2.webp" alt="" />
-        </figure>
-        <figure className="image">
-          <img src="/img/camisetas/barcelona-4.webp" alt="" />
-        </figure>
+        {renderImagen(3)}
+        {renderImagen(1)}
+        {camisetaData ? <CardCamiseta data={camisetaData} /> : <p>Cargando datos de la camiseta...</p>}
+        {renderImagen(2)}
+        {renderImagen(4)}
       </section>
       <section className="datos">
         <form className="formulario-camiseta">
