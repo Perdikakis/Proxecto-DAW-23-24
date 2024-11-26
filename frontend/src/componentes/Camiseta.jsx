@@ -22,8 +22,8 @@ const Camiseta = () => {
       url: `${import.meta.env.VITE_API_URL}/tallas`,
       method: 'GET',
       fsuccess: (data) => {
-        setTallas(data);
-        console.log('Tallas:', data);
+        const formattedTallas = data.map((item) => `${item.talla} ${item.medidas}`);
+        setTallas(formattedTallas);
       },
       ferror: (error) => {
         console.error('Error fetching tallas:', error);

@@ -11,7 +11,10 @@ class TallaController extends Controller
         $tallas = Talla::all();
 
         $formattedTallas = $tallas->map(function($talla) {
-            return $talla->talla . ' ' . $talla->medidas;
+            return [
+                'talla' => $talla->talla,
+                'medidas' => $talla->medidas,
+            ];
         });
 
         return response()->json($formattedTallas);
