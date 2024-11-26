@@ -19,7 +19,7 @@ const Camiseta = () => {
 
   useEffect(() => {
     ajaxAxios({
-      url: 'http://localhost:8000/tallas',
+      url: `${import.meta.env.VITE_API_URL}/tallas`,
       method: 'GET',
       fsuccess: (data) => {
         setTallas(data);

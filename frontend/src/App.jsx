@@ -20,10 +20,10 @@ const App = () => {
     /*setTimeout(() => {
       setLoadingScreen(false);
     }, 1000);*/
-
+    
     /* Función AJAX */
     ajaxAxios({
-      url: "http://localhost:8000/test-loading-screen",
+      url: `${import.meta.env.VITE_API_URL}/test-loading-screen`,
       method: "GET",
       data: {
         usuario: "user1",

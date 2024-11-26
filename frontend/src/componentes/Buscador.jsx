@@ -22,7 +22,7 @@ const Buscador = () => {
 
   useEffect(() => {
     ajaxAxios({
-      url: 'http://localhost:8000/equipos',
+      url: `${import.meta.env.VITE_API_URL}/equipos`,
       method: 'GET',
       fsuccess: (data) => {
         setEquipos(data);
@@ -33,7 +33,7 @@ const Buscador = () => {
     });
 
     ajaxAxios({
-      url: 'http://localhost:8000/competiciones',
+      url: `${import.meta.env.VITE_API_URL}/competiciones`,
       method: 'GET',
       fsuccess: (data) => {
         setCompeticiones(data);
@@ -44,7 +44,7 @@ const Buscador = () => {
     });
 
     ajaxAxios({
-      url: 'http://localhost:8000/temporadas',
+      url: `${import.meta.env.VITE_API_URL}/temporadas`,
       method: 'GET',
       fsuccess: (data) => {
         setListaTemporadas(data);
