@@ -28,24 +28,33 @@ const TopVentas = ({ nombre, id, onVerMas }) => {
         setTopVentasIds(data.ids);
       },
       ferror: (error) => {
-        console.error('Error fetching top-ventas:', error);
+        console.error('Error obteniendo top-ventas:', error);
       }
     });
   }, []);
 
   const handleBusqueda = () => {
-    onVerMas(topVentasIds);
+    ajaxAxios({
+      url: `${import.meta.env.VITE_API_URL}/camisetasFiltradas`,
+      method: 'POST',
+      data: { camisetas_ids: topVentasIds },
+      fsuccess: (data) => {
+        onVerMas(data, topVentasIds);
+      },
+      ferror: (error) => {
+        console.error('Error mostrando top ventas:', error);
+        setLoading(false);
+      }
+    });
   }
 
   return (
     <article className="top">
       <h2>Top Ventas {nombre}</h2>
-      {topVentas && topVentas.length > 0 ? (
+      {topVentas && topVentas.length > 0 && (
         topVentas.map((venta) => (
           <CardCamiseta key={venta.id} data={venta} />
         ))
-      ) : (
-        <p>Cargando datos de las ventas...</p>
       )}
       <BotonBlanco 
         texto="ver mas" 

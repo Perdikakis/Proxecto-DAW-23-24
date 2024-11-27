@@ -92,6 +92,7 @@ class CamisetaController extends Controller {
 
             return response()->json($result);
         } catch (\Exception $e) {
+            Log::error($e->getMessage());
             return response()->json(['error' => 'Error al obtener las camisetas'], 500);
         }
     }
@@ -155,7 +156,7 @@ class CamisetaController extends Controller {
     
             return response()->json(['camisetas' => $result, 'ids' => $camisetasIds]);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al obtener las camisetas mas vendidas'], 500);
+            return response()->json(['error' => 'error al obtener top ventas'], 500);
         }
     }
 }

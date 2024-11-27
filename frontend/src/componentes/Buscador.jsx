@@ -63,16 +63,12 @@ const Buscador = ({onResultadosBusqueda}) => {
         const equiposFiltrados = equipos.filter(item => item.nombre.toLowerCase().includes(value.toLowerCase()));
         setSugerenciasEquipo(equiposFiltrados);
         setEquipoValido(equiposFiltrados.some(item => item.nombre === value));
-        if (equiposFiltrados.length === 1) {
-          setCompeticionValida(false);
-        }
         break;
       case "competicion":
         setCompeticion(value);
         const competicionesFiltradas = competiciones.filter(item => item.nombre.toLowerCase().includes(value.toLowerCase()));
         setSugerenciasCompeticion(competicionesFiltradas);
         setCompeticionValida(competicionesFiltradas.some(item => item.nombre === value));
-        
         break;
       case "temporada":
         setTemporada(value);
@@ -85,22 +81,42 @@ const Buscador = ({onResultadosBusqueda}) => {
   };
 
   const handleFocus = (setSugerencias, sugerencias, tipo) => {
-    if (tipo === "equipo" && competicionValida) {
-      const competicionSeleccionada = competiciones.find(item => item.nombre === competicion);
-      if (competicionSeleccionada) {
-        const equiposDeCompeticion = equipos.filter(equipo => equipo.competiciones.includes(competicionSeleccionada.id));
-        setSugerencias(equiposDeCompeticion);
-      }
-    } else if (tipo === "competicion" && equipoValido) {
-      const equipoSeleccionado = equipos.find(item => item.nombre === equipo);
-      if (equipoSeleccionado) {
-        const competicionesDeEquipo = competiciones.filter(competicion => equipoSeleccionado.competiciones.includes(competicion.id));
-        setSugerencias(competicionesDeEquipo);
-      }
-    } else {
-      setSugerencias(sugerencias);
+    switch (tipo) {
+      case "equipo":
+        if (competicionValida) {
+          const competicionSeleccionada = competiciones.find(item => item.nombre === competicion);
+          if (competicionSeleccionada) {
+            const equiposDeCompeticion = equipos.filter(equipo => equipo.competiciones.includes(competicionSeleccionada.id));
+            setSugerencias(equiposDeCompeticion);
+          } else {
+            setSugerencias(equipos);
+          }
+        } else {
+          setSugerencias(equipos);
+        }
+        break;
+      case "competicion":
+        if (equipoValido) {
+          const equipoSeleccionado = equipos.find(item => item.nombre === equipo);
+          if (equipoSeleccionado) {
+            const competicionesDeEquipo = competiciones.filter(competicion => equipoSeleccionado.competiciones.includes(competicion.id));
+            setSugerencias(competicionesDeEquipo);
+          } else {
+            setSugerencias(competiciones);
+          }
+        } else {
+          setSugerencias(competiciones);
+        }
+        break;
+      case "temporada":
+        setSugerencias(temporadas);
+        break;
+      default:
+        setSugerencias(sugerencias);
+        break;
     }
   };
+  
 
   const handleBlur = (clearSugerencias) => {
     setTimeout(() => clearSugerencias([]), 1); // Timeout porque al hacer clic en el desplegable, este se cierra antes de que pueda seleccionarse algo

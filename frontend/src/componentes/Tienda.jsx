@@ -6,6 +6,7 @@ import Buscador from "./Buscador";
 import TopVentas from "./TopVentas";
 import CardCamiseta from "./CardCamiseta";
 import { ajaxAxios } from "../utils/ajaxAxios";
+import LoadingScreen from "./LoadingScreen";
 
 
 const destacadas=[
@@ -22,34 +23,24 @@ const Tienda = () => {
   const [resultadosBusqueda, setResultadosBusqueda] = useState([]);
   const [mostrarResultados, setMostrarResultados] = useState(false);
   const [aviso, setAviso] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleResultadosBusqueda = (resultados) => {
+  const handleResultadosBusqueda = (resultados, orden = resultados.map(resultado => resultado.id)) => {
     if (resultados.length === 0) {
       setAviso('No se encontraron resultados.');
       setMostrarResultados(false);
     } else {
-      setResultadosBusqueda(resultados);
+      const resultadosOrdenados = orden.length > 0 ? orden.map(id => resultados.find(resultado => resultado.id === id)) : resultados;
+      setResultadosBusqueda(resultadosOrdenados);
       setMostrarResultados(true);
       setAviso('');
     }
-  }
-
-  const handleVerMas = (ids) => {
-    ajaxAxios({
-      url: `${import.meta.env.VITE_API_URL}/camisetasFiltradas`,
-      method: 'POST',
-      data: { camisetas_ids: ids },
-      fsuccess: (data) => {
-        handleResultadosBusqueda(data);
-      },
-      ferror: (error) => {
-        console.error('Error mostrando top ventas:', error);
-      }
-    });
+    setLoading(false);
   }
 
   return (
     <main className="main-tienda">
+      {loading && <LoadingScreen />}
       <h1>Camisetas destacadas</h1>
       <Destacadas images={destacadas} autoScrollSpeed={30}/>
       <Buscador onResultadosBusqueda={handleResultadosBusqueda}/>
@@ -73,9 +64,9 @@ const Tienda = () => {
         </section>
       ) : (
         <section className="top-ventas">
-          <TopVentas nombre="La Liga" id={1} onVerMas={handleVerMas}/>
-          <TopVentas nombre="La Liga" id={1} onVerMas={handleVerMas}/>
-          <TopVentas nombre="La Liga" id={1} onVerMas={handleVerMas}/>
+          <TopVentas nombre="La Liga" id={1} onVerMas={handleResultadosBusqueda}/>
+          <TopVentas nombre="La Liga" id={1} onVerMas={handleResultadosBusqueda}/>
+          <TopVentas nombre="La Liga" id={1} onVerMas={handleResultadosBusqueda}/>
         </section>
       )}
     </main>
