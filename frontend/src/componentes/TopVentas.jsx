@@ -43,7 +43,6 @@ const TopVentas = ({ nombre, id, onVerMas }) => {
       },
       ferror: (error) => {
         console.error('Error mostrando top ventas:', error);
-        setLoading(false);
       }
     });
   }

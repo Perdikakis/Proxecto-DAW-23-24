@@ -89,6 +89,7 @@
     border-radius: 4px;
     background-color: transparent;
     color: #f0f0f0;
+    text-align: center;
     font-size: 28px;
     transition: box-shadow 0.2s ease;
 }

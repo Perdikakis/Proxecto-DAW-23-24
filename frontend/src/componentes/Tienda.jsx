@@ -5,8 +5,6 @@ import Destacadas from "./Destacadas";
 import Buscador from "./Buscador";
 import TopVentas from "./TopVentas";
 import CardCamiseta from "./CardCamiseta";
-import { ajaxAxios } from "../utils/ajaxAxios";
-import LoadingScreen from "./LoadingScreen";
 
 
 const destacadas=[
@@ -23,7 +21,6 @@ const Tienda = () => {
   const [resultadosBusqueda, setResultadosBusqueda] = useState([]);
   const [mostrarResultados, setMostrarResultados] = useState(false);
   const [aviso, setAviso] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const handleResultadosBusqueda = (resultados, orden = resultados.map(resultado => resultado.id)) => {
     if (resultados.length === 0) {
@@ -35,12 +32,10 @@ const Tienda = () => {
       setMostrarResultados(true);
       setAviso('');
     }
-    setLoading(false);
   }
 
   return (
     <main className="main-tienda">
-      {loading && <LoadingScreen />}
       <h1>Camisetas destacadas</h1>
       <Destacadas images={destacadas} autoScrollSpeed={30}/>
       <Buscador onResultadosBusqueda={handleResultadosBusqueda}/>

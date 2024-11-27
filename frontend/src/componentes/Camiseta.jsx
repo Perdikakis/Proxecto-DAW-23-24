@@ -17,7 +17,7 @@ const Camiseta = () => {
   const [tallaValida, setTallaValida] = useState(false);
   const [cantidadValida, setCantidadValida] = useState(true);
   const [dorsalValido, setDorsalValido] = useState(true);
-  const [nombreValido, setNombreValido] = useState(false);
+  const [nombreValido, setNombreValido] = useState(true);
 
   const [tallas, setTallas] = useState([]);
   const [camisetaData, setCamisetaData] = useState(null);
@@ -70,22 +70,24 @@ const Camiseta = () => {
     }
   }, [camisetaData]);
 
+  useEffect(() => {
+    validarEnvio();
+  }, [tallaValida, cantidadValida, dorsalValido, nombreValido]);
+
   const validarNombre = () => {
     const nombre = document.getElementById('nombre').value;
-    const regex = /^[\p{L}]{1,16}$/u;
+    const regex = /^[\p{L}]{0,16}$/u;
     const isValid = regex.test(nombre.trim());
     document.getElementById('nombre').className = isValid ? 'input-valido' : 'input-invalido';
     setNombreValido(isValid);
-    validarEnvio();
   };
 
   const validarDorsal = () => {
     const dorsal = document.getElementById('dorsal').value;
     const dorsalNumero = parseInt(dorsal, 10);
-    const isValid = dorsal.trim() !== '' && !isNaN(dorsalNumero) && dorsalNumero >= 0 && dorsalNumero <= 99;
+    const isValid = dorsal.trim() === '' || (!isNaN(dorsalNumero) && dorsalNumero >= 0 && dorsalNumero <= 99);
     document.getElementById('dorsal').className = isValid ? 'input-valido' : 'input-invalido';
     setDorsalValido(isValid);
-    validarEnvio();
   };
 
   const validarTalla = () => {
@@ -93,7 +95,6 @@ const Camiseta = () => {
     const isValid = tallas.includes(talla);
     document.getElementById('talla').className = isValid ? 'input-valido' : 'input-invalido';
     setTallaValida(isValid);
-    validarEnvio();
   };
 
   const validarCantidad = () => {
@@ -102,7 +103,6 @@ const Camiseta = () => {
     const isValid = cantidad.trim() !== '' && !isNaN(cantidadNumero) && cantidadNumero > 0;
     document.getElementById('cantidad').className = isValid ? 'input-valido' : 'input-invalido';
     setCantidadValida(isValid);
-    validarEnvio();
   };
 
   const validarEnvio = () => {
@@ -202,7 +202,7 @@ const Camiseta = () => {
           <BotonBlanco 
             texto="añadir al carrito" 
             icono="/icons/add-to-cart.svg" 
-            iconoHover="/icons/add-to-cart-1.svg" 
+            iconoHover="/icons/add-to-cart-1.png" 
             disabled={isButtonDisabled} 
           />
         </form>
