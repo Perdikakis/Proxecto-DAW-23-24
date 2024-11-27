@@ -44,11 +44,13 @@
     text-align: right;
     text-decoration: line-through;
     color: rgba(240, 240, 240, 0.4);
+    padding-right: 2px;
 }
 
 .info-right {
     text-align: left;
     color: #379342;
+    padding-left: 2px;
 }
 
 .info-container {

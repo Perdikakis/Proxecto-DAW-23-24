@@ -13,7 +13,11 @@ const Camiseta = () => {
 
   const [talla, setTalla] = useState('');
   const [sugerenciasTalla, setSugerenciasTalla] = useState([]);
+
   const [tallaValida, setTallaValida] = useState(false);
+  const [cantidadValida, setCantidadValida] = useState(true);
+  const [dorsalValido, setDorsalValido] = useState(true);
+  const [nombreValido, setNombreValido] = useState(false);
 
   const [tallas, setTallas] = useState([]);
   const [camisetaData, setCamisetaData] = useState(null);
@@ -71,7 +75,8 @@ const Camiseta = () => {
     const regex = /^[\p{L}]{1,16}$/u;
     const isValid = regex.test(nombre.trim());
     document.getElementById('nombre').className = isValid ? 'input-valido' : 'input-invalido';
-    return isValid;
+    setNombreValido(isValid);
+    validarEnvio();
   };
 
   const validarDorsal = () => {
@@ -79,14 +84,16 @@ const Camiseta = () => {
     const dorsalNumero = parseInt(dorsal, 10);
     const isValid = dorsal.trim() !== '' && !isNaN(dorsalNumero) && dorsalNumero >= 0 && dorsalNumero <= 99;
     document.getElementById('dorsal').className = isValid ? 'input-valido' : 'input-invalido';
-    return isValid;
+    setDorsalValido(isValid);
+    validarEnvio();
   };
 
   const validarTalla = () => {
     const talla = document.getElementById('talla').value;
     const isValid = tallas.includes(talla);
     document.getElementById('talla').className = isValid ? 'input-valido' : 'input-invalido';
-    return isValid;
+    setTallaValida(isValid);
+    validarEnvio();
   };
 
   const validarCantidad = () => {
@@ -94,23 +101,23 @@ const Camiseta = () => {
     const cantidadNumero = parseInt(cantidad, 10);
     const isValid = cantidad.trim() !== '' && !isNaN(cantidadNumero) && cantidadNumero > 0;
     document.getElementById('cantidad').className = isValid ? 'input-valido' : 'input-invalido';
-    return isValid;
+    setCantidadValida(isValid);
+    validarEnvio();
   };
 
   const validarEnvio = () => {
-    if (validarNombre() && validarDorsal() && validarTalla() && validarCantidad()) {
+    if (nombreValido && dorsalValido && tallaValida && cantidadValida) {
       setIsButtonDisabled(false);
     } else {
       setIsButtonDisabled(true);
     }
-  };
+  }
 
   const handleCambioTalla = (e) => {
     const value = e.target.value;
     setTalla(value);
     setSugerenciasTalla(tallas.filter(item => item.toLowerCase().includes(value.toLowerCase())));
-    setTallaValida(tallas.includes(value));
-    validarEnvio();
+    validarTalla();
   };
 
   const handleFocus = (setSugerencias, sugerencias) => {
@@ -121,25 +128,24 @@ const Camiseta = () => {
     setTimeout(() => clearSugerencias([]), 1); // Timeout porque al hacer clic en el desplegable, este se cierra antes de que pueda seleccionarse algo
   };
 
+  const handleSugerenciaClick = (item, setValue, clearSugerencias) => {
+    setValue(item);
+    clearSugerencias([]);
+    setTimeout(() => validarTalla(), 1);
+  };
+
   const renderTallas = (sugerencias) => {
     return sugerencias.length > 0 && (
       <ul className="tallas">
         {sugerencias.map((item, index) => (
           <li 
             key={index} 
-            onMouseDown={() => handleSugerenciaClick(item, setTalla, setSugerenciasTalla, setTallaValida)}>
+            onMouseDown={() => handleSugerenciaClick(item, setTalla, setSugerenciasTalla)}>
             {item}
           </li>
         ))}
       </ul>
     );
-  };
-
-  const handleSugerenciaClick = (item, setValue, clearSugerencias, setValido) => {
-    setValue(item);
-    clearSugerencias([]);
-    setValido(true);
-    validarEnvio();
   };
 
   const renderImagen = (num) =>{
@@ -187,11 +193,11 @@ const Camiseta = () => {
               onBlur={() => handleBlur(setSugerenciasTalla)}
               autoComplete="off"
             />
-            {renderTallas(sugerenciasTalla, "talla")}
+            {renderTallas(sugerenciasTalla)}
           </div>
           <div className="form-group">
             <label htmlFor="cantidad">Cantidad:</label>
-            <input type="number" id="cantidad" name="cantidad" onChange={validarEnvio} defaultValue={1} autoComplete="off"/>
+            <input type="number" id="cantidad" name="cantidad" onChange={validarCantidad} defaultValue={1} autoComplete="off"/>
           </div>
           <BotonBlanco 
             texto="añadir al carrito" 
