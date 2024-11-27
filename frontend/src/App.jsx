@@ -62,20 +62,4 @@ const App = () => {
   );
 };
 
-function ajaxAxios(options) { 
-  let { url, method, fsuccess, ferror, data } = options; 
-  axios(url, { 
-    method: method || "GET", 
-    headers: { "Content-type": "application/json; charset=utf-8" }, 
-    data: JSON.stringify(data), 
-  }) 
-    .then((resp) => fsuccess(resp.data)) 
-    .catch((error) => { 
-      ferror({ 
-        status: error.response ? error.response.status : "Network Error", 
-        statusText: error.response ? error.response.statusText : error.message, 
-      }); 
-    }); 
-}
-
 export default App;

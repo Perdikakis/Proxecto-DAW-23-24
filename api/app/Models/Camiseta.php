@@ -38,7 +38,7 @@ class Camiseta extends Model
 
     public function images()
     {
-        return $this->morphMany(Imagen::class, 'imageable');
+        return $this->morphMany(Imagen::class, 'imageable_type');
     }
 }
 

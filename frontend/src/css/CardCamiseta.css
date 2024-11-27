@@ -8,9 +8,10 @@
 }
 
 .card-camiseta figure {
-    /*min-height: 230px;*/
+    min-height: 90px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .camiseta-img {
@@ -74,11 +75,27 @@
 }
 
 @media (min-width: 1500px) {
+    .card-camiseta figure {
+        min-height: 200px;
+    }
+
     .icon-top-left {
         left: 15%;
     }
     
     .icon-top-right {
         right: 15%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-camiseta figure {
+        min-height: 120px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1500px) {
+    .card-camiseta figure {
+        min-height: 100px;
     }
 }

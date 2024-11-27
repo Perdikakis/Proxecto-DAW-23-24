@@ -5,6 +5,7 @@ import Destacadas from "./Destacadas";
 import Buscador from "./Buscador";
 import TopVentas from "./TopVentas";
 import CardCamiseta from "./CardCamiseta";
+import { ajaxAxios } from "../utils/ajaxAxios";
 
 
 const destacadas=[
@@ -33,6 +34,20 @@ const Tienda = () => {
     }
   }
 
+  const handleVerMas = (ids) => {
+    ajaxAxios({
+      url: `${import.meta.env.VITE_API_URL}/camisetasFiltradas`,
+      method: 'POST',
+      data: { camisetas_ids: ids },
+      fsuccess: (data) => {
+        handleResultadosBusqueda(data);
+      },
+      ferror: (error) => {
+        console.error('Error mostrando top ventas:', error);
+      }
+    });
+  }
+
   return (
     <main className="main-tienda">
       <h1>Camisetas destacadas</h1>
@@ -58,9 +73,9 @@ const Tienda = () => {
         </section>
       ) : (
         <section className="top-ventas">
-          <TopVentas liga="La Liga"/>
-          <TopVentas liga="Premier League"/>
-          <TopVentas liga="Selecciones"/>  
+          <TopVentas nombre="La Liga" id={1} onVerMas={handleVerMas}/>
+          <TopVentas nombre="La Liga" id={1} onVerMas={handleVerMas}/>
+          <TopVentas nombre="La Liga" id={1} onVerMas={handleVerMas}/>
         </section>
       )}
     </main>
