@@ -6,6 +6,10 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    const fixedButton = document.querySelector('#boton-catalogo-fixed');
+    if (fixedButton) {
+      fixedButton.style.display = menuOpen ? '' : 'none';
+    }
   };
 
   return (

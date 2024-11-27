@@ -26,7 +26,6 @@ const TopVentas = ({ nombre, id, onVerMas }) => {
       fsuccess: (data) => {
         setTopVentas(data.camisetas);
         setTopVentasIds(data.ids);
-        console.log(data.ids);
       },
       ferror: (error) => {
         console.error('Error fetching top-ventas:', error);
