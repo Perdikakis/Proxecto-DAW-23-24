@@ -268,18 +268,20 @@ const Camiseta = () => {
             onClick={handleAddCarrito}
           />
         </form>
-        <div className="alert-container">
           {alertaExito && 
-          <div className="alert alert-success" role="alert">
-            {'Producto añadido al carrito'}
-            <div className="progress-bar" style={{ width: `${barraProgreso}%` }}></div>
+          <div className="alert-container">
+            <div className="alert alert-success" role="alert">
+              {'Producto añadido al carrito'}
+              <div className="progress-bar" style={{ width: `${barraProgreso}%` }}></div>
+            </div>
           </div>}
           {alertaError && 
-          <div className="alert alert-danger" role="alert">
-            {'Error al añadir el producto al carrito'}
-            <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
+          <div className="alert-container">
+            <div className="alert alert-danger" role="alert">
+              {'Error al añadir el producto al carrito'}
+              <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
+            </div>
           </div>}
-        </div>
       </section>
     </main>
   );

@@ -17,8 +17,7 @@ const CardCamiseta = ({ data }) => {
   };
 
   const handleAddCarrito = (e) => {
-    //e.preventDefault();
-    
+    e.preventDefault(); 
     try {
       const carritoActual = JSON.parse(localStorage.getItem('carrito')) || [];
       const nuevoCarrito = [...carritoActual, dataProducto];
