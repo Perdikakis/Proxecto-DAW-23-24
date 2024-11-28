@@ -117,7 +117,6 @@ const Buscador = ({onResultadosBusqueda}) => {
     }
   };
   
-
   const handleBlur = (clearSugerencias) => {
     setTimeout(() => clearSugerencias([]), 1); // Timeout porque al hacer clic en el desplegable, este se cierra antes de que pueda seleccionarse algo
   };
@@ -169,7 +168,7 @@ const Buscador = ({onResultadosBusqueda}) => {
       competicion_id: competicionSeleccionada ? competicionSeleccionada.id : null,
       temporada
     };
-
+  
     ajaxAxios({
       url: `${import.meta.env.VITE_API_URL}/camisetasFiltradas`,
       method: 'POST',
@@ -215,7 +214,7 @@ const Buscador = ({onResultadosBusqueda}) => {
           onBlur={() => handleBlur(setSugerenciasCompeticion)}
           autoComplete="off"
           className={competicion ? (competicionValida ? "input-valido" : "input-invalido") : ""}
-          disabled={equipoValido} // Bloquea el input si un equipo válido está seleccionado
+          disabled={equipoValido}
         />
         {renderSugerencias(sugerenciasCompeticion, "competicion")}
       </div>

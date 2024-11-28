@@ -69,28 +69,6 @@
   background: #000000;
 }
 
-.resultados-busqueda {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.resultados-busqueda h2{
-  text-align: center;
-}
-.resultados-busqueda .card-camiseta figure {
-  min-height: 230px;
-}
-
-.resultados-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-  justify-items: center;
-  align-items: center;
-}
-
 @media (max-width: 767px){
   .buscador {
     flex-direction: column;

@@ -5,16 +5,6 @@ import BotonBlanco from "./BotonBlanco";
 import { ajaxAxios } from "../utils/ajaxAxios";
 
 const TopVentas = ({ nombre, id, onVerMas }) => {
-  const dataEjemplo ={
-    id: 205,
-    imagenes: ["/img/fondos/destacadas/barcelona.webp"],
-    equipo: "FC Barcelona",
-    nombre: "LOCAL",
-    estado: "normal",
-    temporada: "23/24",
-    precio: 19.99
-  };
-
   const [topVentas, setTopVentas] = useState(null);
   const [topVentasIds, setTopVentasIds] = useState(null);
 

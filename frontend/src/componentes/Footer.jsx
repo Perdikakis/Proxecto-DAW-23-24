@@ -37,7 +37,10 @@ return (
     <div className="contact">
       <img src="/icons/contact-us.svg" alt="Icono de contacto" />
       <p>Contacto</p>
-      <p>666 666 666 / contacto@email.es</p>
+      <p>
+        <a href="tel:+666666666" aria-label="Número de teléfono">666 666 666</a> / 
+        <a href="mailto:contacto@email.es" aria-label="Correo electrónico">contacto@email.es</a>
+      </p>
     </div>
     <div className="social-media">
       <a href="#" alt="Instagram"><img src="/icons/instagram.svg" alt="Instagram" /></a>

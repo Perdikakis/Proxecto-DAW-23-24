@@ -1,7 +1,19 @@
 import React from 'react';
 import '../css/BotonBlanco.css';
+import { useState } from 'react';
 
 const BotonBlanco = ({ texto, icono, iconoHover, disabled, onClick }) => {
+  const [iconoVisible, setIconoVisible] = useState(true);
+  const [iconoHoverVisible, setIconoHoverVisible] = useState(true);
+
+  const handleIconoError = () => {
+    setIconoVisible(false);
+  };
+
+  const handleIconoHoverError = () => {
+    setIconoHoverVisible(false);
+  };
+
   return (
     <button 
       className={`botonBlanco ${disabled ? 'boton-disabled' : ''}`} 
@@ -9,8 +21,8 @@ const BotonBlanco = ({ texto, icono, iconoHover, disabled, onClick }) => {
       onClick={onClick}
     >
       <figure className="icono">
-        <img src={icono} alt="Icono" className="icono-default" />
-        <img src={iconoHover} alt="Icono Hover" className="icono-hover" />
+        <img src={icono} className="icono-default" onError={handleIconoError}/>
+        <img src={iconoHover} className="icono-hover" onError={handleIconoHoverError}/>
       </figure>
       <span>{texto}</span>
     </button>

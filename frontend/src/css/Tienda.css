@@ -15,25 +15,25 @@
 }
 /* doble fondo */
 .main-tienda::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("/img/fondos/camisetas.webp");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    opacity: 0.05;
-    z-index: -1;
-    pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/img/fondos/camisetas.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
 }
 
 h1 {
-    width: 100vw;
-    box-shadow: none;
-    font-size: 32px;
+  width: 100vw;
+  box-shadow: none;
+  font-size: 32px;
 }
 
 .top-ventas {
@@ -45,6 +45,49 @@ h1 {
   justify-content: space-around;
 }
 
+.resultados-busqueda {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 140px;
+}
+
+.resultados-busqueda h2{
+  text-align: center;
+}
+.resultados-busqueda .card-camiseta figure {
+  min-height: 230px;
+}
+
+.resultados-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  justify-items: center;
+  align-items: center;
+
+  max-height: 616px;
+  overflow: hidden;
+  position: relative;
+}
+
+.resultados-grid .card-camiseta {
+  height: 300px;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.pagination-controls button {
+  margin: 0 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
 @media (max-width: 768px) {
   .top-ventas {
     flex-direction: column;

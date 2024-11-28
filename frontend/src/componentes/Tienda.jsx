@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import '../css/bootstrap-alerts.css';
 import '../css/Tienda.css'
 import Destacadas from "./Destacadas";
 import Buscador from "./Buscador";
 import TopVentas from "./TopVentas";
 import CardCamiseta from "./CardCamiseta";
+import BotonBlanco from "./BotonBlanco";
 
 
 const destacadas=[
@@ -22,6 +23,43 @@ const Tienda = () => {
   const [mostrarResultados, setMostrarResultados] = useState(false);
   const [aviso, setAviso] = useState('');
 
+  const [paginaActual, setPaginaActual] = useState(1);
+  const [resultadosPorPagina, setResultadosPorPagina] = useState(0);
+  const gridRef = useRef(null);
+
+  useEffect(() => {
+    itemsPorPagina();
+    window.addEventListener('resize', itemsPorPagina);
+    return () => window.removeEventListener('resize', itemsPorPagina);
+  }, [resultadosBusqueda]);
+
+  const itemsPorPagina = () => {
+    if (gridRef.current) {
+      const gridWidth = gridRef.current.clientWidth;
+      const itemWidth = 200;
+      const gap = 16;
+      const itemsFila = Math.floor((gridWidth + gap) / (itemWidth + gap));     
+      const itemsPagina = itemsFila * 2;
+      setResultadosPorPagina(itemsPagina);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (paginaActual > 1) {
+      setPaginaActual(paginaActual - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (paginaActual * resultadosPorPagina < resultadosBusqueda.length) {
+      setPaginaActual(paginaActual + 1);
+    }
+  };
+
+  const startIndex = (paginaActual - 1) * resultadosPorPagina;
+  const endIndex = startIndex + resultadosPorPagina
+  const currentResults = resultadosBusqueda.slice(startIndex, endIndex);
+
   const handleResultadosBusqueda = (resultados, orden = resultados.map(resultado => resultado.id)) => {
     if (resultados.length === 0) {
       setAviso('No se encontraron resultados.');
@@ -31,6 +69,7 @@ const Tienda = () => {
       setResultadosBusqueda(resultadosOrdenados);
       setMostrarResultados(true);
       setAviso('');
+      setPaginaActual(1);
     }
   }
 
@@ -42,7 +81,7 @@ const Tienda = () => {
       {aviso && (
         <section className="resultados-busqueda">
           <div className="alert-container">
-            <div className="alert alert-danger" role="alert">
+            <div className="alert alert-warning" role="alert">
               {aviso}
             </div>
           </div>
@@ -51,8 +90,24 @@ const Tienda = () => {
       {mostrarResultados ? (
         <section className="resultados-busqueda">
           <h2>Resultados de la búsqueda</h2>
-          <div className="resultados-grid">
-            {resultadosBusqueda.map((resultado) => (
+          <div className="pagination-controls">
+            <BotonBlanco 
+            texto="anterior" 
+            icono={null} 
+            iconoHover={null} 
+            disabled={paginaActual === 1}
+            onClick={handlePrevPage}
+            />
+            <BotonBlanco 
+            texto="siguiente" 
+            icono={null}
+            iconoHover={null}
+            disabled={paginaActual * resultadosPorPagina >= resultadosBusqueda.length}
+            onClick={handleNextPage}
+            />
+          </div>
+          <div className="resultados-grid" ref={gridRef}>
+            {currentResults.map((resultado) => (
               <CardCamiseta key={resultado.id} data={resultado} />
             ))}
           </div>
