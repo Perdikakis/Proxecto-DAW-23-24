@@ -44,9 +44,10 @@ const Camiseta = () => {
     ajaxAxios({
       url: `${import.meta.env.VITE_API_URL}/camisetasFiltradas`,
       method: 'POST',
-      data: { camiseta_id: id},
+      data: { camisetas_ids: [id]},
       fsuccess: (data) => {
         if (data.length > 0) {
+          console.log(data)
           setCamisetaData(data[0]);
         } else {
           console.error(`Camiseta de id ${id} no encontrada.`);

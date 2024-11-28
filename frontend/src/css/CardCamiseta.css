@@ -24,6 +24,7 @@
     width: 100%;
     height: 100%;
     font-size: 12px;
+    pointer-events: none;
 }
 
 .icon-top-left, .icon-top-right {
