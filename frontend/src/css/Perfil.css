@@ -80,7 +80,7 @@
 
 .opciones figure img {
     width: auto;
-    height: 100%;
+    height: 32px;
 }
 
 .opciones span {
@@ -91,6 +91,7 @@
     justify-content: center;
     font-size: 24px;
     color: #0D0C0C;
+    text-transform: uppercase;
 }
 
 .panel .selected {
@@ -101,7 +102,6 @@
 .panel .usuario {
     margin-left: auto;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 30%;
@@ -116,11 +116,12 @@
     justify-content: center;
     font-size: 24px;
     color: #0D0C0C;
+    text-transform: uppercase;
 }
 
 .panel .usuario figure {
     width: 20%;
-    height: 100%;
+    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,4 +158,60 @@
 .logout:hover {
     background-color: #DF3C31;
     border-bottom-color: #f0f0f0;
+}
+
+@media (max-width: 1500px) {
+    .panel figure {
+        display: none;
+    }
+
+    .panel .opciones ul li span {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .panel .opciones span{
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+}
+
+@media (max-width: 700px) {
+    .panel {
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .panel .opciones {
+        width: 100%;
+        height: auto;
+    }
+
+    .panel .opciones ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .panel .opciones ul li{
+        align-self: flex-start;
+        width: 100%;
+    }
+
+    .panel .usuario {
+        margin-left: 0 !important;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .panel .usuario span {
+        height: 60px;
+        font-size: 14px;
+    }
 }

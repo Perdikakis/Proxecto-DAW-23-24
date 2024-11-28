@@ -39,7 +39,7 @@ const Perfil = () => {
                     <img src="/icons/power.svg" alt="" className="icono-default"/>
                     <img src="/icons/power2.png" alt="" className="icono-hover"/>
                 </figure>
-                <span>Nombre usuario</span>
+                <span>usuario</span>
                 <figure>
                     <img src="/icons/pfp.svg" alt=""/>
                 </figure>
