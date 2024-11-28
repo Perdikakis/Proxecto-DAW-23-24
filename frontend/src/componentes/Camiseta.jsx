@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import '../css/Camiseta.css';
+import '../css/bootstrap-alerts.css';
 import { useParams } from "react-router-dom";
 import CardCamiseta from "./CardCamiseta";
 import BotonBlanco from "./BotonBlanco";
@@ -21,6 +22,11 @@ const Camiseta = () => {
 
   const [tallas, setTallas] = useState([]);
   const [camisetaData, setCamisetaData] = useState(null);
+
+  const [dataProducto, setDataProducto] = useState({id: id,nombre: '', dorsal: '', talla: '', cantidad: 1});
+  const [alertaExito, setAlertaExito] = useState(false);
+  const [alertaError, setAlertaError] = useState(false);
+  const [barraProgreso, setBarraProgreso] = useState(100);
 
   useEffect(() => {
     ajaxAxios({
@@ -80,6 +86,10 @@ const Camiseta = () => {
     const isValid = regex.test(nombre.trim());
     document.getElementById('nombre').className = isValid ? 'input-valido' : 'input-invalido';
     setNombreValido(isValid);
+    setDataProducto((prevData) => ({
+      ...prevData,
+      nombre: nombre,
+    }));
   };
 
   const validarDorsal = () => {
@@ -88,6 +98,10 @@ const Camiseta = () => {
     const isValid = dorsal.trim() === '' || (!isNaN(dorsalNumero) && dorsalNumero >= 0 && dorsalNumero <= 99);
     document.getElementById('dorsal').className = isValid ? 'input-valido' : 'input-invalido';
     setDorsalValido(isValid);
+    setDataProducto((prevData) => ({
+      ...prevData,
+      dorsal: dorsal,
+    }));
   };
 
   const validarTalla = () => {
@@ -95,6 +109,10 @@ const Camiseta = () => {
     const isValid = tallas.includes(talla);
     document.getElementById('talla').className = isValid ? 'input-valido' : 'input-invalido';
     setTallaValida(isValid);
+    setDataProducto((prevData) => ({
+      ...prevData,
+      talla: talla.split(' ')[0],
+    }));
   };
 
   const validarCantidad = () => {
@@ -103,6 +121,10 @@ const Camiseta = () => {
     const isValid = cantidad.trim() !== '' && !isNaN(cantidadNumero) && cantidadNumero > 0;
     document.getElementById('cantidad').className = isValid ? 'input-valido' : 'input-invalido';
     setCantidadValida(isValid);
+    setDataProducto((prevData) => ({
+      ...prevData,
+      cantidad: cantidad,
+    }));
   };
 
   const validarEnvio = () => {
@@ -134,6 +156,44 @@ const Camiseta = () => {
     setTimeout(() => validarTalla(), 1);
   };
 
+  const handleAddCarrito = (e) => {
+    e.preventDefault();
+    
+    try {
+      const carritoActual = JSON.parse(localStorage.getItem('carrito')) || [];
+      const nuevoCarrito = [...carritoActual, dataProducto];
+      localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
+      
+      setAlertaExito(true);
+      setAlertaError(false);
+      setBarraProgreso(100);
+      const interval = setInterval(() => {
+        setBarraProgreso((prev) => {
+          if (prev <= 0) {
+            clearInterval(interval);
+            setAlertaExito(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 30);
+    } catch (error) {
+      setAlertaError(true);
+      setAlertaExito(false);
+      setBarraProgreso(100);
+      const interval = setInterval(() => {
+        setBarraProgreso((prev) => {
+          if (prev <= 0) {
+            clearInterval(interval);
+            setAlertaError(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 30);
+    }
+  };
+
   const renderTallas = (sugerencias) => {
     return sugerencias.length > 0 && (
       <ul className="tallas">
@@ -161,7 +221,7 @@ const Camiseta = () => {
         </figure>
       );
     }
-  }
+  };
 
   return (
     <main className="main-camiseta" ref={mainRef}>
@@ -204,8 +264,21 @@ const Camiseta = () => {
             icono="/icons/add-to-cart.svg" 
             iconoHover="/icons/add-to-cart-1.png" 
             disabled={isButtonDisabled} 
+            onClick={handleAddCarrito}
           />
         </form>
+        <div className="alert-container">
+          {alertaExito && 
+          <div className="alert alert-success" role="alert">
+            {'Producto añadido al carrito'}
+            <div className="progress-bar" style={{ width: `${barraProgreso}%` }}></div>
+          </div>}
+          {alertaError && 
+          <div className="alert alert-danger" role="alert">
+            {'Error al añadir el producto al carrito'}
+            <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
+          </div>}
+        </div>
       </section>
     </main>
   );

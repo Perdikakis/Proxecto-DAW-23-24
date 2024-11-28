@@ -103,6 +103,10 @@
     width: 300px;
 }
 
+.datos .alert-container {
+    min-height: 100px;
+}
+
 .tallas {
     position: absolute;
     top: 100%;

@@ -57,3 +57,19 @@
 .alert-success .alert-link {
     color: #0b2e13;
 }
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: #3c763d;
+}
+
+.progress-bar-error {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: #a94442;
+}
