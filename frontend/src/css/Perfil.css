@@ -171,8 +171,8 @@
 }
 
 @media (max-width: 1200px) {
-    .panel .opciones span{
-        font-size: 14px;
+    .panel span{
+        font-size: 14px !important;
         text-transform: uppercase;
     }
 }

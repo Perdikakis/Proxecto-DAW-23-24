@@ -161,9 +161,18 @@ const Camiseta = () => {
     e.preventDefault();
     
     try {
-      const carritoActual = JSON.parse(localStorage.getItem('carrito')) || [];
-      const nuevoCarrito = [...carritoActual, dataProducto];
-      localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+      const productoExistente = carrito.find(
+        (item) => item.id === dataProducto.id && item.dorsal === dataProducto.dorsal && item.talla === dataProducto.talla
+      );
+      if(productoExistente) {
+        productoExistente.cantidad += dataProducto.cantidad;
+      } else {
+        carrito.push(dataProducto);
+      }
+
+      localStorage.setItem('carrito', JSON.stringify(carrito.push(dataProducto)));
       
       setAlertaExito(true);
       setAlertaError(false);

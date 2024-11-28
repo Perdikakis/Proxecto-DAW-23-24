@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../css/Perfil.css';
+import CardCamisetaCarrito from "./CardCamisetaCarrito";
 
 const Perfil = () => {
-    
-  return (
+    const [mostrarCarrito, setMostrarCarrito] = useState(false);
+    const [carrito, setCarrito] = useState([]);
+
+    useEffect(() => {
+        const carrito = localStorage.getItem('carrito');
+        if (carrito) {
+            setCarrito(JSON.parse(carrito));
+        }
+    }, []);
+
+    const renderCarrito = () => {
+        setMostrarCarrito(!mostrarCarrito);
+    }
+
+    return (
     <main className="main-perfil">
         <nav className="panel">
             <div className="opciones">
@@ -26,7 +40,7 @@ const Perfil = () => {
                         </figure>
                         <span>Pedidos</span>
                     </li>
-                    <li>
+                    <li onClick={renderCarrito}>
                         <figure>
                             <img src="/icons/cart.svg" alt="" />
                         </figure>
@@ -45,8 +59,15 @@ const Perfil = () => {
                 </figure>
             </div>
         </nav>
+        {mostrarCarrito && Array.isArray(carrito) && (
+            <section className="carrito">
+                {carrito.map((producto, idx) => (
+                    <CardCamisetaCarrito key={idx} data={producto} />
+                ))}
+            </section>
+        )}
     </main>
-  );
+    );
 };
 
 export default Perfil;
