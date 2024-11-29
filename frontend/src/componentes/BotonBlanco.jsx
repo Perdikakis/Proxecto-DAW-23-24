@@ -20,11 +20,13 @@ const BotonBlanco = ({ texto, icono, iconoHover, disabled, onClick }) => {
       disabled={disabled}
       onClick={onClick}
     >
-      <figure className="icono">
-        <img src={icono} className="icono-default" onError={handleIconoError}/>
-        <img src={iconoHover} className="icono-hover" onError={handleIconoHoverError}/>
-      </figure>
-      <span>{texto}</span>
+      <div className='wrapper'>
+        <figure className="icono">
+          <img src={icono} className="icono-default" onError={handleIconoError}/>
+          <img src={iconoHover} className="icono-hover" onError={handleIconoHoverError}/>
+        </figure>
+        <span>{texto}</span>
+      </div>
     </button>
   );
 };

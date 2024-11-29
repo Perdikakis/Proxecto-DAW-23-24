@@ -23,7 +23,7 @@ const Camiseta = () => {
   const [tallas, setTallas] = useState([]);
   const [camisetaData, setCamisetaData] = useState(null);
 
-  const [dataProducto, setDataProducto] = useState({id: id,nombre: '', dorsal: '', talla: '', cantidad: 1});
+  const [dataProducto, setDataProducto] = useState({camiseta: {},nombre: '', dorsal: '', talla: '', cantidad: 1});
   const [alertaExito, setAlertaExito] = useState(false);
   const [alertaError, setAlertaError] = useState(false);
   const [barraProgreso, setBarraProgreso] = useState(100);
@@ -47,8 +47,8 @@ const Camiseta = () => {
       data: { camisetas_ids: [id]},
       fsuccess: (data) => {
         if (data.length > 0) {
-          console.log(data)
           setCamisetaData(data[0]);
+          dataProducto.camiseta = data[0];
         } else {
           console.error(`Camiseta de id ${id} no encontrada.`);
         }
@@ -162,17 +162,18 @@ const Camiseta = () => {
     
     try {
       const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
+      
       const productoExistente = carrito.find(
-        (item) => item.id === dataProducto.id && item.dorsal === dataProducto.dorsal && item.talla === dataProducto.talla
+        (prod) => prod.camiseta.id === dataProducto.camiseta.id && prod.dorsal === dataProducto.dorsal && prod.talla === dataProducto.talla
       );
+      
       if(productoExistente) {
         productoExistente.cantidad += dataProducto.cantidad;
       } else {
         carrito.push(dataProducto);
       }
-
-      localStorage.setItem('carrito', JSON.stringify(carrito.push(dataProducto)));
+      
+      localStorage.setItem('carrito', JSON.stringify(carrito));
       
       setAlertaExito(true);
       setAlertaError(false);
@@ -188,6 +189,7 @@ const Camiseta = () => {
         });
       }, 30);
     } catch (error) {
+      console.error('Error al añadir el producto al carrito:', error);
       setAlertaError(true);
       setAlertaExito(false);
       setBarraProgreso(100);

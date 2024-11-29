@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const CardCamiseta = ({ data }) => {
   const [starIcon, setStarIcon] = useState("/icons/star.svg");
 
-  const dataProducto= {id: data.id,nombre: '', dorsal: '', talla: 'M', cantidad: 1};
+  const dataProducto= {camiseta: data,nombre: '', dorsal: '', talla: 'M', cantidad: 1};
   const [alertaExito, setAlertaExito] = useState(false);
   const [alertaError, setAlertaError] = useState(false);
   const [barraProgreso, setBarraProgreso] = useState(100);
@@ -20,15 +20,15 @@ const CardCamiseta = ({ data }) => {
     e.preventDefault(); 
     try {
       const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      const productoExistente = carritoActual.find(
-        (item) => item.id === dataProducto.id && item.dorsal === dataProducto.dorsal && item.talla === dataProducto.talla
+      const productoExistente = carrito.find(
+        (prod) => prod.camiseta.id === dataProducto.camiseta.id && prod.dorsal === dataProducto.dorsal && prod.talla === dataProducto.talla
       );
       if(productoExistente) {
         productoExistente.cantidad += dataProducto.cantidad;
       } else {
         carrito.push(dataProducto);
       }
-      
+      console.log(carrito);
       localStorage.setItem('carrito', JSON.stringify(carrito));
       
       setAlertaExito(true);
@@ -45,6 +45,7 @@ const CardCamiseta = ({ data }) => {
         });
       }, 30);
     } catch (error) {
+      console.log(error);
       setAlertaError(true);
       setAlertaExito(false);
       setBarraProgreso(100);

@@ -1,0 +1,115 @@
+.card-camiseta-carrito{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    max-height: 160px;
+    width: 400px;
+
+    background-color: #0D0C0C;
+    border-radius: 4px;
+    border: white 1px solid;
+}
+
+.card-camiseta-carrito .imagenes{
+    position: relative;
+    width: 40%;
+}
+
+.card-camiseta-carrito .icon-top-right{
+    display: block;
+    position: absolute;
+    top: 10;
+    right: 10;
+}
+.card-camiseta-carrito .icon-top-left{
+    display: block;
+    position: absolute;
+    top: 10;
+    left: 10;
+}
+
+.card-camiseta-carrito figure {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-camiseta-carrito figure img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+
+.card-camiseta-carrito .datos {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.card-camiseta-carrito .datos .precio-og {
+    text-decoration: line-through;
+    color: rgba(240, 240, 240, 0.4);
+}
+.card-camiseta-carrito .datos .precio {
+    color: #379342;
+}
+
+.card-camiseta-carrito .botonBlanco {
+    align-self: flex-end;
+    height: 20px;
+    font-size: 8px;
+    width: 80px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card-camiseta-carrito .botonBlanco .icono{
+    height: 8px !important;
+    width: 8px !important;
+}
+
+.card-camiseta-carrito .botonBlanco .icono-hover{
+    width: 8px !important;
+}
+
+.formulario-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.formulario-detalles {
+    background-color: #0D0C0C;
+    padding: 20px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+}
+
+.formulario-detalles .campos {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.formulario-detalles .botones {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
