@@ -136,6 +136,16 @@ const Camiseta = () => {
     }
   }
 
+  const handleSumar = () =>{
+    document.getElementById('cantidad').value++;
+    validarCantidad();
+  }
+
+  const handleRestar = () =>{
+    document.getElementById('cantidad').value--;
+    validarCantidad();
+  }
+
   const handleCambioTalla = (e) => {
     const value = e.target.value;
     setTalla(value);
@@ -269,7 +279,11 @@ const Camiseta = () => {
           </div>
           <div className="form-group">
             <label htmlFor="cantidad">Cantidad:</label>
-            <input type="number" id="cantidad" name="cantidad" onChange={validarCantidad} defaultValue={1} autoComplete="off"/>
+            <div className="input-container">
+              <img className="minus" src="/icons/minus.svg" alt="restar" onClick={handleRestar}/>
+              <input type="number" id="cantidad" name="cantidad" onChange={validarCantidad} defaultValue={1} autoComplete="off"/>
+              <img className="plus" src="/icons/plus.svg" alt="sumar" onClick={handleSumar}/>
+            </div>
           </div>
           <BotonBlanco 
             texto="añadir al carrito" 

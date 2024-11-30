@@ -27,7 +27,7 @@ const Slider = ({ images, autoScrollSpeed = 2000, id, nombreBoton }) => {
       const animateScroll = (currentTime) => {
         let timeElapsed = currentTime - startTime;
         let progress = Math.min(timeElapsed / duration, 1);
-        sliderRef.current.scrollLeft = start + change * progress;
+        if(sliderRef.current) sliderRef.current.scrollLeft = start + change * progress;
         if (progress < 1) {
           requestAnimationFrame(animateScroll);
         }

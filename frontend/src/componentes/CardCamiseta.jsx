@@ -28,7 +28,6 @@ const CardCamiseta = ({ data }) => {
       } else {
         carrito.push(dataProducto);
       }
-      console.log(carrito);
       localStorage.setItem('carrito', JSON.stringify(carrito));
       
       setAlertaExito(true);
@@ -45,7 +44,6 @@ const CardCamiseta = ({ data }) => {
         });
       }, 30);
     } catch (error) {
-      console.log(error);
       setAlertaError(true);
       setAlertaExito(false);
       setBarraProgreso(100);
@@ -64,18 +62,20 @@ const CardCamiseta = ({ data }) => {
 
   return (
     <div className="card-camiseta">
-      <div className="alert-container">
         {alertaExito && 
+        <div className="alert-container">
           <div className="alert alert-success" role="alert">
             {'Producto añadido al carrito'}
             <div className="progress-bar" style={{ width: `${barraProgreso}%` }}></div>
-          </div>}
+          </div>
+        </div>}
         {alertaError && 
+        <div className="alert-container">
           <div className="alert alert-danger" role="alert">
             {'Error al añadir el producto al carrito'}
             <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
+          </div>
         </div>}
-      </div>
       <img 
         src={starIcon} 
         alt="Favoritos"

@@ -73,6 +73,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .formulario-camiseta label {
@@ -133,6 +134,29 @@
 
 .tallas li:hover {
     background: #000000;
+}
+
+.form-group .input-container {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.form-group img {
+    cursor: pointer;
+    height: 32px;
+}
+
+.form-group .plus {
+    position: absolute;
+    margin-left: 258px;
+}
+
+.form-group .minus {
+    position: absolute;
+    margin-left: 10px;
 }
 
 .form-group input.input-valido {

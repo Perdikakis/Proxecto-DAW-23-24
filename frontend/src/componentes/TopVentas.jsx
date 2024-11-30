@@ -5,23 +5,34 @@ import BotonBlanco from "./BotonBlanco";
 import { ajaxAxios } from "../utils/ajaxAxios";
 
 const TopVentas = ({ nombre, id, onVerMas }) => {
-  const [topVentas, setTopVentas] = useState(null);
-  const [topVentasIds, setTopVentasIds] = useState(null);
+  const [topVentas, setTopVentas] = useState(() => {
+    const topVentasLocal = localStorage.getItem(`topVentas_${id}`);
+    return topVentasLocal ? JSON.parse(topVentasLocal) : null;
+  });
+
+  const [topVentasIds, setTopVentasIds] = useState(() => {
+    const topVentasLocalIds = localStorage.getItem(`topVentasIds_${id}`);
+    return topVentasLocalIds ? JSON.parse(topVentasLocalIds) : null;
+  });
 
   useEffect(() => {
-    ajaxAxios({
-      url: `${import.meta.env.VITE_API_URL}/top-ventas`,
-      method: 'POST',
-      data: { idCompeticion: id },
-      fsuccess: (data) => {
-        setTopVentas(data.camisetas);
-        setTopVentasIds(data.ids);
-      },
-      ferror: (error) => {
-        console.error('Error obteniendo top-ventas:', error);
-      }
-    });
-  }, []);
+    if (!topVentas || !topVentasIds) {
+      ajaxAxios({
+        url: `${import.meta.env.VITE_API_URL}/top-ventas`,
+        method: 'POST',
+        data: { idCompeticion: id },
+        fsuccess: (data) => {
+          setTopVentas(data.camisetas);
+          setTopVentasIds(data.ids);
+          localStorage.setItem(`topVentas_${id}`, JSON.stringify(data.camisetas));
+          localStorage.setItem(`topVentasIds_${id}`, JSON.stringify(data.ids));
+        },
+        ferror: (error) => {
+          console.error('Error obteniendo top-ventas:', error);
+        }
+      });
+    }
+  }, [id, topVentas, topVentasIds]);
 
   const handleBusqueda = () => {
     ajaxAxios({
@@ -41,8 +52,8 @@ const TopVentas = ({ nombre, id, onVerMas }) => {
     <article className="top">
       <h2>Top Ventas {nombre}</h2>
       {topVentas && topVentas.length > 0 && (
-        topVentas.map((venta) => (
-          <CardCamiseta key={venta.id} data={venta} />
+        topVentas.map((camiseta) => (
+          <CardCamiseta key={camiseta.id} data={camiseta} />
         ))
       )}
       <BotonBlanco 

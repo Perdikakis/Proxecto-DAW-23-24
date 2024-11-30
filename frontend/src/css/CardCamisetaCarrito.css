@@ -62,15 +62,15 @@
 .card-camiseta-carrito .botonBlanco {
     align-self: flex-end;
     height: 20px;
-    font-size: 8px;
-    width: 80px;
+    font-size: 10px;
+    width: 100px;
     display: flex;
     justify-content: space-around;
 }
 
 .card-camiseta-carrito .botonBlanco .icono{
-    height: 8px !important;
-    width: 8px !important;
+    height: 10px !important;
+    width: 10px !important;
 }
 
 .card-camiseta-carrito .botonBlanco .icono-hover{
@@ -103,8 +103,79 @@
 .formulario-detalles .campos {
     width: 90%;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-evenly;
+}
+
+.formulario-detalles .campos label{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-detalles .campos input{
+    width: 60%;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #f0f0f0;
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+}
+
+.formulario-detalles .input-container{
+    width: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.formulario-detalles .input-container input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #f0f0f0;
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+}
+
+.formulario-detalles img {
+    cursor: pointer;
+    height: 16px;
+}
+
+.formulario-detalles .plus {
+    position: absolute;
+    margin-left: 162px;
+}
+
+.formulario-detalles .minus {
+    position: absolute;
+    margin-left: 10px;
+}
+
+.formulario-detalles .campos input:focus {
+    box-shadow: 0 0 0 1px #EBB93A inset;
+    outline: none;
+}
+
+.formulario-detalles .campos input.input-valido {
+    border: 1px solid #379342;
+}
+.formulario-detalles .campos input.input-valido:focus {
+    box-shadow: 0 0 0 1px #379342 inset;
+    outline: none;
+}
+
+.formulario-detalles .campos input.input-invalido {
+    border: 1px solid #D63030;
+}
+.formulario-detalles .campos input.input-invalido:focus {
+    box-shadow: 0 0 0 1px #D63030 inset;
+    outline: none;
 }
 
 .formulario-detalles .botones {
@@ -112,4 +183,20 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.botones button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+}
+
+.botones img {
+    height: 100%;
 }
