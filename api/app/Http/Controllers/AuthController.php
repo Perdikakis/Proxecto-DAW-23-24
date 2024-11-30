@@ -3,48 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 
 class AuthController extends Controller
 {
-    public function login(Request $request){
-        // Validar las credenciales
+    public function login(Request $request)
+    {
         $validator = Validator::make($request->all(), [
-            'usuario' => 'required|string', // Validación de usuario: requerido y debe ser un string
-            'password' => 'required|string', // Validación de contraseña: requerido y debe ser un string
+            'usuario' => 'required|string',
+            'password' => 'required|string',
         ]);
 
-        // Comprobar si la validación falla
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors(),
-            ], 422); // Retornar errores de validación
+            ], 422);
         }
 
-        // Buscar el usuario en la base de datos
         $usuario = Usuario::where('usuario', $request->input('usuario'))->first();
 
-        // Comprobar si el usuario existe y la contraseña es correcta
-        if ($usuario && password_verify($request->input('password'), $usuario->password)) {
-            // Autenticación exitosa
-            $usuario->fecha_ultimo_acceso = Carbon::now()->format('Y-m-d H:i:s'); // Guardar en el formato deseado
-            $usuario->save();
+        if ($usuario && Hash::check($request->input('password'), $usuario->password)) {
+            $usuario->update(['fecha_ultimo_acceso' => now()]);
             $usuario->tokens()->delete();
+
             $token = $usuario->createToken('authToken')->plainTextToken;
+
             return response()->json([
                 'message' => 'Login exitoso',
-                'usuario' => $token,
+                'token' => $token,
             ]);
         }
 
-        // Si la autenticación falla
         return response()->json([
             'message' => 'Credenciales inválidas',
-        ], 401); // Retornar error de autenticación
+        ], 401);
     }
 }

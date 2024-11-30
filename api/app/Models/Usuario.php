@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
-    use HasFactory;
-    use HasApiTokens, Notifiable;
+    use HasFactory, HasApiTokens, Notifiable;
 
     protected $table = 'usuarios';
 
@@ -29,6 +29,10 @@ class Usuario extends Model
 
     public $timestamps = false;
 
+    /**
+     * Relación con el modelo Pedido.
+     * Un usuario puede tener muchos pedidos.
+     */
     public function pedidos()
     {
         return $this->hasMany(Pedido::class);
