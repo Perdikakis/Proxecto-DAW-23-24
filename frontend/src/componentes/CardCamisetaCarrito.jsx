@@ -159,13 +159,13 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito }) => {
         <div className="formulario-overlay">
           <form className="formulario-detalles" onSubmit={handleGuardarDatos}>
             <div className='campos'>
-              <label>Nombre:</label>
+              <label htmlFor='nombre'>Nombre:</label>
               <input type="text" name="nombre" id="nombre" defaultValue={nuevosDatos.nombre} onChange={validarNombre} autoComplete="off"/>
-              <label>Dorsal:</label>
+              <label htmlFor='dorsal'>Dorsal:</label>
               <input type="text" name="dorsal" id="dorsal" defaultValue={nuevosDatos.dorsal} onChange={validarDorsal} autoComplete="off"/>
-              <label>Talla:</label>
+              <label htmlFor='talla'>Talla:</label>
               <input type="text" name="talla" id="talla" defaultValue={nuevosDatos.talla} onChange={validarTalla} autoComplete="off"/>
-              <label>Cantidad:</label>
+              <label htmlFor='cantidad'>Cantidad:</label>
               <div className='input-container'>
                 <img className="minus" src="/icons/minus.svg" alt="restar" onClick={handleRestar}/>
                 <input type="number" name="cantidad" id="cantidad" defaultValue={nuevosDatos.cantidad} onChange={validarCantidad} autoComplete="off"/>
