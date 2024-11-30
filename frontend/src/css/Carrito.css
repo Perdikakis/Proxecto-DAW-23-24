@@ -1,0 +1,17 @@
+.carrito {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 880px;
+    overflow-y: scroll;
+}
+
+.carrito .alert-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 0.7em;
+    pointer-events: none;
+    z-index: 1;
+}

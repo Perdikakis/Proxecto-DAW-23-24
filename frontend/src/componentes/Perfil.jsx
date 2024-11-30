@@ -1,40 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, Routes, Route, useLocation } from "react-router-dom";
 import '../css/Perfil.css';
+import Carrito from "./Carrito";
 import CardCamisetaCarrito from "./CardCamisetaCarrito";
 
 const Perfil = () => {
-    const [carrito, setCarrito] = useState([]);
+    
     const location = useLocation();
 
     
-    const [alerta, setAlerta] = useState(false);
-    const [barraProgreso, setBarraProgreso] = useState(100);
+    
 
-    useEffect(() => {
-        const carritoLocal = localStorage.getItem('carrito');
-        if (carritoLocal && carritoLocal.length > 0) {
-            setCarrito(JSON.parse(carritoLocal));
-        }
-    }, []);
+    
 
-    const actualizarCarrito = (nuevoCarrito) => {
-        setAlerta(true);
-        setBarraProgreso(100);
-        const interval = setInterval(() => {
-            setBarraProgreso((prev) => {
-            if (prev <= 0) {
-                clearInterval(interval);
-                setAlerta(false);
-                return 0;
-            }
-            return prev - 1;
-            });
-        }, 30);
-
-        setCarrito(nuevoCarrito);
-        localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
-    };
+    
 
     const Ajustes = () => (
         <section className="ajustes">
@@ -54,24 +33,7 @@ const Perfil = () => {
         </section>
     );
 
-    const Carrito = () => (
-        <section className="carrito">
-            {alerta && 
-                <div className="alert-container">
-                <div className="alert alert-danger" role="alert">
-                    {'Producto borrado correctamente'}
-                    <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
-                </div>
-            </div>}
-            {carrito.length > 0 ? (
-                carrito.map((producto, idx) => (
-                    <CardCamisetaCarrito key={idx} data={producto} idx={idx} actualizarCarrito={actualizarCarrito}/>
-                ))
-            ) : (
-                <p>No hay productos en el carrito.</p>
-            )}
-        </section>
-    );
+    
 
     return (
         <main className="main-perfil">
