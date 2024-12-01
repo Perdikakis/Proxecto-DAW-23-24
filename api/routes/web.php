@@ -15,6 +15,7 @@ Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->g
 });
 
 Route::post('/login', [Controllers\AuthController::class, 'login']);
+Route::post('/signin', [Controllers\AuthController::class, 'signin']);
 
 Route::get('/temporadas', [Controllers\CamisetaController::class, 'getTemporadas']);
 Route::post('/camisetasFiltradas', [Controllers\CamisetaController::class, 'getCamisetasFiltradas']);
