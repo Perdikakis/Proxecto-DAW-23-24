@@ -51,9 +51,9 @@ class AuthController extends Controller
 
     public function signin(Request $request) {
         $validator = Validator::make($request->all(), [
-            'usuario' => 'required|string|unique:usuarios',
-            'password' => 'required|string',
-            'correo' => 'required|string|unique:usuarios',
+            'usuario' => 'required|string|regex:/^[a-zA-Z0-9_-]{6,16}$/|unique:usuarios',
+            'password' => 'required|string|min:6|max:64',
+            'correo' => 'required|string|email|unique:usuarios',
         ]);
 
         if ($validator->fails()) {
