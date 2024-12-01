@@ -101,7 +101,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 14px;
     color: #0D0C0C;
     text-transform: uppercase;
 }
@@ -126,7 +126,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 14px;
     color: #0D0C0C;
     text-transform: uppercase;
 }
@@ -182,13 +182,6 @@
     }
 }
 
-@media (max-width: 1200px) {
-    .panel span{
-        font-size: 14px !important;
-        text-transform: uppercase;
-    }
-}
-
 @media (max-width: 700px) {
     .panel {
         height: auto !important;
@@ -220,10 +213,5 @@
         justify-content: center;
         width: 100%;
         height: 100%;
-    }
-
-    .panel .usuario span {
-        height: 60px;
-        font-size: 14px;
     }
 }

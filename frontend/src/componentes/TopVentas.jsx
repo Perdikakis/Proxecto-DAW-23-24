@@ -28,7 +28,6 @@ const TopVentas = ({ nombre, id, onVerMas }) => {
           localStorage.setItem(`topVentasIds_${id}`, JSON.stringify(data.ids));
         },
         ferror: (error) => {
-          console.error('Error obteniendo top-ventas:', error);
         }
       });
     }
@@ -43,7 +42,6 @@ const TopVentas = ({ nombre, id, onVerMas }) => {
         onVerMas(data, topVentasIds);
       },
       ferror: (error) => {
-        console.error('Error mostrando top ventas:', error);
       }
     });
   }

@@ -7,19 +7,25 @@ import Tienda from "./componentes/Tienda";
 import Camiseta from "./componentes/Camiseta";
 import Custom404 from "./componentes/Custom404";
 import Perfil from "./componentes/Perfil";
+import Login from "./componentes/Login";
+import { AuthProvider } from "./utils/AuthContext";
+import ProtectedRoute from "./componentes/ProtectedRoute";
 
 const App = () => {
   return (
     <Router>
+      <AuthProvider>
         <Header />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/tienda" element={<Tienda />} />
           <Route path="/camiseta/:id" element={<Camiseta />} />
-          <Route path="/perfil/*" element={<Perfil />} />
+          <Route path="/perfil/*" element={<ProtectedRoute element={<Perfil />} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<Custom404 />} />
         </Routes>
         <Footer />
+      </AuthProvider>
     </Router>
   );
 };

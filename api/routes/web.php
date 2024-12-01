@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 
 Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->group(function () {
+    Route::get('/user', [Controllers\UsuarioController::class, 'getUsuario']);
     
     Route::get('/saludo', function () {
         return response()->json(['message' => 'Hola']);

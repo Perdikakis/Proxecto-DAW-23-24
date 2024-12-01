@@ -30,7 +30,7 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito }) => {
         setTallas(tallas);
       },
       ferror: (error) => {
-        console.error('Error fetching tallas:', error);
+        
       }
     });
   }, []);

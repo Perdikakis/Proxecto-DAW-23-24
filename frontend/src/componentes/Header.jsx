@@ -1,14 +1,26 @@
 import '../css/Header.css';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../utils/AuthContext';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isAuthenticated } = useContext(AuthContext);
+  
+  const navigate = useNavigate();
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
     const fixedButton = document.querySelector('#boton-catalogo-fixed');
     if (fixedButton) {
       fixedButton.style.display = menuOpen ? '' : 'none';
+    }
+  };
+
+  const handlePerfilClick = (e) => {
+    if (!isAuthenticated) {
+      e.preventDefault();
+      navigate('/login');
     }
   };
 
@@ -35,7 +47,7 @@ const Header = () => {
           <li><Link to="/tienda">Tienda</Link></li>
           <li><Link to="/">Marcador</Link></li>
           <li><Link to="/">Fantasy</Link></li>
-          <li><Link to="/perfil">Perfil</Link></li>
+          <li><Link to="/perfil" onClick={handlePerfilClick}>Perfil</Link></li>
         </ul>
       </nav>
 

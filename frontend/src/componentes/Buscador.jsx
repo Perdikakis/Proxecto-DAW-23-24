@@ -28,7 +28,6 @@ const Buscador = ({onResultadosBusqueda}) => {
         setEquipos(data);
       },
       ferror: (error) => {
-        console.error('Error fetching equipos:', error);
       }
     });
 
@@ -39,7 +38,7 @@ const Buscador = ({onResultadosBusqueda}) => {
         setCompeticiones(data);
       },
       ferror: (error) => {
-        console.error('Error fetching competiciones:', error);
+        
       }
     });
 
@@ -50,7 +49,7 @@ const Buscador = ({onResultadosBusqueda}) => {
         setListaTemporadas(data);
       },
       ferror: (error) => {
-        console.error('Error fetching temporadas:', error);
+        
       }
     });
   }, []);
@@ -177,7 +176,7 @@ const Buscador = ({onResultadosBusqueda}) => {
         onResultadosBusqueda(response);
       },
       ferror: (error) => {
-        console.error('Error fetching camisetas:', error);
+        
       }
     });
   };

@@ -37,7 +37,7 @@ const Camiseta = () => {
         setTallas(formattedTallas);
       },
       ferror: (error) => {
-        console.error('Error fetching tallas:', error);
+        
       }
     });
 
@@ -50,11 +50,11 @@ const Camiseta = () => {
           setCamisetaData(data[0]);
           dataProducto.camiseta = data[0];
         } else {
-          console.error(`Camiseta de id ${id} no encontrada.`);
+          
         }
       },
       ferror: (error) => {
-        console.error('Error fetching camiseta data:', error);
+        
       }
     });
   }, []);
@@ -199,7 +199,7 @@ const Camiseta = () => {
         });
       }, 30);
     } catch (error) {
-      console.error('Error al añadir el producto al carrito:', error);
+      
       setAlertaError(true);
       setAlertaExito(false);
       setBarraProgreso(100);

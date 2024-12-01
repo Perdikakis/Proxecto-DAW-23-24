@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
 import { Link, Routes, Route, useLocation } from "react-router-dom";
 import '../css/Perfil.css';
 import Carrito from "./Carrito";
-import CardCamisetaCarrito from "./CardCamisetaCarrito";
+import { useContext } from 'react';
+import { AuthContext } from '../utils/AuthContext';
 
 const Perfil = () => {
-    
     const location = useLocation();
-
-    
-    
-
-    
-
-    
+    const { user, logout } = useContext(AuthContext);
 
     const Ajustes = () => (
         <section className="ajustes">
@@ -32,8 +25,6 @@ const Perfil = () => {
             <p>pedidos</p>
         </section>
     );
-
-    
 
     return (
         <main className="main-perfil">
@@ -75,11 +66,11 @@ const Perfil = () => {
                     </ul>
                 </div>
                 <div className="usuario">
-                    <figure className="logout">
+                    <figure className="logout" onClick={logout}>
                         <img src="/icons/power.svg" alt="" className="icono-default"/>
                         <img src="/icons/power2.png" alt="" className="icono-hover"/>
                     </figure>
-                    <span>usuario</span>
+                    <span>{user ? user.usuario : 'usuario'}</span>
                     <figure>
                         <img src="/icons/pfp.svg" alt=""/>
                     </figure>
