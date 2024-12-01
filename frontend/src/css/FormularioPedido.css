@@ -1,6 +1,82 @@
 .main-pago {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding-bottom: 140px;
 }
+
+.main-pago h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.main-pago form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #D9D9D9;
+    color: #000000;
+    padding: 30px;
+    border-radius: 4px;
+    border: 2px solid #000000;
+    box-shadow: 0 2px 10px #000000;
+}
+
+.main-pago form input{
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #000000;
+    color: #000000;
+    padding: 5px 0;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.main-pago form label{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+}
+
+.summary {
+    width: 100%;
+    max-width: 367px;
+    height: 200px;
+    color: #000000;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-item {
+    height: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.summary-item:nth-child(2) {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.summary-item:nth-child(3) {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+
+
 
 .main-pago .alert-container{
     flex-direction: column;

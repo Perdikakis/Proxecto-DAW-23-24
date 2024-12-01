@@ -60,6 +60,11 @@ const FormularioPedido = ({ }) => {
         navigate('/perfil/carrito')
     };
 
+    const enviarDatosPago = (e) => {
+        e.preventDefault();
+        console.log('Datos enviados');
+    };
+
     return (
         <section className='main-pago'>
             <dialog ref={dialogRef} className="alert-dialog">
@@ -80,10 +85,50 @@ const FormularioPedido = ({ }) => {
                     />
                 )}
             </dialog>
-            
-            <form action="">
-                <p>Datos pago</p>
+            <h2>Información de envío</h2>
+            <form>
+                <div className="form-group">
+                    <label htmlFor="direccion">Direccion</label>
+                    <input type="text" id="direccion" placeholder="Calle calle Nº1 19A" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="poblacion">Población</label>
+                    <input type="text" id="poblacion" placeholder="Caldas de Reis" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="provincia">Provincia</label>
+                    <input type="text" id="provincia" placeholder="Pontevedra" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="codigo_postal">Código postal</label>
+                    <input type="text" id="codigo_postal" placeholder="36650" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="telefono">Teléfono</label>
+                    <input type="text" id="telefono" placeholder="666666666" />
+                </div>
             </form>
+            <section className="summary">
+                <div className="summary-item">
+                    <span>SUBTOTAL</span>
+                    <span>€79.96</span>
+                </div>
+                <div className="summary-item">
+                    <span>ENVIO</span>
+                    <span>€3.20</span>
+                </div>
+                <div className="summary-item total">
+                    <span>TOTAL</span>
+                    <span>€83.16</span>
+                </div>
+            </section>
+            <BotonBlanco
+                texto="confirmar pago"
+                icono={null}
+                iconoHover={null}
+                disabled={false}
+                onClick={enviarDatosPago}
+            />
         </section>
     );
 };

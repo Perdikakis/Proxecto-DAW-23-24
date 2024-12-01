@@ -46,6 +46,7 @@ class PedidoController extends Controller
 
         try {
             $carrito = $request->input('carrito');
+            $precioTotal = 0;
 
             // Agrupar cantidades por camiseta y talla
             $agrupado = [];
@@ -84,13 +85,15 @@ class PedidoController extends Controller
                 if ($stock < $agrupado[$key]) {
                     $errors[] = 'Stock insuficiente para ' . $item['camiseta']['equipo'] . ' ' . $item['camiseta']['nombre'] . ' ' . $item['camiseta']['temporada'] . ' (Stock disponible: ' . $stock . ')';
                 }
+
+                $precioTotal += $item['cantidad'] * $camiseta->precio;
             }
 
             if (!empty($errors)) {
                 return response()->json(['success' => false, 'message' => implode("\n\n", $errors)]);
             }
     
-            return response()->json(['success' => true]);
+            return response()->json(['success' => true, 'precioTotal' => $precioTotal]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Error del servidor']);
         }
