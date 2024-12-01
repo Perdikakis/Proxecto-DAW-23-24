@@ -9,7 +9,7 @@ import Custom404 from "./componentes/Custom404";
 import Perfil from "./componentes/Perfil";
 import Login from "./componentes/Login";
 import { AuthProvider } from "./utils/AuthContext";
-import ProtectedRoute from "./componentes/ProtectedRoute"; // Importa el componente ProtectedRoute
+import ProtectedRoute from "./componentes/ProtectedRoute";
 
 const App = () => {
   return (

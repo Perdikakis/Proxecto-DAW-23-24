@@ -1,32 +1,141 @@
 .main-login {
-    position: relative;
-    min-width: 100vw;
-    min-height: 100vh;
-    background-color: #0D0C0C;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*justify-content: space-around;*/
-    gap: 40px;
-    color: #f0f0f0;
-    padding: 20px;
-    padding-top: 120px;
-    z-index: 0;
+  position: relative;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #0D0C0C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  color: #f0f0f0;
+  padding: 20px;
+  padding-top: 120px;
+  padding-bottom: 140px;
+  z-index: 0;
 }
 
   /* doble fondo */
 .main-login::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("/img/fondos/fondo-perfil.webp");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    opacity: 0.05;
-    z-index: 0;
-    pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/img/fondos/fondo-perfil.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.05;
+  z-index: 0;
+  pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
+}
+
+.main-login .opciones {
+  width: 60%;
+  min-width: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.main-login .opciones a{
+  width: auto;
+  justify-content: center;
+  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.main-login .opciones a:hover{
+  transform: scale(1.05);
+}
+
+.main-login .opciones a.seleccionado {
+  color: #EBB93A !important;
+}
+
+.main-login .opciones figure{
+  height: 32%;
+  width: 32px;
+  transition: transform 0.3s ease;
+}
+
+.main-login .opciones figure img{
+  height: 100%;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.main-login .opciones a.seleccionado + figure img {
+  transform: rotate(180deg);
+}
+
+.main-login .formulario-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  background-color: #0D0C0C;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.main-login .formulario-login h2 {
+  margin-bottom: 20px;
+}
+
+.main-login .formulario-login .campo-formulario {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 2px solid #EBB93A;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.main-login .formulario-login .campo-formulario figure{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-login .formulario-login .campo-formulario figure img{
+  width: 100%;
+  height: 100%;
+}
+
+.main-login .formulario-login label {
+  width: 100%;
+  display: none;
+}
+
+.main-login .formulario-login input {
+  all: unset;
+  width: calc(90% - 6px);
+  height: 100%;
+  align-self: flex-end;
+  font-size: 16px;
+}
+
+.main-login .formulario-login a {
+  color: rgba(255, 255, 255, 0.4) !important;
+  text-decoration: underline !important;
+  transition: color 0.3s ease;
+}
+.main-login .formulario-login a:hover {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.main-login .formulario-login .botonBlanco span {
+  justify-content: center;
 }
