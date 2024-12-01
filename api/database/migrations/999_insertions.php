@@ -22,6 +22,14 @@ return new class extends Migration
         } else {
             throw new Exception("El archivo SQL no existe: $path");
         }
+
+        \App\Models\Usuario::create([
+            'usuario' => 'Administrador',
+            'correo' => 'correo@ejemplo.com',
+            'password' => bcrypt('password'),
+            'fecha_ultimo_acceso' => now(),
+            'id_rol' => 2,
+        ]);
     }
 
     /**

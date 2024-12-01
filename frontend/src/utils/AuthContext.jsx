@@ -7,12 +7,15 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // Estado de carga
   const navigate = useNavigate();
 
   useEffect(() => {
     const sessionToken = localStorage.getItem('session_token');
     if (sessionToken) {
       getUserData();
+    } else {
+      setLoading(false); // Finalizar la carga si no hay token
     }
   }, []);
 
@@ -23,10 +26,12 @@ export const AuthProvider = ({ children }) => {
       fsuccess: (data) => {
         setUser(data);
         setIsAuthenticated(true);
+        setLoading(false); // Finalizar la carga después de obtener los datos del usuario
       },
       ferror: (error) => {
         setUser(null);
         setIsAuthenticated(false);
+        setLoading(false); // Finalizar la carga en caso de error
       }
     });
   };
@@ -47,7 +52,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

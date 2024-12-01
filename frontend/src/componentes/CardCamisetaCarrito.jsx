@@ -3,7 +3,7 @@ import BotonBlanco from './BotonBlanco';
 import '../css/CardCamisetaCarrito.css';
 import { ajaxAxios } from '../utils/ajaxAxios';
 
-const CardCamisetaCarrito = ({ data, idx, actualizarCarrito }) => {
+const CardCamisetaCarrito = ({ data, idx, actualizarCarrito, detallesAbiertos, handleDetallesAbiertos}) => {
   const [tallas, setTallas] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
@@ -30,7 +30,6 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito }) => {
         setTallas(tallas);
       },
       ferror: (error) => {
-        
       }
     });
   }, []);
@@ -42,11 +41,15 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito }) => {
   }, [nombreValido, dorsalValido, tallaValida, cantidadValida]);
 
   const handleDetalles = () => {
-    setMostrarFormulario(true);
+    if (!detallesAbiertos) {
+      setMostrarFormulario(true);
+      handleDetallesAbiertos(true);
+    }
   }
   
   const handleCerrarFormulario = () => {
     setMostrarFormulario(false);
+    handleDetallesAbiertos(false);
   };
 
   const handleSumar = () =>{
@@ -107,6 +110,7 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito }) => {
     if (!nombreValido || !dorsalValido || !tallaValida || !cantidadValida) {
       return;
     } else {
+      handleCerrarFormulario();
       const nuevaData = {
         camiseta: data.camiseta,
         nombre: nuevosDatos.nombre,
@@ -151,7 +155,7 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito }) => {
             texto="detalles" 
             icono='/icons/lapiz.svg' 
             iconoHover='/icons/lapiz1.svg'
-            disabled={false}
+            disabled={detallesAbiertos}
             onClick={handleDetalles}
             />
       </div>

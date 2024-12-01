@@ -19,6 +19,14 @@ const destacadas=[
 ];
 
 const Tienda = () => {
+  useEffect(() => {
+    //restablecer scroll del slider del landing
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+  
   const [resultadosBusqueda, setResultadosBusqueda] = useState([]);
   const [mostrarResultados, setMostrarResultados] = useState(false);
   const [aviso, setAviso] = useState('');

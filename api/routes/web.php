@@ -11,17 +11,20 @@ Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->g
         return response()->json(['message' => 'Hola']);
     });
 
+    
 });
 
 Route::post('/login', [Controllers\AuthController::class, 'login']);
 
-Route::get('/equipos', [Controllers\EquipoController::class, 'getEquipos']);
-
-Route::get('/competiciones', [Controllers\CompeticionController::class, 'getCompeticiones']);
-
 Route::get('/temporadas', [Controllers\CamisetaController::class, 'getTemporadas']);
 Route::post('/camisetasFiltradas', [Controllers\CamisetaController::class, 'getCamisetasFiltradas']);
 Route::post('/top-ventas', [Controllers\CamisetaController::class, 'topVentas']);
+
+Route::get('/competiciones', [Controllers\CompeticionController::class, 'getCompeticiones']);
+
+Route::get('/equipos', [Controllers\EquipoController::class, 'getEquipos']);
+
+Route::post('/validarPedido', [Controllers\PedidoController::class, 'validarPedido']);
 
 Route::get('/tallasCamiseta/{id}', [Controllers\TallaController::class, 'getTallas']);
 

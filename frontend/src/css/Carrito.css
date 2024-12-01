@@ -1,17 +1,32 @@
-.carrito {
+.main-carrito {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
-    max-height: 880px;
+    min-height: 160px;
+    max-height: 680px;
+    max-width: 840px;
     overflow-y: scroll;
+    margin-bottom: 140px;
 }
 
-.carrito .alert-container {
+.main-carrito .alert-container {
     position: absolute;
     width: 100%;
     height: 100%;
     font-size: 0.7em;
     pointer-events: none;
     z-index: 1;
+}
+
+.carrito-controles {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
 }

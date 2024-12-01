@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./componentes/Header";
 import Footer from "./componentes/Footer";
@@ -9,7 +9,7 @@ import Custom404 from "./componentes/Custom404";
 import Perfil from "./componentes/Perfil";
 import Login from "./componentes/Login";
 import { AuthProvider } from "./utils/AuthContext";
-import ProtectedRoute from "./componentes/ProtectedRoute";
+import ProtectedRoute from "./componentes/ProtectedRoute"; // Importa el componente ProtectedRoute
 
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/tienda" element={<Tienda />} />
           <Route path="/camiseta/:id" element={<Camiseta />} />
-          <Route path="/perfil/*" element={<ProtectedRoute element={<Perfil />} />} />
+          <Route path="/perfil/*" element={<ProtectedRoute element={<Perfil />} />} /> {/* Usa ProtectedRoute */}
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Custom404 />} />
         </Routes>

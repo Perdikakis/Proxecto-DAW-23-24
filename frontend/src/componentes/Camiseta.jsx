@@ -174,7 +174,7 @@ const Camiseta = () => {
       const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
       
       const productoExistente = carrito.find(
-        (prod) => prod.camiseta.id === dataProducto.camiseta.id && prod.dorsal === dataProducto.dorsal && prod.talla === dataProducto.talla
+        (prod) => prod.camiseta.id === dataProducto.camiseta.id && prod.dorsal === dataProducto.dorsal && prod.talla === dataProducto.talla && prod.nombre === dataProducto.nombre
       );
       
       if(productoExistente) {
@@ -255,7 +255,7 @@ const Camiseta = () => {
         {renderImagen(4)}
       </section>
       <section className="datos">
-        <form className="formulario-camiseta">
+        <form className="formulario-camiseta" onSubmit={handleAddCarrito}>
           <div className="form-group">
             <label htmlFor="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" onChange={validarNombre} autoComplete="off"/>
@@ -290,7 +290,6 @@ const Camiseta = () => {
             icono="/icons/add-to-cart.svg" 
             iconoHover="/icons/add-to-cart-1.png" 
             disabled={isButtonDisabled} 
-            onClick={handleAddCarrito}
           />
         </form>
           {alertaExito && 

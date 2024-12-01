@@ -1,6 +1,7 @@
 import { Link, Routes, Route, useLocation } from "react-router-dom";
 import '../css/Perfil.css';
 import Carrito from "./Carrito";
+import FormularioPedido from "./FormularioPedido";
 import { useContext } from 'react';
 import { AuthContext } from '../utils/AuthContext';
 
@@ -81,6 +82,7 @@ const Perfil = () => {
                 <Route path="favoritos" element={<Favoritos />} />
                 <Route path="pedidos" element={<Pedidos />} />
                 <Route path="carrito" element={<Carrito />} />
+                <Route path="carrito/realizar-pago" element={<FormularioPedido />} />
             </Routes>
         </main>
     );

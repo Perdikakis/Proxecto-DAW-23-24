@@ -1,0 +1,35 @@
+.main-pago {
+    width: 100%;
+}
+
+.main-pago .alert-container{
+    flex-direction: column;
+}
+
+.alert-dialog {
+    display: none !important;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  
+.alert-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+}
+
+.progress-bar-error {
+    margin-top: 10px;
+}
