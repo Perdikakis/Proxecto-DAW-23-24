@@ -7,6 +7,7 @@ use App\Models\Camiseta;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller
 {
@@ -25,8 +26,9 @@ class PedidoController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
+            'carrito' => 'required|array',
             'carrito.*.camiseta.id' => 'required|exists:camisetas,id',
-            'carrito.*.nombre' => 'nullable|regex:/^[\p{L}]{0,16}$/u',
+            'carrito.*.nombre' => 'nullable|regex:/^[\p{L}\s]{0,16}$/u',
             'carrito.*.dorsal' => 'nullable|integer|min:0|max:99',
             'carrito.*.talla' => 'required|string',
             'carrito.*.cantidad' => 'required|integer|min:1',
@@ -47,6 +49,10 @@ class PedidoController extends Controller
         try {
             $carrito = $request->input('carrito');
             $precioTotal = 0;
+
+            if(empty($carrito)) {
+                return response()->json(['success' => false, 'message' => 'El carrito está vacío']);
+            }
 
             // Agrupar cantidades por camiseta y talla
             $agrupado = [];
@@ -96,6 +102,102 @@ class PedidoController extends Controller
             return response()->json(['success' => true, 'precioTotal' => $precioTotal]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Error del servidor']);
+        }
+    }
+
+    public function realizarPedido(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'data.carrito' => 'required|array',
+            'data.direccion' => 'required|string',
+            'data.poblacion' => 'required|string',
+            'data.provincia' => 'required|string',
+            'data.codigoPostal' => 'required|regex:/^[0-9]{5}$/',
+            'data.telefono' => 'required|regex:/^[0-9]{9}$/',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'message' => $validator->errors()->first()]);
+        }
+
+        try {
+            $data = $request->input('data');
+            $carrito = $data['carrito'];
+
+            $carritoFormateado = array_map(function($item) {
+                return [
+                    'camiseta' => $item['camiseta'],
+                    'nombre' => $item['nombre'],
+                    'dorsal' => $item['dorsal'],
+                    'talla' => $item['talla'],
+                    'cantidad' => $item['cantidad']
+                ];
+            }, $carrito);
+        
+            $response = $this->validarPedido(new Request(['carrito' => $carritoFormateado]));
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Error del servidor']);
+        }
+
+        if ($response->getData()->success){
+            try {
+                DB::beginTransaction();
+                $data = $request->input('data');
+                $carrito = $data['carrito'];
+                $direccion = $data['direccion'];
+                $poblacion = $data['poblacion'];
+                $provincia = $data['provincia'];
+                $codigoPostal = $data['codigoPostal'];
+                $telefono = $data['telefono'];
+
+                $direccionCompleta = "$direccion, $poblacion, $provincia, $codigoPostal, $telefono";
+                $precioTotal = $response->getData()->precioTotal+3.20;
+
+                $pedidoId = DB::table('pedidos')->insertGetId([
+                    'usuario_id' => Auth::id(),
+                    'direccion' => $direccionCompleta,
+                    'fecha_pedido' => now(),
+                    'fecha_envio' => now()->addDays(7),
+                    'fecha_finalizado' => null,
+                    'estado' => 'en proceso',
+                    'total' => $precioTotal,
+                ]);
+                
+                foreach ($carrito as $item) {
+                    $camiseta = Camiseta::find($item['camiseta']['id']);
+                    
+                    $talla = $camiseta->tallas()
+                        ->where('talla', $item['talla'])
+                        ->first();
+
+                    DB::table('pedido_camiseta_talla')->insert([
+                        'pedido_id' => $pedidoId,
+                        'camiseta_id' => $camiseta->id,
+                        'talla_id' => $talla->id,
+                        'nombre_camiseta' => $item['nombre'],
+                        'dorsal' => $item['dorsal'],
+                        'cantidad' => $item['cantidad']
+                    ]);
+
+                    DB::table('camiseta_talla')
+                        ->where('camiseta_id', $camiseta->id)
+                        ->where('talla_id', $talla->id)
+                        ->decrement('stock', $item['cantidad']);
+
+                    DB::table('camiseta_talla')
+                        ->where('camiseta_id', $camiseta->id)
+                        ->where('talla_id', $talla->id)
+                        ->increment('ventas', $item['cantidad']);    
+                }
+
+                DB::commit();
+                return response()->json(['success' => true, 'message' => 'Pedido realizado con éxito']);
+            } catch (\Exception $e) {
+                Log::error($e->getMessage());
+                DB::rollBack();
+                return response()->json(['success' => false, 'message' => 'Error del servidor']);
+            }
+        } else {
+            return response()->json(['success' => false, 'message' => $response->getData()->message]);
         }
     }
 }

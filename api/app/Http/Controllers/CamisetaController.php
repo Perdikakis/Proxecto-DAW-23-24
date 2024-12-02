@@ -92,7 +92,6 @@ class CamisetaController extends Controller {
 
             return response()->json($result);
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
             return response()->json(['error' => 'Error al obtener las camisetas'], 500);
         }
     }

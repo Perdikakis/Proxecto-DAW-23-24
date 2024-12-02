@@ -4,10 +4,25 @@ import Carrito from "./Carrito";
 import FormularioPedido from "./FormularioPedido";
 import { useContext } from 'react';
 import { AuthContext } from '../utils/AuthContext';
+import { ajaxAxios } from "../utils/ajaxAxios";
 
 const Perfil = () => {
     const location = useLocation();
     const { user, logout } = useContext(AuthContext);
+
+    const handleLogout = async () => {
+        ajaxAxios({
+            url: `${import.meta.env.VITE_API_URL}/logout`,
+            method: 'POST',
+            fsuccess: (data) => {
+                logout();
+                navigate('/login');
+            },
+            ferror: (error) => {
+
+            }
+          });
+    };
 
     const Ajustes = () => (
         <section className="ajustes">
@@ -67,7 +82,7 @@ const Perfil = () => {
                     </ul>
                 </div>
                 <div className="usuario">
-                    <figure className="logout" onClick={logout}>
+                    <figure className="logout" onClick={handleLogout}>
                         <img src="/icons/power.svg" alt="" className="icono-default"/>
                         <img src="/icons/power2.png" alt="" className="icono-hover"/>
                     </figure>

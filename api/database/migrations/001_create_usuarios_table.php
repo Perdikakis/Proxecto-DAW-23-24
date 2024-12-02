@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('apellidos', 100)->nullable();
             $table->string('direccion', 255)->nullable();
             $table->string('telefono', 15)->nullable();
-            $table->string('rol', 50)->nullable();
+            $table->unsignedBigInteger('rol_id', 50);
             $table->dateTime('fecha_alta')->nullable();
             $table->dateTime('fecha_ultimo_acceso')->nullable();
+
+            $table->foreign('rol_id')->references('id')->on('roles')->onDelete('set null');
         });
     }
 

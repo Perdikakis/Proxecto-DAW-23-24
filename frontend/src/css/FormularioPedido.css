@@ -30,11 +30,15 @@
     width: 100%;
     background: none;
     border: none;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     color: #000000;
     padding: 5px 0;
     outline: none;
     margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+.main-pago form input:focus {
+    border-color: rgba(0, 0, 0, 1);;
 }
 
 .main-pago form label{
@@ -72,11 +76,6 @@
     font-weight: bold;
     font-size: 16px;
 }
-
-
-
-
-
 
 .main-pago .alert-container{
     flex-direction: column;

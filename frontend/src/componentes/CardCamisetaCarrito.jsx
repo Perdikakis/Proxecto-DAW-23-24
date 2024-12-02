@@ -64,7 +64,7 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito, detallesAbiertos, h
 
   const validarNombre = () => {
     const nombre = document.getElementById('nombre').value;
-    const regex = /^[\p{L}]{0,16}$/u;
+    const regex = /^[\p{L}\s]{0,16}$/u;
     const isValid = regex.test(nombre.trim());
     document.getElementById('nombre').className = isValid ? 'input-valido' : 'input-invalido';
     setNombreValido(isValid);

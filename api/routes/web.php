@@ -5,13 +5,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 
 Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->group(function () {
+    Route::post('/logout', [Controllers\AuthController::class, 'logout']);
     Route::get('/user', [Controllers\UsuarioController::class, 'getUsuario']);
     
     Route::get('/saludo', function () {
         return response()->json(['message' => 'Hola']);
     });
 
-    
+    Route::post('/validarPedido', [Controllers\PedidoController::class, 'validarPedido']);
+    Route::post('/realizarPedido', [Controllers\PedidoController::class, 'realizarPedido']);
 });
 
 Route::post('/login', [Controllers\AuthController::class, 'login']);
@@ -24,8 +26,6 @@ Route::post('/top-ventas', [Controllers\CamisetaController::class, 'topVentas'])
 Route::get('/competiciones', [Controllers\CompeticionController::class, 'getCompeticiones']);
 
 Route::get('/equipos', [Controllers\EquipoController::class, 'getEquipos']);
-
-Route::post('/validarPedido', [Controllers\PedidoController::class, 'validarPedido']);
 
 Route::get('/tallasCamiseta/{id}', [Controllers\TallaController::class, 'getTallas']);
 

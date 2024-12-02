@@ -195,7 +195,7 @@ const Login = () => {
               autoComplete='off'
             />
           </div>
-          {error && <p style={{ color: 'red', whiteSpace: 'pre-line', textAlign: 'center'}}>{error}</p>}
+          {error && <p style={{ color: '#D63030', whiteSpace: 'pre-line', textAlign: 'center'}}>{error}</p>}
           <BotonBlanco 
             texto="enviar" 
             icono={null}

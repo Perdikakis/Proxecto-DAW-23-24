@@ -8,10 +8,41 @@ const FormularioPedido = ({ }) => {
     const [mensajeAlerta, setMensajeAlerta] = useState('');
     const [barraProgreso, setBarraProgreso] = useState(100);
     const [mostrarLink, setMostrarLink] = useState(false);
-    const carrito = JSON.parse(localStorage.getItem('carrito'));
+    const [precioTotal, setPrecioTotal] = useState(0);
+    const [carrito, setCarrito] = useState(JSON.parse(localStorage.getItem('carrito')));
     const navigate = useNavigate();
     const dialogRef = useRef(null);
 
+    const [direccion, setDireccion] = useState('');
+    const [poblacion, setPoblacion] = useState('');
+    const [provincia, setProvincia] = useState('');
+    const [codigoPostal, setCodigoPostal] = useState('');
+    const [telefono, setTelefono] = useState('');
+    const [error, setError] = useState('');
+
+    const validarDireccion = () => {
+        return direccion.trim() !== '';
+    };
+
+    const validarPoblacion = () => {
+        return poblacion.trim() !== '';
+    };
+
+    const validarProvincia = () => {
+        return provincia.trim() !== '';
+    };
+
+    const validarCodigoPostal = () => {
+        const regex = /^[0-9]{5}$/;
+        return regex.test(codigoPostal);
+    };
+
+    const validarTelefono = () => {
+        const regex = /^[0-9]{9}$/;
+        return regex.test(telefono);
+    };
+    
+    // validar el pedido antes de rellenar formulario
     useEffect(() => {
         ajaxAxios({
             url: `${import.meta.env.VITE_API_URL}/validarPedido`,
@@ -33,7 +64,10 @@ const FormularioPedido = ({ }) => {
                         return prev - 1;
                       });
                     }, 30);
-                  }
+                } else {
+                    setPrecioTotal(data.precioTotal);
+                    console.log('Pedido validado: ', data);
+                }
             },
             ferror: (error) => {
                 setMensajeAlerta('Formato incorrecto de datos');
@@ -62,7 +96,50 @@ const FormularioPedido = ({ }) => {
 
     const enviarDatosPago = (e) => {
         e.preventDefault();
-        console.log('Datos enviados');
+        if (!validarDireccion()) {
+            return setError('La dirección es inválida.');
+        }
+        if (!validarPoblacion()) {
+            return setError('La población es inválida.');
+        }
+        if (!validarProvincia()) {
+            return setError('La provincia es inválida.');
+        }
+        if (!validarCodigoPostal()) {
+            return setError('El código postal es inválido.');
+        }
+        if (!validarTelefono()) {
+            return setError('El teléfono es inválido.');
+        }
+    
+        // Si todos los campos son válidos, puedes enviar el formulario
+        setError('');
+        const data = {
+            carrito,
+            direccion,
+            poblacion,
+            provincia,
+            codigoPostal,
+            telefono,
+        };
+
+        ajaxAxios({
+            url: `${import.meta.env.VITE_API_URL}/realizarPedido`,
+            method: 'POST',
+            data: { data },
+            fsuccess: (data) => {
+                if(data.success) {
+                    setError('Pedido realizado correctamente');
+                    setCarrito([]);
+                    localStorage.setItem('carrito', JSON.stringify([]));
+                } else {
+                    setError(data.message);
+                }
+            },
+            ferror: (error) => {
+                setError('Error al realizar el pedido');
+            }
+        });
     };
 
     return (
@@ -89,37 +166,38 @@ const FormularioPedido = ({ }) => {
             <form>
                 <div className="form-group">
                     <label htmlFor="direccion">Direccion</label>
-                    <input type="text" id="direccion" placeholder="Calle calle Nº1 19A" />
+                    <input type="text" id="direccion" placeholder="Calle calle Nº1 19A" onChange={(e) => setDireccion(e.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="poblacion">Población</label>
-                    <input type="text" id="poblacion" placeholder="Caldas de Reis" />
+                    <input type="text" id="poblacion" placeholder="Caldas de Reis" onChange={(e) => setPoblacion(e.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="provincia">Provincia</label>
-                    <input type="text" id="provincia" placeholder="Pontevedra" />
+                    <input type="text" id="provincia" placeholder="Pontevedra" onChange={(e) => setProvincia(e.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="codigo_postal">Código postal</label>
-                    <input type="text" id="codigo_postal" placeholder="36650" />
+                    <input type="text" id="codigo_postal" placeholder="36650" onChange={(e) => setCodigoPostal(e.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="telefono">Teléfono</label>
-                    <input type="text" id="telefono" placeholder="666666666" />
+                    <input type="text" id="telefono" placeholder="666666666" onChange={(e) => setTelefono(e.target.value)}/>
                 </div>
+                {error && <p style={{ color: '#D63030', textAlign: 'center'}}>{error}</p>}
             </form>
             <section className="summary">
                 <div className="summary-item">
                     <span>SUBTOTAL</span>
-                    <span>€79.96</span>
+                    <span>€{Math.trunc((precioTotal-3.20) * 100) / 100}</span>
                 </div>
                 <div className="summary-item">
                     <span>ENVIO</span>
-                    <span>€3.20</span>
+                    <span>€{3.20}</span>
                 </div>
                 <div className="summary-item total">
                     <span>TOTAL</span>
-                    <span>€83.16</span>
+                    <span>€{Math.trunc((precioTotal) * 100) / 100}</span>
                 </div>
             </section>
             <BotonBlanco
