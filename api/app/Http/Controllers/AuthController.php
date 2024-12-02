@@ -68,7 +68,7 @@ class AuthController extends Controller
                 'usuario' => $request->input('usuario'),
                 'password' => Hash::make($request->input('password')),
                 'correo' => $request->input('correo'),
-                'id_rol' => 1,
+                'rol_id' => 1,
                 'fecha_ultimo_acceso' => Carbon::now(),
             ]);
 
