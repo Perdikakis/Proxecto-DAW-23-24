@@ -157,11 +157,12 @@ header .carrito:hover .carrito-hover {
         padding-top: 120px;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(13, 12, 12, 0.9);
+        background-color: rgba(13, 12, 12, 0.99);
         z-index: 4;
     }
 
     header .hamburger-menu ul li {
+        color: #f0f0f0;
         height: 5vh;
         width: 80vw;
         border-radius: 4px;
@@ -170,12 +171,12 @@ header .carrito:hover .carrito-hover {
         justify-content: center;
         visibility: visible;
         transition: color 0.3s ease;
+        transition: background-color 0.3s ease;
     }
 
     header .hamburger-menu li a {
         height: 100%;
         width: 100%;
-        color: #f0f0f0;
         font-size: 14px;
         text-decoration: none;
         transition: color 0.3s ease;
@@ -185,11 +186,8 @@ header .carrito:hover .carrito-hover {
     }
 
     header .hamburger-menu li:hover {
-        background-color: rgba(192, 192, 192, 1);
-    }
-
-    header .hamburger-menu a:hover {
         color: rgba(13, 12, 12, 1);
+        background-color: rgba(192, 192, 192, 1);
     }
 }
 

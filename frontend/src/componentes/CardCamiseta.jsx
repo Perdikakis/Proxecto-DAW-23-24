@@ -60,7 +60,7 @@ const CardCamiseta = ({ data }) => {
   };
 
   return (
-    <div className="card-camiseta">
+    <article className="card-camiseta">
         {alertaExito && 
         <div className="alert-container">
           <div className="alert alert-success" role="alert">
@@ -93,7 +93,7 @@ const CardCamiseta = ({ data }) => {
         </div>
         <div className="bottom-text">{data.equipo} {data.nombre} {data.temporada}</div>
       </Link>
-    </div>
+    </article>
   );
 };
 

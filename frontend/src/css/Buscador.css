@@ -10,6 +10,7 @@
 }
 
 .campo {
+  border: none;
   position: relative;
   width: 33%;
 }

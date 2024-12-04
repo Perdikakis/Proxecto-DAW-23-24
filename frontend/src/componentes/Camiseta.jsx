@@ -255,15 +255,15 @@ const Camiseta = () => {
       </section>
       <section className="datos">
         <form className="formulario-camiseta" onSubmit={handleAddCarrito}>
-          <div className="form-group">
+          <fieldset className="form-group">
             <label htmlFor="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" onChange={validarNombre} autoComplete="off"/>
-          </div>
-          <div className="form-group">
+          </fieldset>
+          <fieldset className="form-group">
             <label htmlFor="dorsal">Dorsal:</label>
             <input type="text" id="dorsal" name="dorsal" onChange={validarDorsal} autoComplete="off"/>
-          </div>
-          <div className="form-group">
+          </fieldset>
+          <fieldset className="form-group">
             <label htmlFor="talla">Talla:</label>
             <input 
               type="text" 
@@ -275,15 +275,15 @@ const Camiseta = () => {
               autoComplete="off"
             />
             {renderTallas(sugerenciasTalla)}
-          </div>
-          <div className="form-group">
+          </fieldset>
+          <fieldset className="form-group">
             <label htmlFor="cantidad">Cantidad:</label>
             <div className="input-container">
               <img className="minus" src="/icons/minus.svg" alt="restar" onClick={handleRestar}/>
               <input type="number" id="cantidad" name="cantidad" onChange={validarCantidad} defaultValue={1} autoComplete="off"/>
               <img className="plus" src="/icons/plus.svg" alt="sumar" onClick={handleSumar}/>
             </div>
-          </div>
+          </fieldset>
           <BotonBlanco 
             texto="añadir al carrito" 
             icono="/icons/add-to-cart.svg" 

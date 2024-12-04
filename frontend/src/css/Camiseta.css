@@ -70,6 +70,7 @@
 }
 
 .formulario-camiseta .form-group {
+    border: none;
     position: relative;
     display: flex;
     flex-direction: row;

@@ -139,14 +139,14 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito, detallesAbiertos, h
 
   return (
     <article className='card-camiseta-carrito'>
-        <div className='imagenes'>
-        <img className="icon-top-left" src={starIcon} alt="Favoritos" onClick={clickFavoritos}/>
-        <img className="icon-top-right" src="/icons/bin.svg" alt="Eliminar" onClick={handleDelete}/>
-        <figure>
-            <img src={data.camiseta.imagenes[0]} alt="camiseta" />
-        </figure>
-      </div>
-      <div className='datos'>
+        <section className='imagenes'>
+          <img className="icon-top-left" src={starIcon} alt="Favoritos" onClick={clickFavoritos}/>
+          <img className="icon-top-right" src="/icons/bin.svg" alt="Eliminar" onClick={handleDelete}/>
+          <figure>
+              <img src={data.camiseta.imagenes[0]} alt="camiseta" />
+          </figure>
+        </section>
+        <section className='datos'>
           <span>{data.camiseta.equipo}</span>
           <span>{`${data.camiseta.nombre} ${data.camiseta.temporada}`}</span>
           <span className='precio-og'>{`€${(data.camiseta.precio * 5).toFixed(2)}`}</span>
@@ -157,36 +157,36 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito, detallesAbiertos, h
             iconoHover='/icons/lapiz1.svg'
             disabled={detallesAbiertos}
             onClick={handleDetalles}
-            />
-      </div>
-      {mostrarFormulario && (
-        <div className="formulario-overlay">
-          <form className="formulario-detalles" onSubmit={handleGuardarDatos}>
-            <div className='campos'>
-              <label htmlFor='nombre'>Nombre:</label>
-              <input type="text" name="nombre" id="nombre" defaultValue={nuevosDatos.nombre} onChange={validarNombre} autoComplete="off"/>
-              <label htmlFor='dorsal'>Dorsal:</label>
-              <input type="text" name="dorsal" id="dorsal" defaultValue={nuevosDatos.dorsal} onChange={validarDorsal} autoComplete="off"/>
-              <label htmlFor='talla'>Talla:</label>
-              <input type="text" name="talla" id="talla" defaultValue={nuevosDatos.talla} onChange={validarTalla} autoComplete="off"/>
-              <label htmlFor='cantidad'>Cantidad:</label>
-              <div className='input-container'>
-                <img className="minus" src="/icons/minus.svg" alt="restar" onClick={handleRestar}/>
-                <input type="number" name="cantidad" id="cantidad" defaultValue={nuevosDatos.cantidad} onChange={validarCantidad} autoComplete="off"/>
-                <img className="plus" src="/icons/plus.svg" alt="restar" onClick={handleSumar}/>
-              </div>
-            </div>
-            <div className='botones'>
-              <button type="submit" disabled={isButtonDisabled}>
-                <img src="/icons/checked.svg" alt="enviar" />
-              </button>
-              <button type="button" onClick={handleCerrarFormulario}>
-                <img src="/icons/delete.svg" alt="cerrar" />
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
+          />
+        </section>
+        {mostrarFormulario && (
+          <section className="formulario-overlay">
+            <form className="formulario-detalles" onSubmit={handleGuardarDatos}>
+              <article className='campos'>
+                <label htmlFor='nombre'>Nombre:</label>
+                <input type="text" name="nombre" id="nombre" defaultValue={nuevosDatos.nombre} onChange={validarNombre} autoComplete="off"/>
+                <label htmlFor='dorsal'>Dorsal:</label>
+                <input type="text" name="dorsal" id="dorsal" defaultValue={nuevosDatos.dorsal} onChange={validarDorsal} autoComplete="off"/>
+                <label htmlFor='talla'>Talla:</label>
+                <input type="text" name="talla" id="talla" defaultValue={nuevosDatos.talla} onChange={validarTalla} autoComplete="off"/>
+                <label htmlFor='cantidad'>Cantidad:</label>
+                <div className='input-container'>
+                  <img className="minus" src="/icons/minus.svg" alt="restar" onClick={handleRestar}/>
+                  <input type="number" name="cantidad" id="cantidad" defaultValue={nuevosDatos.cantidad} onChange={validarCantidad} autoComplete="off"/>
+                  <img className="plus" src="/icons/plus.svg" alt="restar" onClick={handleSumar}/>
+                </div>
+              </article>
+              <article className='botones'>
+                <button type="submit" disabled={isButtonDisabled}>
+                  <img src="/icons/checked.svg" alt="enviar" />
+                </button>
+                <button type="button" onClick={handleCerrarFormulario}>
+                  <img src="/icons/delete.svg" alt="cerrar" />
+                </button>
+              </article>
+            </form>
+          </section>
+        )}
     </article>
   );
 };

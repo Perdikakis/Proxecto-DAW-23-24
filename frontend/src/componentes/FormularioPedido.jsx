@@ -214,18 +214,18 @@ const FormularioPedido = ({ }) => {
                 {error && <p style={{ color: '#D63030', textAlign: 'center'}}>{error}</p>}
             </form>
             <section className="summary">
-                <div className="summary-item">
+                <article className="summary-item">
                     <span>SUBTOTAL</span>
                     <span>€{Math.trunc((precioTotal-3.20) * 100) / 100}</span>
-                </div>
-                <div className="summary-item">
+                </article>
+                <article className="summary-item">
                     <span>ENVIO</span>
                     <span>€{3.20}</span>
-                </div>
-                <div className="summary-item total">
+                </article>
+                <article className="summary-item total">
                     <span>TOTAL</span>
                     <span>€{Math.trunc((precioTotal) * 100) / 100}</span>
-                </div>
+                </article>
             </section>
             {alertaExito && 
                 <div className="alert-container">
