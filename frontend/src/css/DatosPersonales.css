@@ -34,12 +34,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border: 2px solid #EBB93A;
+    border: 2px solid var(--dorado);
     border-radius: 4px;
     padding: 6px;
 }
 .campo-formulario.editable {
-    box-shadow: 0 0 0 1px #EBB93A inset;
+    box-shadow: 0 0 0 1px var(--dorado) inset;
     outline: none;
 }
 .campo-formulario.no-editable {
@@ -48,7 +48,7 @@
 }
 
 .main-datos .formulario-datos .campo-formulario:focus {
-    box-shadow: 0 0 0 1px #EBB93A inset;
+    box-shadow: 0 0 0 1px var(--dorado) inset;
     outline: none;
 }
 

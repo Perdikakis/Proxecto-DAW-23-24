@@ -287,7 +287,7 @@ const Camiseta = () => {
           <BotonBlanco 
             texto="añadir al carrito" 
             icono="/icons/add-to-cart.svg" 
-            iconoHover="/icons/add-to-cart-1.png" 
+            iconoHover="/icons/add-to-cart-1.svg" 
             disabled={isButtonDisabled} 
           />
         </form>

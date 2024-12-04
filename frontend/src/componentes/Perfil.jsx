@@ -74,7 +74,7 @@ const Perfil = () => {
                 <div className="usuario">
                     <figure className="logout" onClick={handleLogout}>
                         <img src="/icons/power.svg" alt="" className="icono-default"/>
-                        <img src="/icons/power2.png" alt="" className="icono-hover"/>
+                        <img src="/icons/power2.svg" alt="" className="icono-hover"/>
                     </figure>
                     <span>{user ? user.usuario : 'usuario'}</span>
                     <figure>

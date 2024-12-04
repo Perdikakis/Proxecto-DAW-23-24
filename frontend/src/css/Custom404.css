@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
 
+:root {
+  --bootstrap-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, 
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 .error-page {
-  font-family: 'Aldrich', sans-serif;
+  font-family: var(--bootstrap-font-family);
   font-weight: 400;
   display: flex;
   flex-direction: column;

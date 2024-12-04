@@ -2,7 +2,7 @@
   position: relative;
   min-width: 100vw;
   min-height: 100vh;
-  background-color: #0D0C0C;
+  background-color: var(--negro);
   display: flex;
   flex-direction: column;
   align-items: center;

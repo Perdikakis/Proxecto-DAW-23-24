@@ -19,8 +19,8 @@
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 2px solid #FFFFFF;
-  color: #FFFFFF;
+  border-bottom: 2px solid var(--blanco);
+  color: var(--blanco);
   font-size: 16px;
   padding: 5px 0;
   outline: none;
@@ -36,11 +36,11 @@
 }
 
 .campo input.input-valido {
-  border-bottom: 2px solid #379342;
+  border-bottom: 2px solid var(--verde);
 }
 
 .campo input.input-invalido {
-  border-bottom: 2px solid #D63030;
+  border-bottom: 2px solid var(--rojo);
 }
 
 .sugerencias {
@@ -62,12 +62,12 @@
   padding: 8px;
   font-size: 10px;
   cursor: pointer;
-  border-bottom: 1px solid #f0f0f0;
-  background-color: #1f1c1c;
+  border-bottom: 1px solid var(--blanco);
+  background-color: var(--fondo-sugerencias);
 }
 
 .sugerencias li:hover {
-  background: #000000;
+  background: var(--negro);
 }
 
 @media (max-width: 767px){

@@ -2,12 +2,12 @@
     position: relative;
     min-width: 100vw;
     min-height: 100vh;
-    background-color: #0D0C0C;
+    background-color: var(--negro);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    color: #f0f0f0;
+    color: var(--blanco);
     padding: 20px;
     padding-top: 120px;
     padding-bottom: 200px;
@@ -87,17 +87,17 @@
 .formulario-camiseta input {
     width: 300px;
     padding: 10px;
-    border: 1px solid #EBB93A;
+    border: 1px solid var(--dorado);
     border-radius: 4px;
     background-color: transparent;
-    color: #f0f0f0;
+    color: var(--blanco);
     text-align: center;
     font-size: 28px;
     transition: box-shadow 0.2s ease;
 }
 
 .formulario-camiseta input:focus {
-    box-shadow: 0 0 0 1px #EBB93A inset;
+    box-shadow: 0 0 0 1px var(--dorado) inset;
     outline: none;
 }
 
@@ -129,12 +129,12 @@
     padding: 8px;
     font-size: 10px;
     cursor: pointer;
-    border-bottom: 1px solid #f0f0f0;
-    background-color: #1f1c1c;
+    border-bottom: 1px solid var(--blanco);
+    background-color: var(--fondo-sugerencias);
 }
 
 .tallas li:hover {
-    background: #000000;
+    background: var(--negro);
 }
 
 .form-group .input-container {
@@ -161,18 +161,18 @@
 }
 
 .form-group input.input-valido {
-    border: 1px solid #379342;
+    border: 1px solid var(--verde);
 }
 .form-group input.input-valido:focus {
-    box-shadow: 0 0 0 1px #379342 inset;
+    box-shadow: 0 0 0 1px var(--verde) inset;
     outline: none;
 }
 
 .form-group input.input-invalido {
-    border: 1px solid #D63030;
+    border: 1px solid var(--rojo);
 }
 .form-group input.input-invalido:focus {
-    box-shadow: 0 0 0 1px #D63030 inset;
+    box-shadow: 0 0 0 1px var(--rojo) inset;
     outline: none;
 }
 

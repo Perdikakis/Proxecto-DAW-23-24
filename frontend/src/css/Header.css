@@ -62,6 +62,8 @@ header .nav li:nth-child(2), header .nav li:nth-child(3) {
 }
   
 header .nav li a {
+    width: 100%;
+    text-align: center;
     color: rgba(13, 12, 12, 0.6);
     font-size: 1.46vw;
     text-decoration: none;
@@ -71,7 +73,7 @@ header .nav li a {
 }
   
 header .nav li:hover {
-    background-color: rgba(192, 192, 192, 1);
+    background-color: var(--blanco);
     transform: skewX(15deg) scale(1.2);
 }
   
@@ -162,7 +164,7 @@ header .carrito:hover .carrito-hover {
     }
 
     header .hamburger-menu ul li {
-        color: #f0f0f0;
+        color: var(--blanco);
         height: 5vh;
         width: 80vw;
         border-radius: 4px;
@@ -186,7 +188,7 @@ header .carrito:hover .carrito-hover {
     }
 
     header .hamburger-menu li:hover {
-        color: rgba(13, 12, 12, 1);
+        color: var(--negro);
         background-color: rgba(192, 192, 192, 1);
     }
 }

@@ -5,9 +5,9 @@
     max-height: 160px;
     width: 400px;
 
-    background-color: #0D0C0C;
+    background-color: var(--negro);
     border-radius: 4px;
-    border: white 1px solid;
+    border: var(--blanco) 1px solid;
 }
 
 .card-camiseta-carrito .imagenes{
@@ -56,7 +56,7 @@
     color: rgba(240, 240, 240, 0.4);
 }
 .card-camiseta-carrito .datos .precio {
-    color: #379342;
+    color: var(--verde);
 }
 
 .card-camiseta-carrito .botonBlanco {
@@ -90,7 +90,7 @@
 }
 
 .formulario-detalles {
-    background-color: #0D0C0C;
+    background-color: var(--negro);
     padding: 20px;
     border-radius: 4px;
     display: flex;
@@ -120,7 +120,7 @@
     border: none;
     border-radius: 4px;
     background-color: transparent;
-    color: #f0f0f0;
+    color: var(--blanco);
     text-align: center;
     transition: box-shadow 0.2s ease;
 }
@@ -137,7 +137,7 @@
     border: none;
     border-radius: 4px;
     background-color: transparent;
-    color: #f0f0f0;
+    color: var(--blanco);
     text-align: center;
     transition: box-shadow 0.2s ease;
 }
@@ -158,23 +158,23 @@
 }
 
 .formulario-detalles .campos input:focus {
-    box-shadow: 0 0 0 1px #EBB93A inset;
+    box-shadow: 0 0 0 1px var(--dorado) inset;
     outline: none;
 }
 
 .formulario-detalles .campos input.input-valido {
-    border: 1px solid #379342;
+    border: 1px solid var(--verde);
 }
 .formulario-detalles .campos input.input-valido:focus {
-    box-shadow: 0 0 0 1px #379342 inset;
+    box-shadow: 0 0 0 1px var(--verde) inset;
     outline: none;
 }
 
 .formulario-detalles .campos input.input-invalido {
-    border: 1px solid #D63030;
+    border: 1px solid var(--rojo);
 }
 .formulario-detalles .campos input.input-invalido:focus {
-    box-shadow: 0 0 0 1px #D63030 inset;
+    box-shadow: 0 0 0 1px var(--rojo) inset;
     outline: none;
 }
 

@@ -2,7 +2,7 @@
     position: relative;
     min-width: 100vw;
     min-height: 900px;
-    background-color: #0D0C0C;
+    background-color: var(--negro);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,7 +34,7 @@
     right: 0;
     top: 20vh; 
     background-color: #721A14; 
-    color: #F0F0F0; 
+    color: var(--blanco); 
     border: none; 
     cursor: pointer; 
     display: flex;
@@ -67,7 +67,7 @@
     width: 80%;
     height: 100%;
     align-content: center;
-    font-family: Aldrich;
+    font-family: var(--bootstrap-font-family);
 }
 
 a {
@@ -75,9 +75,10 @@ a {
 }
 
 #boton-catalogo {
+    all: unset;
     position: relative;
     background-color: rgba(235, 185, 58, 0.8);
-    color: #0D0C0C;
+    color: var(--negro);
     border: none;
     cursor: pointer;
     display: flex;
@@ -87,33 +88,12 @@ a {
     width: 600px;
     height: 60px;
     border-radius: 4px;
-    padding-top: 7px;
     transition: background-color 0.3s ease;
     z-index: 1;
 }
-
-#boton-catalogo::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 4px;
-    background-color: transparent;
-    transition: box-shadow 0.3s ease;
-    z-index: -1;
-    pointer-events: none;
-}
   
 #boton-catalogo:hover {
-    background-color: #0D0C0C;
-    color: rgba(235, 185, 58, 0.8);
-}
-
-#boton-catalogo:hover::after {
-    box-shadow: inset 0 0 0 1px #EBB93A;
-    pointer-events: none;
+    background-color: var(--negro);
 }
 
 #boton-catalogo figure {
@@ -122,7 +102,6 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -7px;
     position: relative;
 }
 
@@ -147,13 +126,21 @@ a {
     height: 48px;
 }
 
+#boton-catalogo:hover span {
+    color: rgba(235, 185, 58, 0.8);
+}
+
 #boton-catalogo span {
     width: 60%;
     height: 100%;
+    color: var(--negro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-transform: uppercase;
-    font-family: Aldrich;
-    font-size: 42px;
-    letter-spacing: 5px;
+    font-family: var(--bootstrap-font-family);
+    font-size: 28px;
+    letter-spacing: 10px;
 }
 
 h1 {
@@ -234,8 +221,7 @@ h1 {
 
     #boton-catalogo span {
         width: 100%;
-        font-size: 38px;
-        letter-spacing: 0px;
+        font-size: 20px;
     }
 
     #galerias {
@@ -259,8 +245,7 @@ h1 {
     }
 
     #boton-catalogo span {
-        font-size: 24px;
-        margin-top: 16px;
+        font-size: 16px;
     }
 
     #boton-catalogo-fixed {

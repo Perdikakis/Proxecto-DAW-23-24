@@ -8,7 +8,7 @@ footer {
     height: 90px;
     width: 100vw;
     
-    color: #f0f0f0;
+    color: var(--blanco);
     font-size: 16px;
   }
 
@@ -26,7 +26,7 @@ footer {
 }
 
 .footerElements a {
-    color: #f0f0f0;
+    color: var(--blanco);
     opacity: 0.4;
     text-decoration-line: underline;
     transition: opacity 300ms ease-in-out;
@@ -90,7 +90,7 @@ footer {
 
 @media (max-width: 513px){
     footer {
-        background-color: rgb(13, 12, 12);
+        background-color: var(--negro);
     }
 
     .footerElements {

@@ -57,7 +57,7 @@
 
 .info-right {
     text-align: left;
-    color: #379342;
+    color: var(--verde);
     padding-left: 2px;
 }
 

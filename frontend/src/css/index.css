@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
 
+:root {
+  --bootstrap-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, 
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --blanco: #f0f0f0;
+  --negro: #0D0C0C;
+  --dorado: #EBB93A;
+  --rojo: #DF3C31;
+  --verde: #379342;
+  --fondo-sugerencias: #1f1c1c;
+  }
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -7,7 +18,7 @@
 }
 
 body{
-  font-family: 'Aldrich', sans-serif;
+  font-family: var(--bootstrap-font-family);
   font-weight: 400;
   display: flex;
   flex-direction: column;

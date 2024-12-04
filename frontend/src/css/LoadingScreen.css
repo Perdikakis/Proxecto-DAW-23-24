@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0D0C0C;
+    background-color: var(--negro);
     transition: opacity 1s ease;
     z-index: 9999;
 
@@ -48,5 +48,5 @@
 
 #loading-screen h1 {
     width: 100%;
-    color: #F0F0F0;
+    color: var(--blanco);
 }

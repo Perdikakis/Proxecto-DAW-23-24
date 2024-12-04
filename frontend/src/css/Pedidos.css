@@ -20,7 +20,7 @@
 .main-pedidos nav button {
     all: unset;
     width: 50%;
-    color: #000000;
+    color: var(--negro);
     text-align: center;
     font-size: 24px;
     padding: 10px;
@@ -34,7 +34,7 @@
 .main-pedidos nav .selected {
     border-top-left-radius: 6px !important;
     border-top-right-radius: 6px !important;
-    background-color: #D9D9D9;
+    background-color: var(--blanco);
     border-radius: 0px;
 }
 
@@ -42,8 +42,8 @@
     width: 100%;
     flex: 1;
     padding: 40px;
-    background-color: #D9D9D9;
-    color: #000000;
+    background-color: var(--blanco);
+    color: var(--negro);
 }
 
 .main-pedidos .custom-table {

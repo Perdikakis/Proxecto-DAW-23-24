@@ -76,27 +76,25 @@ const Landing = () => {
             <p>Recibe tu pedido en un plazo de 5 a 10 días hábiles</p>
           </div>
         </article>
-        <Link to="/tienda">
-          <button id="boton-catalogo">
-            <figure>
-              <img src="/icons/tshirt1.svg" alt="Camiseta" className="camiseta-default"/>
-              <img src="/icons/tshirt2.svg" alt="Camiseta Hover" className="camiseta-hover" />
-            </figure>
-            <span>Catálogo</span>
-          </button>
+        <Link to="/tienda" id="boton-catalogo">
+          <figure>
+            <img src="/icons/tshirt1.svg" alt="Camiseta" className="camiseta-default"/>
+            <img src="/icons/tshirt2.svg" alt="Camiseta Hover" className="camiseta-hover" />
+          </figure>
+          <span>Catálogo</span>
         </Link>
         <article id="galerias" className="caracteristicas">
           <div onClick={() => scrollToElement('mosaico')}>
             <p>Linea retro</p>
-            <img src="/icons/car.png" alt="Sin coste" />
+            <img src="/icons/car.svg" alt="coche" />
           </div>
           <div onClick={() => scrollToElement('slider1')}>
             <p>Conjunto Venezia FC</p>
-            <img src="/icons/venice.png" alt="Sin coste" />
+            <img src="/icons/venice.svg" alt="venecia" />
           </div>
           <div onClick={() => scrollToElement('slider2')}>
             <p>Real Madrid 24/25</p>
-            <img src="/icons/real-madrid.png" alt="Sin coste" />
+            <img src="/icons/real-madrid.svg" alt="madrid" />
           </div>
         </article>
       </section>
