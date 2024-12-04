@@ -1,6 +1,8 @@
 import { Link, Routes, Route, useLocation } from "react-router-dom";
 import '../css/Perfil.css';
 import Carrito from "./Carrito";
+import Pedidos from "./Pedidos";
+import DatosPersonales from "./DatosPersonales";
 import FormularioPedido from "./FormularioPedido";
 import { useContext } from 'react';
 import { AuthContext } from '../utils/AuthContext';
@@ -21,24 +23,12 @@ const Perfil = () => {
             ferror: (error) => {
 
             }
-          });
+        });
     };
-
-    const Ajustes = () => (
-        <section className="ajustes">
-            <p>ajustes</p>
-        </section>
-    );
 
     const Favoritos = () => (
         <section className="favoritos">
             <p>favoritos</p>
-        </section>
-    );
-
-    const Pedidos = () => (
-        <section className="pedidos">
-            <p>pedidos</p>
         </section>
     );
 
@@ -93,7 +83,7 @@ const Perfil = () => {
                 </div>
             </nav>
             <Routes>
-                <Route path="ajustes" element={<Ajustes />} />
+                <Route path="ajustes" element={<DatosPersonales />} />
                 <Route path="favoritos" element={<Favoritos />} />
                 <Route path="pedidos" element={<Pedidos />} />
                 <Route path="carrito" element={<Carrito />} />

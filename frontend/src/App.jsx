@@ -1,4 +1,5 @@
 import React from "react";
+import './css/bootstrap-alerts.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./componentes/Header";
 import Footer from "./componentes/Footer";

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import '../css/CardCamiseta.css';
-import '../css/bootstrap-alerts.css';
 import { Link } from "react-router-dom";
 
 const CardCamiseta = ({ data }) => {

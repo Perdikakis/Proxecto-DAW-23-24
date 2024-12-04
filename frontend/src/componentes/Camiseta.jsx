@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import '../css/Camiseta.css';
-import '../css/bootstrap-alerts.css';
 import { useParams } from "react-router-dom";
 import CardCamiseta from "./CardCamiseta";
 import BotonBlanco from "./BotonBlanco";

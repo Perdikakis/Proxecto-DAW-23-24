@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Camiseta;
+use App\Models\Pedido;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -199,5 +200,15 @@ class PedidoController extends Controller
         } else {
             return response()->json(['success' => false, 'message' => $response->getData()->message]);
         }
+    }
+
+    public function getPedidos(Request $request) {
+        $userId = Auth::id();
+
+        $pedidos = Pedido::where('usuario_id', $userId)
+            ->select('id', 'fecha_pedido', 'fecha_envio', 'fecha_finalizado')
+            ->get();
+
+        return response()->json(['pedidos' => $pedidos]);
     }
 }

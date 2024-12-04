@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import '../css/bootstrap-alerts.css';
 import '../css/Tienda.css'
 import Destacadas from "./Destacadas";
 import Buscador from "./Buscador";

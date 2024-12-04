@@ -27,6 +27,8 @@ class Usuario extends Authenticatable
         'fecha_ultimo_acceso',
     ];
 
+    protected $hidden = ['password'];
+
     public $timestamps = false;
 
     /**

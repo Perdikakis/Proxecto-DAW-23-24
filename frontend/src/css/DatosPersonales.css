@@ -1,0 +1,102 @@
+.main-datos {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    margin-bottom: 140px;
+}
+
+.main-datos .formulario-datos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    height: 100%;
+    width: 100%;
+    padding: 40px;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.main-datos .formulario-datos h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-datos .formulario-datos .campo-formulario {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #EBB93A;
+    border-radius: 4px;
+    padding: 6px;
+}
+.campo-formulario.editable {
+    box-shadow: 0 0 0 1px #EBB93A inset;
+    outline: none;
+}
+.campo-formulario.no-editable {
+    opacity: 0.8;
+    border-color: #A5A5A5 !important;
+}
+
+.main-datos .formulario-datos .campo-formulario:focus {
+    box-shadow: 0 0 0 1px #EBB93A inset;
+    outline: none;
+}
+
+.main-datos .formulario-datos .campo-formulario figure{
+    width: 10%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.main-datos .formulario-datos .campo-formulario figure img{
+    width: auto;
+    height: 100%;
+}
+
+.main-datos .formulario-datos label {
+    width: 100%;
+    display: none;
+}
+
+.main-datos .formulario-datos input {
+    all: unset;
+    width: 80%;
+    height: 100%;
+    align-self: flex-end;
+    font-size: 16px;
+}
+  
+.main-datos .formulario-datos .botonBlanco span {
+    justify-content: center;
+}
+
+.main-datos .formulario-datos .campo-formulario .controles {
+    position: absolute;
+    top: calc(100% + 8px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+.main-datos .formulario-datos .campo-formulario .controles figure {
+    opacity: 0.6;
+    transition: opacity 0.3s ease-in-out;
+}
+.main-datos .formulario-datos .campo-formulario .controles figure:hover {
+    opacity: 1;
+}

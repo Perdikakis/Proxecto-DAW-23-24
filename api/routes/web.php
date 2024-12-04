@@ -6,14 +6,13 @@ use App\Http\Controllers;
 
 Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->group(function () {
     Route::post('/logout', [Controllers\AuthController::class, 'logout']);
+
     Route::get('/user', [Controllers\UsuarioController::class, 'getUsuario']);
-    
-    Route::get('/saludo', function () {
-        return response()->json(['message' => 'Hola']);
-    });
+    Route::post('/updateUser', [Controllers\UsuarioController::class, 'updateUsuario']);
 
     Route::post('/validarPedido', [Controllers\PedidoController::class, 'validarPedido']);
     Route::post('/realizarPedido', [Controllers\PedidoController::class, 'realizarPedido']);
+    Route::get('/pedidos', [Controllers\PedidoController::class, 'getPedidos']);
 });
 
 Route::post('/login', [Controllers\AuthController::class, 'login']);

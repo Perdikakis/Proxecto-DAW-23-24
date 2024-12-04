@@ -187,7 +187,7 @@ const Buscador = ({onResultadosBusqueda}) => {
 
   return (
     <form className="buscador" onSubmit={handleBusqueda}>
-      <div className="campo">
+      <fieldset className="campo">
         <label htmlFor="equipo">Equipo:</label>
         <input 
           type="text" 
@@ -200,9 +200,9 @@ const Buscador = ({onResultadosBusqueda}) => {
           className={equipo ? (equipoValido ? "input-valido" : "input-invalido") : ""}
         />
         {renderSugerencias(sugerenciasEquipo, "equipo")}
-      </div>
+      </fieldset>
 
-      <div className="campo">
+      <fieldset className="campo">
         <label htmlFor="competicion">Competición:</label>
         <input 
           type="text" 
@@ -216,9 +216,9 @@ const Buscador = ({onResultadosBusqueda}) => {
           disabled={equipoValido}
         />
         {renderSugerencias(sugerenciasCompeticion, "competicion")}
-      </div>
+      </fieldset>
 
-      <div className="campo">
+      <fieldset className="campo">
         <label htmlFor="temporada">Temporada:</label>
         <input 
           type="text" 
@@ -231,7 +231,7 @@ const Buscador = ({onResultadosBusqueda}) => {
           className={temporada ? (temporadaValida ? "input-valido" : "input-invalido") : ""}
         />
         {renderSugerencias(sugerenciasTemporada, "temporada")}
-      </div>
+      </fieldset>
 
       <BotonBlanco 
         texto="buscar" 

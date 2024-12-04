@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
       url: `${import.meta.env.VITE_API_URL}/user`,
       method: 'GET',
       fsuccess: (data) => {
+        console.log(data);
         setUser(data);
         setIsAuthenticated(true);
         setLoading(false);
