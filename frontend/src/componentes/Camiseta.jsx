@@ -3,6 +3,7 @@ import '../css/Camiseta.css';
 import { useParams } from "react-router-dom";
 import CardCamiseta from "./CardCamiseta";
 import BotonBlanco from "./BotonBlanco";
+import LoadingScreen from "./LoadingScreen";
 import { ajaxAxios } from "../utils/ajaxAxios";
 
 const Camiseta = () => {
@@ -58,6 +59,7 @@ const Camiseta = () => {
     });
   }, []);
 
+  //scroll imagen principal en el centro para pantallas pequeñas
   useEffect(() => {
     const imagesContainer = imagesRef.current;
     const mainContainer = mainRef.current;
