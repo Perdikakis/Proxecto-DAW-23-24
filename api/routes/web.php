@@ -8,7 +8,8 @@ Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->g
     Route::post('/logout', [Controllers\AuthController::class, 'logout']);
 
     Route::get('/user', [Controllers\UsuarioController::class, 'getUsuario']);
-    Route::post('/updateUser', [Controllers\UsuarioController::class, 'updateUsuario']);
+    Route::put('/updateUser', [Controllers\UsuarioController::class, 'updateUsuario']);
+    Route::delete('/deleteUser', [Controllers\UsuarioController::class, 'deteleUser']);
 
     Route::post('/validarPedido', [Controllers\PedidoController::class, 'validarPedido']);
     Route::post('/realizarPedido', [Controllers\PedidoController::class, 'realizarPedido']);

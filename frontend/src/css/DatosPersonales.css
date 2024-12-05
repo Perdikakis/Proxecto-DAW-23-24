@@ -1,5 +1,7 @@
 .main-datos {
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     flex: 1;
@@ -8,15 +10,15 @@
 
 .main-datos .formulario-datos {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 40px;
     height: 100%;
     width: 100%;
+    max-width: 1000px;
     padding: 40px;
     border-radius: 4px;
-    z-index: 1;
 }
 
 .main-datos .formulario-datos h2 {
@@ -99,4 +101,68 @@
 }
 .main-datos .formulario-datos .campo-formulario .controles figure:hover {
     opacity: 1;
+}
+
+.main-datos .formulario-datos article {
+    width: 100%;
+    gap: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-inner {
+    position: relative;
+    background: var(--blanco);
+    color: var(--negro);
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 200px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.botones {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.botones button {
+    padding: 5px 10px;
+    border: none;
+    background-color: var(--negro);
+    color: var(--blanco);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.botones button:hover {
+    color: var(--negro);
+    background-color: var(--blanco);
+    box-shadow: inset 0 0 0 1px var(--negro);
+}
+
+.botones button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
 }

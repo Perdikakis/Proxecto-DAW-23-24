@@ -11,6 +11,8 @@ const DatosPersonales = () => {
     const [camposEditables, setCamposEditables] = useState({});
     const [editando, setEditando] = useState(null);
     const inputRefs = useRef({});
+
+    const [confirmar, setConfirmar] = useState(false);
     
     const handleEditar = (field) => {
         if (editando) {
@@ -84,8 +86,32 @@ const DatosPersonales = () => {
     
         ajaxAxios({
             url: `${import.meta.env.VITE_API_URL}/updateUser`,
-            method: 'POST',
+            method: 'PUT',
             data: usuario,
+            fsuccess: (data) => {
+                window.location.reload();
+            },
+            ferror: (error) => {
+                console.log(error);
+            }
+        });
+    };
+
+    const handleBorrarCuenta = (e) => {
+        e.preventDefault();
+        setConfirmar(true);
+    };
+
+    const cancelarBorrarCuenta = () => {
+        setConfirmar(false);
+    };
+
+    const confirmarBorrarCuenta = () => {
+        console.log('Borrando cuenta...');
+        localStorage.removeItem('token');
+        ajaxAxios({
+            url: `${import.meta.env.VITE_API_URL}/deleteUser`,
+            method: 'DELETE',
             fsuccess: (data) => {
                 window.location.reload();
             },
@@ -123,8 +149,7 @@ const DatosPersonales = () => {
     
     const CampoFormulario = ({ icon, label, type, name, value, placeholder, onChange, editable, onEditClick, onConfirmClick, onCancelClick, inputRef }) => {
         return (
-            <div className={`campo-formulario ${editable ? 'editable' : ''} ${editando && !editable ? 'no-editable' : ''}`}>
-                
+            <fieldset className={`campo-formulario ${editable ? 'editable' : ''} ${editando && !editable ? 'no-editable' : ''}`}>
                 <figure>
                     <img src={icon} alt={name} />
                 </figure>
@@ -140,7 +165,7 @@ const DatosPersonales = () => {
                     ref={inputRef}
                     autoComplete='off'
                 />
-                <figure onClick={onEditClick}>
+                <figure onClick={onEditClick} style={{ visibility: editable ? 'hidden' : 'visible' }}>
                     <img src={"/icons/pencil.svg"} alt="editar" />
                 </figure>
                 {editable && (
@@ -153,13 +178,26 @@ const DatosPersonales = () => {
                     </figure>
                 </div>
             )}
-            </div>
+            </fieldset>
         );
     };
 
     return (
         <section className="main-datos">
-            <form className='formulario-datos' onSubmit={handleGuardar}>
+            {confirmar && (
+                    <section className="popup">
+                        <div className="popup-inner">
+                            <h2>Confirmar Borrado de Cuenta</h2>
+                            <p>¿Estás seguro de que deseas borrar tu cuenta? Esta acción no se puede deshacer.</p>
+                            <p>Si hay algun pedido pendiente, sus datos de envio se conservarán hasta que dicho envio finalice.</p>
+                            <article className='botones'>
+                                <button onClick={confirmarBorrarCuenta}>Sí, borrar cuenta</button>
+                                <button onClick={cancelarBorrarCuenta}>Cancelar</button>
+                            </article>
+                        </div>
+                    </section>
+            )}
+            <form className='formulario-datos'>
             <h2>Datos Personales</h2>
             <CampoFormulario
                 icon="/icons/mail.svg"
@@ -259,12 +297,23 @@ const DatosPersonales = () => {
                 onCancelClick={() => handleCancelar('direccion')}
                 inputRef={(el) => (inputRefs.current.direccion = el)}
             />
+            <article>
             <BotonBlanco 
                 texto="enviar" 
                 icono={null}
                 iconoHover={null}
                 disabled={false}
+                onClick={handleGuardar}
             />
+            <BotonBlanco 
+                texto="eliminar cuenta" 
+                icono={null}
+                iconoHover={null}
+                disabled={false}
+                onClick={handleBorrarCuenta}
+                mainColor='#DF3C31'
+            />
+            </article>
             </form>
         </section>
     );

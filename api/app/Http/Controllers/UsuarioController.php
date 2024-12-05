@@ -40,4 +40,14 @@ class UsuarioController extends Controller
         }
     }
 
+    public function deteleUser(Request $request) {
+        try {
+            $user = $request->user();
+            $user->tokens()->delete();
+            $user->delete();
+            return response()->json(['message' => 'Usuario eliminado correctamente'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al eliminar usuario', 'error' => $e->getMessage()], 500);
+        }
+    }
 }
