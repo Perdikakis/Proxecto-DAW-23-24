@@ -194,7 +194,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 32px;
+    height: 24px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.buttons button:hover {
+    opacity: 1;
 }
 
 .buttons img {
