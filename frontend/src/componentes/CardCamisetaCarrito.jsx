@@ -176,7 +176,7 @@ const CardCamisetaCarrito = ({ data, idx, actualizarCarrito, detallesAbiertos, h
                   <img className="plus" src="/icons/plus.svg" alt="restar" onClick={handleSumar}/>
                 </div>
               </article>
-              <article className='botones'>
+              <article className='buttons'>
                 <button type="submit" disabled={isButtonDisabled}>
                   <img src="/icons/checked.svg" alt="enviar" />
                 </button>

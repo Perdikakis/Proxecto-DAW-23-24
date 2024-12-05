@@ -178,14 +178,14 @@
     outline: none;
 }
 
-.formulario-detalles .botones {
+.formulario-detalles .buttons {
     width: 10%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.botones button {
+.buttons button {
     background: none;
     border: none;
     padding: 0;
@@ -197,6 +197,6 @@
     height: 32px;
 }
 
-.botones img {
+.buttons img {
     height: 100%;
 }
