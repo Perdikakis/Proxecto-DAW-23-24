@@ -13,9 +13,10 @@
   padding-top: 120px;
   padding-bottom: 140px;
   z-index: 0;
+  perspective: 1000px; /* Añadir perspectiva para el efecto 3D */
 }
 
-  /* doble fondo */
+/* doble fondo */
 .main-login::after {
   content: "";
   position: absolute;
@@ -41,14 +42,14 @@
   justify-content: space-evenly;
 }
 
-.main-login .opciones a{
+.main-login .opciones a {
   width: auto;
   justify-content: center;
   transition: color 0.3s ease;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.main-login .opciones a:hover{
+.main-login .opciones a:hover {
   transform: scale(1.05);
 }
 
@@ -56,29 +57,47 @@
   color: var(--dorado) !important;
 }
 
-.main-login .opciones figure{
+.main-login .opciones figure {
   height: 32%;
   width: 32px;
   transition: transform 0.3s ease;
 }
 
-.main-login .opciones figure img{
+.main-login .opciones figure img {
   height: 100%;
   width: 100%;
-  transition: transform 0.3s ease;
+  transition: transform 0.8s ease;
 }
 
 .main-login .opciones a.seleccionado + figure img {
   transform: rotate(180deg);
 }
 
-.main-login .formulario-login {
+.main-login .formulario-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 530px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+}
+
+.main-login .formulario-container.flipped {
+  transform: rotateY(180deg);
+}
+
+.main-login .formulario-login,
+.main-login .formulario-registro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  width: 100%;
-  max-width: 400px;
   padding: 40px;
   background-color: rgba(13, 12, 12, 0.8);
   border-radius: 4px;
@@ -86,11 +105,17 @@
   z-index: 1;
 }
 
-.main-login .formulario-login h2 {
+.main-login .formulario-registro {
+  transform: rotateY(180deg);
+}
+
+.main-login .formulario-login h2,
+.main-login .formulario-registro h2 {
   margin-bottom: 20px;
 }
 
-.main-login .formulario-login .campo-formulario {
+.main-login .formulario-login .campo-formulario,
+.main-login .formulario-registro .campo-formulario {
   width: 100%;
   height: 40px;
   display: flex;
@@ -101,7 +126,8 @@
   padding: 6px;
 }
 
-.main-login .formulario-login .campo-formulario figure{
+.main-login .formulario-login .campo-formulario figure,
+.main-login .formulario-registro .campo-formulario figure {
   width: 10%;
   height: 100%;
   display: flex;
@@ -109,17 +135,20 @@
   justify-content: center;
 }
 
-.main-login .formulario-login .campo-formulario figure img{
+.main-login .formulario-login .campo-formulario figure img,
+.main-login .formulario-registro .campo-formulario figure img {
   width: 100%;
   height: 100%;
 }
 
-.main-login .formulario-login label {
+.main-login .formulario-login label,
+.main-login .formulario-registro label {
   width: 100%;
   display: none;
 }
 
-.main-login .formulario-login input {
+.main-login .formulario-login input,
+.main-login .formulario-registro input {
   all: unset;
   width: calc(90% - 6px);
   height: 100%;
@@ -127,15 +156,23 @@
   font-size: 16px;
 }
 
-.main-login .formulario-login a {
+.main-login .formulario-login a,
+.main-login .formulario-registro a {
   color: rgba(255, 255, 255, 0.4) !important;
   text-decoration: underline !important;
   transition: color 0.3s ease;
 }
-.main-login .formulario-login a:hover {
+
+.main-login .formulario-login a:hover,
+.main-login .formulario-registro a:hover {
   color: rgba(255, 255, 255, 1) !important;
 }
 
-.main-login .formulario-login .botonBlanco span {
+.main-login .formulario-login .botonBlanco span,
+.main-login .formulario-registro .botonBlanco span {
   justify-content: center;
+}
+
+.main-login .formulario-login .botonBlanco {
+  margin-top: 100px;
 }
