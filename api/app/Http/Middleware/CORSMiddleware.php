@@ -18,7 +18,7 @@ class CorsMiddleware
         $origin = $request->headers->get('Origin');
 
         Log::info('CORS Middleware: origin = ' . $origin);
-        
+
         $allowedOrigins = [];
 
         if (app()->environment('production')) {
@@ -31,7 +31,7 @@ class CorsMiddleware
             ];
         }
         
-        if ($origin && in_array($origin, $allowedOrigins)) {
+        //if ($origin && in_array($origin, $allowedOrigins)) {
             if ($request->getMethod() === "OPTIONS") {
                 return response()->json('OK')
                     ->header('Access-Control-Allow-Origin', $origin)
@@ -48,7 +48,7 @@ class CorsMiddleware
             $response->headers->set('Access-Control-Allow-Credentials', 'true');
 
             return $response;
-        }
+        //}
 
         return response()->json(['message' => 'Forbidden'], 403);
     }
