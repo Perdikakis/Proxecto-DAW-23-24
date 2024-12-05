@@ -16,7 +16,6 @@ class UsuarioController extends Controller
     public function updateUsuario(Request $request) {
         try {
             $user = $request->user();
-            Log::info('Datos del usuario antes de la actualización: ' . json_encode($user));
 
             $validator = Validator::make($request->all(), [
                 'correo' => 'nullable|email|unique:usuarios,correo,' . $user->id,
@@ -28,12 +27,10 @@ class UsuarioController extends Controller
             ]);
 
             if ($validator->fails()) {
-                Log::error('Error de validación: ' . json_encode($validator->errors()));
                 return response()->json(['message' => 'Datos inválidos', 'errors' => $validator->errors()], 422);
             }
 
             $validatedData = $validator->validated();
-            Log::info('Datos validados: ' . json_encode($validatedData));
 
             $user->update($validatedData);
             

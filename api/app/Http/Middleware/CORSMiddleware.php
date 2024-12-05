@@ -17,6 +17,8 @@ class CorsMiddleware
     {
         $origin = $request->headers->get('Origin');
 
+        Log::info('CORS Middleware: origin = ' . $origin);
+        
         $allowedOrigins = [];
 
         if (app()->environment('production')) {
