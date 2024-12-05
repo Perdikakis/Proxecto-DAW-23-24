@@ -13,6 +13,7 @@ Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->g
     Route::post('/validarPedido', [Controllers\PedidoController::class, 'validarPedido']);
     Route::post('/realizarPedido', [Controllers\PedidoController::class, 'realizarPedido']);
     Route::get('/pedidos', [Controllers\PedidoController::class, 'getPedidos']);
+    Route::get('/getDetallesPedido/{id}', [Controllers\PedidoController::class, 'getDetallesPedido']);
 });
 
 Route::post('/login', [Controllers\AuthController::class, 'login']);

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
 {
-    public function getUsuario(Request $request) {
-        $user = $request->user();
-        return response()->json($user);
+    public function getUsuario() {
+        return response()->json(Auth::user());
     }
 
     public function updateUsuario(Request $request) {
@@ -18,8 +18,8 @@ class UsuarioController extends Controller
             $user = $request->user();
 
             $validator = Validator::make($request->all(), [
-                'correo' => 'nullable|email|unique:usuarios,correo,' . $user->id,
-                'usuario' => 'nullable|string|min:6|unique:usuarios,usuario,' . $user->id,
+                'correo' => 'required|email|unique:usuarios,correo,' . $user->id,
+                'usuario' => 'required|string|min:6|unique:usuarios,usuario,' . $user->id,
                 'nombre' => 'nullable|string|max:255',
                 'apellidos' => 'nullable|string|max:255',
                 'telefono' => 'nullable|digits:9',
@@ -34,9 +34,8 @@ class UsuarioController extends Controller
 
             $user->update($validatedData);
             
-            return $this->getUsuario($request);
+            return Auth::user();
         } catch (\Exception $e) {
-            Log::error('Error al actualizar usuario: ' . $e->getMessage());
             return response()->json(['message' => 'Error al actualizar usuario', 'error' => $e->getMessage()], 500);
         }
     }

@@ -193,7 +193,6 @@ class PedidoController extends Controller
                 DB::commit();
                 return response()->json(['success' => true, 'message' => 'Pedido realizado con éxito']);
             } catch (\Exception $e) {
-                Log::error($e->getMessage());
                 DB::rollBack();
                 return response()->json(['success' => false, 'message' => 'Error del servidor']);
             }
@@ -202,7 +201,7 @@ class PedidoController extends Controller
         }
     }
 
-    public function getPedidos(Request $request) {
+    public function getPedidos() {
         $userId = Auth::id();
 
         $pedidos = Pedido::where('usuario_id', $userId)
@@ -210,5 +209,40 @@ class PedidoController extends Controller
             ->get();
 
         return response()->json(['pedidos' => $pedidos]);
+    }
+
+    public function getDetallesPedido($id) {
+        $userId = Auth::id();
+        
+        $pedido = Pedido::where('usuario_id', $userId)
+        ->where('id', $id)
+        ->with('camisetas.equipo', 'camisetas.images')
+        ->first();
+        
+        if (!$pedido) {
+            return response()->json(['success' => false, 'message' => 'Pedido no encontrado']);
+        }
+
+        $pedidoFormateado = [
+            'id' => $pedido->id,
+            'fecha_pedido' => $pedido->fecha_pedido,
+            'fecha_envio' => $pedido->fecha_envio,
+            'total' => $pedido->total,
+            'camisetas' => $pedido->camisetas->map(function ($camiseta) {
+                $talla = $camiseta->tallas->where('id', $camiseta->pivot->talla_id)->first();
+                return [
+                    'equipo' => $camiseta->equipo->nombre,
+                    'version' => $camiseta->version,
+                    'temporada' => substr($camiseta->year_inicio, -2) . '/' . substr($camiseta->year_fin, -2),
+                    'precio' => $camiseta->precio,
+                    'nombre' => $camiseta->pivot->nombre_camiseta,
+                    'dorsal' => $camiseta->pivot->dorsal,
+                    'cantidad' => $camiseta->pivot->cantidad,
+                    'talla' => $talla->talla,
+                ];
+            }),
+        ];
+
+        return response()->json(['success' => true, 'pedido' => $pedidoFormateado]);
     }
 }

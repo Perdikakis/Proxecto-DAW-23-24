@@ -74,11 +74,6 @@ class CamisetaController extends Controller {
                 $yearInicio = substr($camiseta->year_inicio, -2);
                 $yearFin = substr($camiseta->year_fin, -2);
 
-                $imagenes = DB::table('images')
-                    ->where('imageable_type', 'App\\Models\\Camiseta')
-                    ->where('imageable_id', $camiseta->id)
-                    ->pluck('ruta');
-
                 return [
                     'id' => $camiseta->id,
                     'estado' => $camiseta->estado,
@@ -86,7 +81,7 @@ class CamisetaController extends Controller {
                     'equipo' => $camiseta->equipo->nombre,
                     'temporada' => "{$yearInicio}/{$yearFin}",
                     'precio' => $camiseta->precio,
-                    'imagenes' => $imagenes ? $imagenes->toArray() : [],
+                    'imagenes' => $camiseta->images->pluck('ruta')->toArray(),
                 ];
             });
 
