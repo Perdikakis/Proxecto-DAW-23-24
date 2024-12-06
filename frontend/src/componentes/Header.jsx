@@ -17,6 +17,10 @@ const Header = () => {
     }
   };
 
+  const handleCarrito = () => {
+    navigate('/perfil/carrito');
+  }
+
   const handlePerfilClick = (e) => {
     if (!isAuthenticated) {
       e.preventDefault();
@@ -51,7 +55,7 @@ const Header = () => {
         </ul>
       </nav>
 
-      <div className="carrito">
+      <div className="carrito" onClick={handleCarrito}>
         <img src="/icons/basket.svg" alt="Carrito" className="carrito-default"/>
         <img src="/icons/basket1.svg" alt="Carrito Hover" className="carrito-hover" />
       </div>

@@ -88,6 +88,7 @@ header .carrito {
     display: flex;
     align-items: center;
     height: 64px;
+    cursor: pointer;
 }
   
 header .carrito img {
