@@ -204,7 +204,7 @@ const DatosPersonales = () => {
                 label="Correo:"
                 type="email"
                 name="correo"
-                value={usuario.correo}
+                value={usuario.data.user.correo}
                 placeholder={'Correo'}
                 onChange={(e) => validarCorreo(e.target.value)}
                 editable={camposEditables.correo}
@@ -218,7 +218,7 @@ const DatosPersonales = () => {
                 label="Usuario:"
                 type="text"
                 name="usuario"
-                value={usuario.usuario}
+                value={usuario.data.user.usuario}
                 placeholder={'Usuario'}
                 onChange={(e) => validarUsuario(e.target.value)}
                 editable={camposEditables.usuario}
@@ -232,7 +232,7 @@ const DatosPersonales = () => {
                 label="Password:"
                 type="password"
                 name="password"
-                value={usuario.password}
+                value={usuario.data.user.password}
                 placeholder={'Contraseña'}
                 onChange={(e) => validarPassword(e.target.value)}
                 editable={camposEditables.password}
@@ -246,7 +246,7 @@ const DatosPersonales = () => {
                 label="Nombre:"
                 type="text"
                 name="nombre"
-                value={usuario.nombre}
+                value={usuario.data.user.nombre}
                 placeholder={'Nombre'}
                 onChange={(e) => validarNombre(e.target.value)}
                 editable={camposEditables.nombre}
@@ -260,7 +260,7 @@ const DatosPersonales = () => {
                 label="Apellidos:"
                 type="text"
                 name="apellidos"
-                value={usuario.apellidos}
+                value={usuario.data.user.apellidos}
                 placeholder={'Apellidos'}
                 onChange={(e) => validarApellidos(e.target.value)}
                 editable={camposEditables.apellidos}
@@ -274,7 +274,7 @@ const DatosPersonales = () => {
                 label="Telefono:"
                 type="number"
                 name="telefono"
-                value={usuario.telefono}
+                value={usuario.data.user.telefono}
                 placeholder={'Teléfono'}
                 onChange={(e) => validarTelefono(e.target.value)}
                 editable={camposEditables.telefono}
@@ -288,7 +288,7 @@ const DatosPersonales = () => {
                 label="Direccion envio:"
                 type="text"
                 name="direccion"
-                value={usuario.direccion}
+                value={usuario.data.user.direccion}
                 placeholder={'Dirección'}
                 onChange={(e) => validarDireccion(e.target.value)}
                 editable={camposEditables.direccion}

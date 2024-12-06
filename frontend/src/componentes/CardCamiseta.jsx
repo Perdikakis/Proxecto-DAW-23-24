@@ -61,20 +61,20 @@ const CardCamiseta = ({ data }) => {
 
   return (
     <article className="card-camiseta">
-        {alertaExito && 
-        <div className="alert-container">
-          <div className="alert alert-success" role="alert">
-            {'Producto añadido al carrito'}
-            <div className="progress-bar" style={{ width: `${barraProgreso}%` }}></div>
-          </div>
-        </div>}
-        {alertaError && 
-        <div className="alert-container">
-          <div className="alert alert-danger" role="alert">
-            {'Error al añadir el producto al carrito'}
-            <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
-          </div>
-        </div>}
+      {alertaExito && 
+      <div className="alert-container">
+        <div className="alert alert-success" role="alert">
+          {'Producto añadido al carrito'}
+          <div className="progress-bar" style={{ width: `${barraProgreso}%` }}></div>
+        </div>
+      </div>}
+      {alertaError && 
+      <div className="alert-container">
+        <div className="alert alert-danger" role="alert">
+          {'Error al añadir el producto al carrito'}
+          <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
+        </div>
+      </div>}
       <img 
         src={starIcon} 
         alt="Favoritos"
@@ -85,7 +85,7 @@ const CardCamiseta = ({ data }) => {
       
       <Link to={`/camiseta/${data.id}`}>
         <figure>
-          <img src={data.imagenes[0]} alt={data.equipo+" "+data.nombre} className="camiseta-img" />
+          <img src={data.imagenes[0]} alt={data.equipo+" "+data.nombre}/>
         </figure>
         <div className="info-container">
           <div className="info-left">{`€${(data.precio * 5).toFixed(2)}`}</div>

@@ -7,6 +7,8 @@ use App\Http\Controllers;
 Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->group(function () {
     Route::post('/logout', [Controllers\AuthController::class, 'logout']);
 
+    Route::post('/upload', [Controllers\ImagenController::class, 'upload']);
+
     Route::get('/user', [Controllers\UsuarioController::class, 'getUsuario']);
     Route::put('/updateUser', [Controllers\UsuarioController::class, 'updateUsuario']);
     Route::delete('/deleteUser', [Controllers\UsuarioController::class, 'deteleUser']);
@@ -29,21 +31,3 @@ Route::get('/competiciones', [Controllers\CompeticionController::class, 'getComp
 Route::get('/equipos', [Controllers\EquipoController::class, 'getEquipos']);
 
 Route::get('/tallasCamiseta/{id}', [Controllers\TallaController::class, 'getTallas']);
-
-
-
-
-
-
-
-
-/*Route::post('/upload', function (Request $request) {
-    $request->validate([
-        'image' => 'required|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
-    ]);
-
-    $imageName = time() . '.' . $request->image->extension();
-    $request->image->move(public_path('images'), $imageName);
-
-    return response()->json(['image' => $imageName]);
-});*/

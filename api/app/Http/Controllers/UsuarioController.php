@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Validator;
 class UsuarioController extends Controller
 {
     public function getUsuario() {
-        return response()->json(Auth::user());
+        $user = Auth::user();
+        $image = $user->imagen ? url($user->imagen->ruta) : null;
+        return response()->json(['user' => $user, 'image' => $image], 200);
     }
 
     public function updateUsuario(Request $request) {

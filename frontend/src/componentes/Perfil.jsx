@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, Routes, Route, useLocation } from "react-router-dom";
 import '../css/Perfil.css';
 import Carrito from "./Carrito";
@@ -7,10 +8,12 @@ import FormularioPedido from "./FormularioPedido";
 import { useContext } from 'react';
 import { AuthContext } from '../utils/AuthContext';
 import { ajaxAxios } from "../utils/ajaxAxios";
+import axios from "axios";
 
 const Perfil = () => {
     const location = useLocation();
     const { user, logout } = useContext(AuthContext);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleLogout = async () => {
         ajaxAxios({
@@ -26,9 +29,36 @@ const Perfil = () => {
         });
     };
 
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
+        handleUpload(e.target.files[0]);
+    }
+
+    const handleUpload = (file) => {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const sessionToken = localStorage.getItem('session_token');
+
+        axios(`${import.meta.env.VITE_API_URL}/upload`, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${sessionToken}`
+        },
+        data: formData
+        })
+        .then((resp) => {
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error("Error en la petición", error);
+        });
+    };
+
+
     const Favoritos = () => (
         <section className="favoritos">
-            <p>favoritos</p>
+            <p>No hay favoritos</p>
         </section>
     );
 
@@ -76,10 +106,11 @@ const Perfil = () => {
                         <img src="/icons/power.svg" alt="" className="icono-default"/>
                         <img src="/icons/power2.svg" alt="" className="icono-hover"/>
                     </figure>
-                    <span>{user ? user.usuario : 'usuario'}</span>
-                    <figure>
-                        <img src="/icons/pfp.svg" alt=""/>
+                    <span>{user ? user.data.user.usuario : 'usuario'}</span>
+                    <figure className="pfp" onClick={() => document.getElementById('fileInput').click()}>
+                        {user.data.image ? <img src={user.data.image} alt=""/> : <img src="/icons/pfp.svg" alt=""/>}
                     </figure>
+                    <input type="file" id="fileInput" style={{ display: 'none'}} onChange={handleFileChange}/>
                 </div>
             </nav>
             <Routes>

@@ -68,13 +68,9 @@ h1 {
   justify-items: center;
   align-items: center;
 
-  max-height: 616px;
+  max-height: 640px;
   overflow: hidden;
   position: relative;
-}
-
-.resultados-grid .card-camiseta {
-  height: 300px;
 }
 
 .pagination-controls {
@@ -88,6 +84,14 @@ h1 {
   padding: 8px 16px;
   cursor: pointer;
 }
+
+.pagination-controls button .wrapper span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 @media (max-width: 768px) {
   .top-ventas {
     flex-direction: column;

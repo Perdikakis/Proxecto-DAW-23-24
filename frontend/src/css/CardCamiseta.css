@@ -7,16 +7,16 @@
     max-width: 200px;
 }
 
-.card-camiseta figure {
+.card-camiseta a figure {
     min-height: 90px;
+    max-height: 240px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.camiseta-img {
-    width: 100%;
-    height: auto;
+.card-camiseta a figure img {
+    max-height: 240px;
 }
 
 .card-camiseta .alert-container {

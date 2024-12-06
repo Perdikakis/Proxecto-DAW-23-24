@@ -11,6 +11,8 @@ class Imagen extends Model
 
     protected $table = 'images';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'imageable_type',
         'imageable_id',
