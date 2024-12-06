@@ -131,6 +131,7 @@
     cursor: pointer;
     border-bottom: 1px solid var(--blanco);
     background-color: var(--fondo-sugerencias);
+    text-align: center;
 }
 
 .tallas li:hover {

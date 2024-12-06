@@ -3,7 +3,6 @@ import '../css/Camiseta.css';
 import { useParams } from "react-router-dom";
 import CardCamiseta from "./CardCamiseta";
 import BotonBlanco from "./BotonBlanco";
-import LoadingScreen from "./LoadingScreen";
 import { ajaxAxios } from "../utils/ajaxAxios";
 
 const Camiseta = () => {
@@ -33,7 +32,7 @@ const Camiseta = () => {
       url: `${import.meta.env.VITE_API_URL}/tallasCamiseta/${id}`,
       method: 'GET',
       fsuccess: (data) => {
-        const formattedTallas = data.map((item) => `${item.talla} ${item.medidas}`);
+        const formattedTallas = data.map((item) => `${item.talla} - Stock: ${item.stock}`);
         setTallas(formattedTallas);
       },
       ferror: (error) => {
@@ -107,20 +106,25 @@ const Camiseta = () => {
   };
 
   const validarTalla = () => {
-    const talla = document.getElementById('talla').value;
-    const isValid = tallas.includes(talla);
+    const tallaSeleccionada = document.getElementById('talla').value;
+    const isValid = tallas.some(item => item.split(' ')[0] === tallaSeleccionada);
     document.getElementById('talla').className = isValid ? 'input-valido' : 'input-invalido';
     setTallaValida(isValid);
+    validarCantidad();
     setDataProducto((prevData) => ({
       ...prevData,
-      talla: talla.split(' ')[0],
+      talla: tallaSeleccionada,
     }));
   };
 
   const validarCantidad = () => {
     const cantidad = document.getElementById('cantidad').value;
     const cantidadNumero = parseInt(cantidad, 10);
-    const isValid = cantidad.trim() !== '' && !isNaN(cantidadNumero) && cantidadNumero > 0;
+    const tallaSeleccionada = document.getElementById('talla').value.split(' ')[0];
+    const talla = tallas.find(item => item.split(' ')[0] === tallaSeleccionada);
+    const stockDisponible = talla ? parseInt(talla.split(' ')[3]) : null;
+
+    const isValid = cantidad.trim() !== '' && !isNaN(cantidadNumero) && cantidadNumero > 0 && (stockDisponible === null || cantidadNumero <= stockDisponible);
     document.getElementById('cantidad').className = isValid ? 'input-valido' : 'input-invalido';
     setCantidadValida(isValid);
     setDataProducto((prevData) => ({
@@ -152,6 +156,7 @@ const Camiseta = () => {
     setTalla(value);
     setSugerenciasTalla(tallas.filter(item => item.toLowerCase().includes(value.toLowerCase())));
     validarTalla();
+    validarCantidad();
   };
 
   const handleFocus = (setSugerencias, sugerencias) => {
@@ -163,7 +168,7 @@ const Camiseta = () => {
   };
 
   const handleSugerenciaClick = (item, setValue, clearSugerencias) => {
-    setValue(item);
+    setValue(item.split(' ')[0]);
     clearSugerencias([]);
     setTimeout(() => validarTalla(), 1);
   };
