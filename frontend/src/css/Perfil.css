@@ -142,8 +142,10 @@
 }
 
 .panel .usuario figure img {
-    width: auto;
-    height: 100%;
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    object-fit: cover;
 }
 
 .logout {
