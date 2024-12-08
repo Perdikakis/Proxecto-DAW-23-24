@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -32,6 +32,16 @@ class AuthController extends Controller
                 $usuario->tokens()->delete();
 
                 $token = $usuario->createToken('authToken')->plainTextToken;
+
+                /*$cookie = cookie(
+                    'token-sesion', // Nombre de la cookie
+                    $token,          // Valor de la cookie (el token)
+                    60,              // Duración en minutos
+                    '/',             // Path (disponible en todo el dominio)
+                    null,            // Dominio (usar por defecto)
+                    false,           // HTTPS solo (true para producción con HTTPS)
+                    true             // Acceso solo HTTP (mejora de seguridad)
+                );*/
 
                 return response()->json([
                     'success' => true,
