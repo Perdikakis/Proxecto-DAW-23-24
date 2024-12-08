@@ -50,12 +50,18 @@
 }
   
 #boton-catalogo-fixed:hover { 
-    background-color: #0D0C0C; 
+    background-color: #0D0C0C;
+    box-shadow: -1px 0 0 0 var(--blanco),
+                0 -1px 0 0 var(--blanco),
+                0 1px 0 0 var(--blanco);
 }
 
 #boton-catalogo-fixed figure { 
     width: 20%;
     height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #boton-catalogo-fixed figure img { 
@@ -94,6 +100,11 @@ a {
   
 #boton-catalogo:hover {
     background-color: var(--negro);
+    box-shadow: -1px 0 0 0 var(--dorado),
+                0 -1px 0 0 var(--dorado),
+                0 1px 0 0 var(--dorado),
+                1px 0 0 0 var(--dorado);
+    
 }
 
 #boton-catalogo figure {
