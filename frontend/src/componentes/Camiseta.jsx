@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import '../css/Camiseta.css';
 import { useParams } from "react-router-dom";
-import CardCamiseta from "./CardCamiseta";
 import BotonBlanco from "./BotonBlanco";
+import ModalImagenCamiseta from "./ModalImagenCamiseta";
 import { ajaxAxios } from "../utils/ajaxAxios";
 
 const Camiseta = () => {
@@ -27,6 +27,11 @@ const Camiseta = () => {
   const [alertaError, setAlertaError] = useState(false);
   const [barraProgreso, setBarraProgreso] = useState(100);
 
+  const [selectedImageIdx, setSelectedImageIdx] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [slideDirection, setSlideDirection] = useState('');
+
+  //datos camiseta
   useEffect(() => {
     ajaxAxios({
       url: `${import.meta.env.VITE_API_URL}/tallasCamiseta/${id}`,
@@ -92,7 +97,6 @@ const Camiseta = () => {
       nombre: nombre,
     }));
   };
-
   const validarDorsal = () => {
     const dorsal = document.getElementById('dorsal').value;
     const dorsalNumero = parseInt(dorsal, 10);
@@ -104,7 +108,6 @@ const Camiseta = () => {
       dorsal: dorsal,
     }));
   };
-
   const validarTalla = () => {
     const tallaSeleccionada = document.getElementById('talla').value;
     const isValid = tallas.some(item => item.split(' ')[0] === tallaSeleccionada);
@@ -116,7 +119,6 @@ const Camiseta = () => {
       talla: tallaSeleccionada,
     }));
   };
-
   const validarCantidad = () => {
     const cantidad = document.getElementById('cantidad').value;
     const cantidadNumero = parseInt(cantidad, 10);
@@ -132,7 +134,6 @@ const Camiseta = () => {
       cantidad: cantidad,
     }));
   };
-
   const validarEnvio = () => {
     if (nombreValido && dorsalValido && tallaValida && cantidadValida) {
       setIsButtonDisabled(false);
@@ -145,7 +146,6 @@ const Camiseta = () => {
     document.getElementById('cantidad').value++;
     validarCantidad();
   }
-
   const handleRestar = () =>{
     document.getElementById('cantidad').value--;
     validarCantidad();
@@ -236,13 +236,34 @@ const Camiseta = () => {
     );
   };
 
-  const renderImagen = (num) =>{
-    if (camisetaData && camisetaData.imagenes[num]) {
+  const handleImageClick = (index) => {
+    setSelectedImageIdx(index);
+    setIsModalOpen(true);
+  };
+
+  const handlePrevImage = () => {
+    setSlideDirection('left');
+    setTimeout(() => {
+      setSelectedImageIdx((prevIndex) => (prevIndex === 0 ? camisetaData.imagenes.length - 1 : prevIndex - 1));
+      setSlideDirection('');
+    }, 300);
+  };
+
+  const handleNextImage = () => {
+    setSlideDirection('right');
+    setTimeout(() => {
+      setSelectedImageIdx((prevIndex) => (prevIndex === camisetaData.imagenes.length - 1 ? 0 : prevIndex + 1));
+      setSlideDirection('');
+    }, 300);
+  };
+
+  const renderImagen = (index) =>{
+    if (camisetaData && camisetaData.imagenes[index]) {
       let clase;
-      num === 0 ? clase = "image mainimage" : clase = "image";
+      index === 0 ? clase = "image mainimage" : clase = "image";
       return (
-        <figure className={clase}>
-          <img src={camisetaData.imagenes[num]} alt={`Imagen ${num}`} />
+        <figure key={index} className={clase} onClick={() => handleImageClick(index)}>
+          <img src={camisetaData.imagenes[index]} alt={`Imagen ${index}`} />
         </figure>
       );
     } else {
@@ -308,20 +329,30 @@ const Camiseta = () => {
             disabled={isButtonDisabled} 
           />
         </form>
-          {alertaExito && 
-          <div className="alert-container">
-            <div className="alert alert-success" role="alert">
-              {'Producto añadido al carrito'}
-              <div className="progress-bar" style={{ width: `${barraProgreso}%` }}></div>
-            </div>
-          </div>}
-          {alertaError && 
-          <div className="alert-container">
-            <div className="alert alert-danger" role="alert">
-              {'Error al añadir el producto al carrito'}
-              <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
-            </div>
-          </div>}
+        <ModalImagenCamiseta 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onPrev={handlePrevImage} 
+        onNext={handleNextImage}
+        slideDirection={slideDirection}>
+          {camisetaData && camisetaData.imagenes && camisetaData.imagenes[selectedImageIdx] && (
+            <img src={camisetaData.imagenes[selectedImageIdx]} />
+          )}
+        </ModalImagenCamiseta>
+        {alertaExito && 
+        <div className="alert-container">
+          <div className="alert alert-success" role="alert">
+            {'Producto añadido al carrito'}
+            <div className="progress-bar" style={{ width: `${barraProgreso}%` }}></div>
+          </div>
+        </div>}
+        {alertaError && 
+        <div className="alert-container">
+          <div className="alert alert-danger" role="alert">
+            {'Error al añadir el producto al carrito'}
+            <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
+          </div>
+        </div>}
       </section>
     </main>
   );
