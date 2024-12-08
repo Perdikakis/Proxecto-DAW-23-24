@@ -3,16 +3,17 @@ import '../css/TopVentas.css';
 import CardCamiseta from "./CardCamiseta";
 import BotonBlanco from "./BotonBlanco";
 import { ajaxAxios } from "../utils/ajaxAxios";
+import { getCookie, setCookie, eraseCookie } from "../utils/cookies";
 
 const TopVentas = ({ nombre, id, onVerMas }) => {
   const [topVentas, setTopVentas] = useState(() => {
-    const topVentasLocal = localStorage.getItem(`topVentas_${id}`);
-    return topVentasLocal ? JSON.parse(topVentasLocal) : null;
+    const topVentasCookie = getCookie(`topVentas_${id}`);
+    return topVentasCookie ? JSON.parse(topVentasCookie) : null;
   });
 
   const [topVentasIds, setTopVentasIds] = useState(() => {
-    const topVentasLocalIds = localStorage.getItem(`topVentasIds_${id}`);
-    return topVentasLocalIds ? JSON.parse(topVentasLocalIds) : null;
+    const topVentasIdsCookie = getCookie(`topVentasIds_${id}`);
+    return topVentasIdsCookie ? JSON.parse(topVentasIdsCookie) : null;
   });
 
   useEffect(() => {
@@ -24,8 +25,8 @@ const TopVentas = ({ nombre, id, onVerMas }) => {
         fsuccess: (data) => {
           setTopVentas(data.camisetas);
           setTopVentasIds(data.ids);
-          localStorage.setItem(`topVentas_${id}`, JSON.stringify(data.camisetas));
-          localStorage.setItem(`topVentasIds_${id}`, JSON.stringify(data.ids));
+          setCookie(`topVentas_${id}`, JSON.stringify(data.camisetas), 1 / 24); // 1 hora
+          setCookie(`topVentasIds_${id}`, JSON.stringify(data.ids), 1 / 24);
         },
         ferror: (error) => {
         }

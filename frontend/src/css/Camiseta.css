@@ -38,12 +38,6 @@
     align-items: center;
     width: 100%;
     max-width: 1500px;
-    margin-bottom: 50px;
-}
-
-.main-camiseta .images .card-camiseta {
-    width: 25%;
-    min-width: 200px;
 }
 
 .main-camiseta .icon-top-left, .main-camiseta .icon-top-right {
@@ -52,14 +46,19 @@
 
 .main-camiseta .image {
     width: 15%;
+    height: 140px;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.main-camiseta .mainimage {
+    width: 25%;
+    height: 240px;
 }
 
 .main-camiseta .image img {
-    width: 100%;
-    max-width: 150px;
-    height: auto;
+    height: 100%;
 }
 
 .formulario-camiseta {
@@ -107,6 +106,17 @@
 
 .datos .alert-container {
     min-height: 100px;
+}
+
+.info-camiseta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-camiseta p{
+    text-align: center;
 }
 
 .tallas {

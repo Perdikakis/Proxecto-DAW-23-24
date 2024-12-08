@@ -13,6 +13,9 @@ const DatosPersonales = () => {
     const inputRefs = useRef({});
 
     const [confirmar, setConfirmar] = useState(false);
+
+    const [alerta, setAlerta] = useState('');
+    const [barraProgreso, setBarraProgreso] = useState(100);
     
     const handleEditar = (field) => {
         if (editando) {
@@ -72,7 +75,18 @@ const DatosPersonales = () => {
             }));
         } else {
             inputRefs.current[field].value = usuario[field];
-            console.log(`El campo ${field} no es válido.`);
+            setAlerta(`El campo ${field} no es válido.`);
+            setBarraProgreso(100);
+            const interval = setInterval(() => {
+                setBarraProgreso((prev) => {
+                    if (prev <= 0) {
+                        clearInterval(interval);
+                        setAlerta('');
+                        return 0;
+                    }
+                    return prev - 1;
+                });
+            }, 30);
         }
     };
 
@@ -124,7 +138,6 @@ const DatosPersonales = () => {
     };
 
     const validarCorreo = (correo) => {
-        if (correo === '') return true;
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(correo);
     };
@@ -179,7 +192,7 @@ const DatosPersonales = () => {
                         <img src="/icons/delete.svg" alt="cancelar" />
                     </figure>
                 </div>
-            )}
+                )}
             </fieldset>
         );
     };
@@ -301,7 +314,7 @@ const DatosPersonales = () => {
             />
             <article>
             <BotonBlanco 
-                texto="enviar" 
+                texto="confirmar cambios" 
                 icono={null}
                 iconoHover={null}
                 disabled={false}
@@ -317,6 +330,14 @@ const DatosPersonales = () => {
             />
             </article>
             </form>
+            {alerta && 
+                <div className="alert-container">
+                    <div className="alert alert-danger" role="alert">
+                        {alerta}
+                        <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
+                    </div>
+                </div>
+            }
         </section>
     );
 };

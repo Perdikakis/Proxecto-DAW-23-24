@@ -122,8 +122,8 @@ const Tienda = () => {
       ) : (
         <section className="top-ventas">
           <TopVentas nombre="La Liga" id={1} onVerMas={handleResultadosBusqueda}/>
-          <TopVentas nombre="Premier League" id={1} onVerMas={handleResultadosBusqueda}/>
-          <TopVentas nombre="Serie A" id={1} onVerMas={handleResultadosBusqueda}/>
+          <TopVentas nombre="Premier League" id={2} onVerMas={handleResultadosBusqueda}/>
+          <TopVentas nombre="Serie A" id={3} onVerMas={handleResultadosBusqueda}/>
         </section>
       )}
     </main>

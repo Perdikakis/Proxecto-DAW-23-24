@@ -64,13 +64,13 @@ const Camiseta = () => {
     const mainContainer = mainRef.current;
   
     if (imagesContainer && mainContainer) {
-      const cardCamiseta = imagesContainer.querySelector('.card-camiseta');
-      if (cardCamiseta) {
-        const cardCamisetaOffset = cardCamiseta.offsetLeft;
-        const cardCamisetaWidth = cardCamiseta.offsetWidth;
+      const camisetMain = imagesContainer.querySelector('.mainimage');
+      if (camisetMain) {
+        const camisetMainOffset = camisetMain.offsetLeft;
+        const camisetMainWidth = camisetMain.offsetWidth;
         const mainWidth = mainContainer.offsetWidth;
   
-        const scrollLeft = cardCamisetaOffset - (mainWidth / 2) + (cardCamisetaWidth / 2);
+        const scrollLeft = camisetMainOffset - (mainWidth / 2) + (camisetMainWidth / 2);
   
         imagesContainer.scrollLeft = scrollLeft;
       }
@@ -238,8 +238,10 @@ const Camiseta = () => {
 
   const renderImagen = (num) =>{
     if (camisetaData && camisetaData.imagenes[num]) {
+      let clase;
+      num === 0 ? clase = "image mainimage" : clase = "image";
       return (
-        <figure className="image">
+        <figure className={clase}>
           <img src={camisetaData.imagenes[num]} alt={`Imagen ${num}`} />
         </figure>
       );
@@ -256,9 +258,17 @@ const Camiseta = () => {
       <section className="images" ref={imagesRef}>
         {renderImagen(3)}
         {renderImagen(1)}
-        {camisetaData ? <CardCamiseta data={camisetaData} /> : <p>Cargando datos de la camiseta...</p>}
+        {renderImagen(0)}
         {renderImagen(2)}
         {renderImagen(4)}
+      </section>
+      <section className="info-camiseta">
+        {camisetaData && (
+          <article>
+            <p>{`${camisetaData.equipo} ${camisetaData.nombre} ${camisetaData.temporada}`}</p>
+            <p>{`€${camisetaData.precio}`}</p>
+          </article>
+        )}
       </section>
       <section className="datos">
         <form className="formulario-camiseta" onSubmit={handleAddCarrito}>
