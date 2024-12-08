@@ -66,12 +66,12 @@
     cursor: pointer;
 }
 .panel .opciones ul li:hover {
-    background-color: var(--dorado);
+    background-color: #c39a31;
     border-bottom-color: var(--negro);
 }
 
 .panel .opciones ul li.selected {
-    background-color: var(--dorado);
+    background-color: #c39a31;
     border-bottom-color: var(--negro);
 }
 
@@ -146,6 +146,10 @@
     height: 32px;
     border-radius: 50px;
     object-fit: cover;
+}
+
+.panel .usuario .pfp img {
+    border: 1px solid var(--negro);
 }
 
 .logout {

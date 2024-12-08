@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
       url: `${import.meta.env.VITE_API_URL}/user`,
       method: 'GET',
       fsuccess: (data) => {
-        setUser({data});
+        setUser(data);
         setIsAuthenticated(true);
         setLoading(false);
       },
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, loading, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, setUser, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

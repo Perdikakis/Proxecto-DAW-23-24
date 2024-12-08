@@ -4,18 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
 {
-    public function getUsuario() {
+    public function getUser() {
         $user = Auth::user();
-        $image = $user->imagen ? url($user->imagen->ruta) : null;
-        return response()->json(['user' => $user, 'image' => $image], 200);
+        $image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
+        return response()->json(['user' => $user, 'image' => $image]);
     }
 
-    public function updateUsuario(Request $request) {
+    public function updateUser(Request $request) {
         try {
             $user = $request->user();
 
@@ -29,14 +28,16 @@ class UsuarioController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['message' => 'Datos inválidos', 'errors' => $validator->errors()], 422);
+                return response()->json(['message' => 'Datos invalidos', 'errors' => $validator->errors()], 422);
             }
 
             $validatedData = $validator->validated();
 
             $user->update($validatedData);
+
+            $image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
             
-            return Auth::user();
+            return response()->json(['user' => $user, 'image' => $image]);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error al actualizar usuario', 'error' => $e->getMessage()], 500);
         }

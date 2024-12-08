@@ -12,7 +12,7 @@ import axios from "axios";
 
 const Perfil = () => {
     const location = useLocation();
-    const { user, logout } = useContext(AuthContext);
+    const { user, setUser, logout } = useContext(AuthContext);
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleLogout = async () => {
@@ -41,14 +41,22 @@ const Perfil = () => {
         const sessionToken = localStorage.getItem('session_token');
 
         axios(`${import.meta.env.VITE_API_URL}/upload`, {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${sessionToken}`
-        },
-        data: formData
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${sessionToken}`
+            },
+            data: formData,
+            withCredentials: true
         })
         .then((resp) => {
-            window.location.reload();
+            const newPfp = resp.data.image;
+            setUser((prevUser) => ({
+                ...prevUser, 
+                data: {
+                    ...prevUser.data, 
+                    image: newPfp
+                }
+            }));
         })
         .catch((error) => {
             console.error("Error en la petición", error);
@@ -106,9 +114,9 @@ const Perfil = () => {
                         <img src="/icons/power.svg" alt="" className="icono-default"/>
                         <img src="/icons/power2.svg" alt="" className="icono-hover"/>
                     </figure>
-                    <span>{user ? user.data.user.usuario : 'usuario'}</span>
+                    <span>{user ? user.user.usuario : 'usuario'}</span>
                     <figure className="pfp" onClick={() => document.getElementById('fileInput').click()}>
-                        {user.data.image ? <img src={user.data.image} alt=""/> : <img src="/icons/pfp.svg" alt=""/>}
+                        {user && user.image ? <img src={user.image} alt=""/> : <img src="/icons/pfp.svg" alt=""/>}
                     </figure>
                     <input type="file" id="fileInput" style={{ display: 'none'}} onChange={handleFileChange}/>
                 </div>

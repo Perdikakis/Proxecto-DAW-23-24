@@ -14,7 +14,7 @@ class EquipoController extends Controller
                 'id' => $equipo->id,
                 'nombre' => $equipo->nombre,
                 'competiciones' => $equipo->competiciones->pluck('id'),
-                'imagen' => $equipo->imagen ? $equipo->imagen->ruta : ''
+                'imagen' => $equipo->imagen ? env('APP_URL') . $equipo->imagen->ruta : ''
             ];
         });
         

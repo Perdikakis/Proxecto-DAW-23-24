@@ -14,7 +14,7 @@ class CompeticionController extends Controller
             return [
                 'id' => $competicion->id,
                 'nombre' => $competicion->nombre,
-                'imagen' => $competicion->imagen ? $competicion->imagen->ruta : '',
+                'imagen' => $competicion->imagen ? env('APP_URL') . $competicion->imagen->ruta : '',
             ];
         });
 

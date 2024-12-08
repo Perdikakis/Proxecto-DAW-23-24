@@ -74,6 +74,14 @@ class CamisetaController extends Controller {
                 $yearInicio = substr($camiseta->year_inicio, -2);
                 $yearFin = substr($camiseta->year_fin, -2);
 
+                $imagenes = DB::table('images')
+                    ->where('imageable_type', 'App\\Models\\Camiseta')
+                    ->where('imageable_id', $camiseta->id)
+                    ->pluck('ruta')
+                    ->map(function($ruta) {
+                        return env('APP_URL') . $ruta;
+                    });
+
                 return [
                     'id' => $camiseta->id,
                     'estado' => $camiseta->estado,
@@ -81,7 +89,7 @@ class CamisetaController extends Controller {
                     'equipo' => $camiseta->equipo->nombre,
                     'temporada' => "{$yearInicio}/{$yearFin}",
                     'precio' => $camiseta->precio,
-                    'imagenes' => $camiseta->images->pluck('ruta')->toArray(),
+                    'imagenes' => $imagenes ? $imagenes->toArray() : []
                 ];
             });
 
@@ -135,7 +143,10 @@ class CamisetaController extends Controller {
                 $imagenes = DB::table('images')
                     ->where('imageable_type', 'App\\Models\\Camiseta')
                     ->where('imageable_id', $camiseta->camiseta_id)
-                    ->pluck('ruta');
+                    ->pluck('ruta')
+                    ->map(function($ruta) {
+                        return env('APP_URL') . $ruta;
+                    });
     
                 return [
                     'id' => $camiseta->camiseta_id,

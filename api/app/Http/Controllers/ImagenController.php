@@ -31,17 +31,17 @@ class ImagenController extends Controller
             }
 
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images/users'), $imageName);
+            $request->image->move(public_path('img/users'), $imageName);
 
             $image = Imagen::create([
                 'imageable_type' => 'App\Models\Usuario',
                 'imageable_id' => $userId,
-                'ruta' => 'images/users/' . $imageName,
+                'ruta' => '/img/users/' . $imageName,
                 'nombre_archivo' => $imageName,
                 'tipo_mime' => $request->image->getClientMimeType(),
             ]);
 
-            $imageUrl = url('images/' . $image->ruta);
+            $imageUrl = env('APP_URL') . $image->ruta;
     
             return response()->json(['image' => $imageUrl]);
         } catch (\Exception $e) {
