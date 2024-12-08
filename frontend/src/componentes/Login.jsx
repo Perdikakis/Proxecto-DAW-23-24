@@ -17,6 +17,12 @@ const Login = () => {
 
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
+        
+        if (!usuario || !password) {
+            setError('Usuario y contraseña son obligatorios');
+            return;
+        }
+
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
                 usuario,
@@ -56,7 +62,7 @@ const Login = () => {
           return setError('Email invalido.\nDebe ser un correo electrónico válido.');
       }
       if (!usuarioValido) {
-          return setError('Usuario invalido.\nDebe tener entre 6 y 16 caracteres y solo puede contener letras, números, guiones y guiones bajos.');
+          return setError('Usuario invalido, debe tener entre 6 y 16 caracteres\n(letras, números, guiones y guiones bajos).');
       }
       if (!passwordValida) {
           return setError('Contraseña invalida.\nLa contraseña debe tener entre 6 y 64 caracteres.');
@@ -122,7 +128,7 @@ const Login = () => {
                         autoComplete='off'
                         />
                     </div>
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    {error && <p className='error-msg'>{error}</p>}
                     <a href="">¿Olvidaste tu contraseña?</a>
                     <BotonBlanco 
                         texto="enviar" 
@@ -194,7 +200,7 @@ const Login = () => {
                       autoComplete='off'
                       />
                   </div>
-                  {error && <p style={{ color: '#D63030', whiteSpace: 'pre-line', textAlign: 'center'}}>{error}</p>}
+                  {error && <p className='error-msg2'>{error}</p>}
                   <BotonBlanco 
                       texto="enviar" 
                       icono={null}

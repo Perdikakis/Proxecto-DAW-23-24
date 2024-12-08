@@ -179,6 +179,21 @@
     border-bottom-color: var(--blanco);
 }
 
+.error-msg{
+    position: absolute;
+    text-align: center;
+    color: var(--rojo);
+    top: 70%;
+}
+
+.error-msg2{
+    position: absolute;
+    white-space: pre-line;
+    text-align: center;
+    color: var(--rojo);
+    top: 14%;
+}
+
 @media (max-width: 1500px) {
     .panel figure {
         display: none;
@@ -220,5 +235,11 @@
         justify-content: center;
         width: 100%;
         height: 100%;
+    }
+}
+
+@media (max-width: 401px) {
+    .error-msg2{
+        top: 105%;
     }
 }

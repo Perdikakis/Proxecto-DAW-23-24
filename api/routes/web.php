@@ -11,7 +11,7 @@ Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->g
 
     Route::post('/upload', [Controllers\ImagenController::class, 'upload']);
 
-    Route::get('/user', [Controllers\UsuarioController::class, 'getUsuario']);
+    Route::get('/user', [Controllers\UsuarioController::class, 'getUser']);
     Route::put('/updateUser', [Controllers\UsuarioController::class, 'updateUser']);
     Route::delete('/deleteUser', [Controllers\UsuarioController::class, 'deteleUser']);
 
