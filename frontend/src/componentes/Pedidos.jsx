@@ -20,7 +20,6 @@ const Carrito = () => {
                 setPedidos(data.pedidos);
             },
             ferror: (error) => {
-                console.error("Error al obtener pedidos", error);
             }
         });
     }, []);
@@ -35,7 +34,6 @@ const Carrito = () => {
                 setProductoIndex(0);
             },
             ferror: (error) => {
-                console.error("Error al obtener detalles del pedido", error);
             }
         });
     };

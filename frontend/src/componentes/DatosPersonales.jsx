@@ -123,7 +123,6 @@ const DatosPersonales = () => {
     };
 
     const confirmarBorrarCuenta = () => {
-        console.log('Borrando cuenta...');
         localStorage.removeItem('token');
         ajaxAxios({
             url: `${import.meta.env.VITE_API_URL}/deleteUser`,
@@ -132,7 +131,6 @@ const DatosPersonales = () => {
                 window.location.reload();
             },
             ferror: (error) => {
-                console.log(error);
             }
         });
     };

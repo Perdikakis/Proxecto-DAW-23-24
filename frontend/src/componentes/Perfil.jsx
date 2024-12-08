@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Routes, Route, useLocation } from "react-router-dom";
 import '../css/Perfil.css';
 import Carrito from "./Carrito";
@@ -37,9 +37,9 @@ const Perfil = () => {
     const handleUpload = (file) => {
         const formData = new FormData();
         formData.append('image', file);
-
+    
         const sessionToken = localStorage.getItem('session_token');
-
+        
         axios(`${import.meta.env.VITE_API_URL}/upload`, {
             method: "POST",
             headers: {
@@ -50,20 +50,15 @@ const Perfil = () => {
         })
         .then((resp) => {
             const newPfp = resp.data.image;
-            setUser((prevUser) => ({
-                ...prevUser, 
-                data: {
-                    ...prevUser.data, 
-                    image: newPfp
-                }
-            }));
+            setUser((prevUser) => {
+                const updatedUser = { ...prevUser, image: newPfp };
+                return updatedUser;
+            });
         })
         .catch((error) => {
-            console.error("Error en la petición", error);
         });
     };
-
-
+    
     const Favoritos = () => (
         <section className="favoritos">
             <p>No hay favoritos</p>
