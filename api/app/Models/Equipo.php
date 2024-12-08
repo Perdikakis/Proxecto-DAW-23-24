@@ -15,9 +15,9 @@ class Equipo extends Model
         'nombre',
     ];
 
-    public function images()
+    public function imagen()
     {
-        return $this->morphMany(Imagen::class, 'imageable');
+        return $this->morphOne(Imagen::class, 'imageable');
     }
 
     public function competiciones()

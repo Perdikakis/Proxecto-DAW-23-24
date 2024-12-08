@@ -58,12 +58,28 @@
 }
 
 .sugerencias li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
   height: 30px;
   padding: 8px;
   font-size: 10px;
   cursor: pointer;
   border-bottom: 1px solid var(--blanco);
   background-color: var(--fondo-sugerencias);
+}
+
+.sugerencias li figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 14px;
+  width: 14px;
+}
+
+.sugerencias li figure img {
+  height: 100%;
 }
 
 .sugerencias li:hover {

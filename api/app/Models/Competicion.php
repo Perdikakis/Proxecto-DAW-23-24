@@ -20,4 +20,9 @@ class Competicion extends Model
     {
         return $this->belongsToMany(Equipo::class, 'equipo_competicion');
     }
+
+    public function imagen()
+    {
+        return $this->morphOne(Imagen::class, 'imageable');
+    }
 }

@@ -127,6 +127,9 @@ const Buscador = ({onResultadosBusqueda}) => {
           <li 
             key={index} 
             onMouseDown={() => handleSugerenciaClick(item, tipo)}>
+            <figure>
+              <img src={item.imagen} />
+            </figure>
             {item.nombre || item}
           </li>
         ))}
