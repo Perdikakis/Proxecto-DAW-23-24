@@ -239,7 +239,6 @@ class CamisetaController extends Controller {
 
             return response()->json(['message' => 'Camisetas eliminadas correctamente']);
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
             return response()->json(['error' => 'Error al eliminar las camisetas']);
         }
     }

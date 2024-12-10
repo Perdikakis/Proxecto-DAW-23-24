@@ -78,13 +78,13 @@ class AuthController extends Controller
             ]);
 
             $token = $usuario->createToken('authToken')->plainTextToken;
-            $user = Auth::user();
-            $user->image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
+ 
+            $usuario->image = $usuario->imagen ? env('APP_URL') . $usuario->imagen->ruta : '';
 
             return response()->json([
                 'success' => true,
                 'token' => $token,
-                'user' => $user,
+                'user' => $usuario,
             ]);
         } catch (\Exception $e) {
             return response()->json([

@@ -228,7 +228,6 @@ const AdminPanel = () => {
     setSelectedCheckboxes([]);
 
     const data = {ids: camisetas};
-    console.log(data);
     
     ajaxAxios({
       url: `${import.meta.env.VITE_API_URL}/deleteCamisetas`,
