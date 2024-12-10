@@ -13,7 +13,9 @@
 
 ## Taboleiro do proyecto
 
-> *EXPLICACIÓN:* neste punto indica se o proyecto está en fase de desenrolo ou finalizado.
+En fase de desarrollo
+
+[kakis.es](https://kakis.es)
 
 ## Descrición
 
@@ -51,8 +53,6 @@ Pasos para el despliegue:
 > *EXPLICACIÓN*: É este apartado describe brevemente como se usará a aplicación Web do proxecto. Describe o uso da interface web *só o uso** (a modo de sumario) *dos aspectos máis relevantes do seu funcionamento** (máxima brevidade, coma se fose un anuncio reclamo ou comercial).
 
 ## Sobre o autor
-
-> *EXPLICACIÓN*: Realiza unha breve descrición de quen es (perfil profesional), os teus puntos fortes, ou tecnoloxías que máis dominas... a motivación do proxecto, tendo sobre todo en conta un nicho de mercado sen explotar.. *Non máis de 200 palabras**. Indica a forma fiable de contactar contigo durante o proceso de creación do proxecto.
 
 Soy un Programador Web recién titulado (a punto) cuyo punto fuerte es el backend y la codificación de apis. Actualmente el frameworks que mas controlo es Laravel y utilizo React para crear el front de mis aplicaciones, teniendo esto en cuenta, son las tecnologías que he utilizado para la realización de este proyecto. La idea nace de que soy un apasionado del fútbol siempre me da un poco de "pereza" el tener que utilizar varias aplicaciones distintas para consumir contenido/utilizar servicios relacionados con dicho mundo.
 
