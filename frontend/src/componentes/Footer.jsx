@@ -40,7 +40,7 @@ return (
       <p>Contacto</p>
       <p>
         <a href="tel:+666666666" aria-label="Número de teléfono">666 666 666</a> / 
-        <a href="mailto:contacto@email.es" aria-label="Correo electrónico"> contacto@email.es</a>
+        <a href="mailto:mcordoluengos@gmail.com" aria-label="Correo electrónico"> mcordoluengos@gmail.com</a>
       </p>
     </div>
     <div className="social-media">
