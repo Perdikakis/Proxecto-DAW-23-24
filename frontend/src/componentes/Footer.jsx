@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import '../css/Footer.css';
 import { useRef, useState, useEffect } from "react";
 
@@ -27,7 +28,7 @@ return (
     <section className="footerElements">
     <div className="copyright">
       <p>Copyright &copy; 2024, All Rights Reserved</p>
-      <a href="">Aviso legal</a>
+      <Link to="/aviso-legal">Aviso legal</Link>
     </div>
     <div className="location">
       <img src="/icons/location-pin.svg" alt="Icono de ubicacion" />

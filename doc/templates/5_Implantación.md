@@ -75,4 +75,4 @@ Obtener las imagenes de los sliders, destacadas etc de la base de datos
 
 Almacenar imágenes en otro lugar que no sea el public de la api (usar servidor externo o el metodo Storage de laravel)
 
-> *EXPLICACIÓN:* Neste apartado incluiranse as posibilidades de mellora da aplicación no futuro.
+Utilizar react-helmet para mejorar SEO

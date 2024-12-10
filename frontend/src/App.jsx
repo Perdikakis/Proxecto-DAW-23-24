@@ -13,6 +13,7 @@ import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import AdminProtectedRoute from "./utils/AdminProtectedRoute";
 import AdminPanel from "./componentes/AdminPanel";
+import AvisoLegal from "./componentes/AvisoLegal";
 
 const App = () => {
   return (
@@ -24,8 +25,9 @@ const App = () => {
           <Route path="/tienda" element={<Tienda />} />
           <Route path="/camiseta/:id" element={<Camiseta />} />
           <Route path="/perfil/*" element={<ProtectedRoute element={<Perfil />} />} />
-          <Route path="/admin" element={<AdminProtectedRoute element={<AdminPanel />} />} />
+          <Route path="/panel" element={<AdminProtectedRoute element={<AdminPanel />} />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/aviso-legal" element={<AvisoLegal />} />
           <Route path="*" element={<Custom404 />} />
         </Routes>
         <Footer />

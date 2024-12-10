@@ -109,7 +109,7 @@ const Perfil = () => {
                     </figure>
                     <span>
                         {user.rol_id === 1 ? (
-                            <Link to="/admin">{user.usuario}</Link>
+                            <Link to="/panel">{user.usuario}</Link>
                         ) : (user.usuario)}
                     </span>
                     <figure className="pfp" onClick={() => document.getElementById('fileInput').click()}>

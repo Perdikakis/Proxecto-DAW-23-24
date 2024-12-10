@@ -1,0 +1,78 @@
+.main-avisolegal {
+    position: relative;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: var(--negro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    color: var(--blanco);
+    padding: 20px;
+    padding-top: 120px;
+    padding-bottom: 140px;
+    z-index: 0;
+}
+
+  /* doble fondo */
+.main-avisolegal::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/fondos/fondo-perfil.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.05;
+    z-index: 0;
+    pointer-events: none; /* Asegura que el after no interfiera con los eventos click, hover etc */
+}
+
+.aviso-legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 120px;
+    margin-bottom: 140px;
+}
+
+.aviso-legal-content h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #0056b3;
+}
+
+.aviso-legal-content h2 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: var(--negro);
+}
+
+.aviso-legal-content p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .main-avisolegal {
+        padding: 10px;
+    }
+
+    .aviso-legal-content {
+        padding: 15px;
+    }
+
+    .aviso-legal-content h1 {
+        font-size: 1.5rem;
+    }
+}
