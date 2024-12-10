@@ -15,6 +15,7 @@ const DatosPersonales = () => {
     const [confirmar, setConfirmar] = useState(false);
 
     const [alerta, setAlerta] = useState('');
+    const [exito, setExito] = useState(false);
     const [barraProgreso, setBarraProgreso] = useState(100);
     
     const handleEditar = (field) => {
@@ -97,13 +98,25 @@ const DatosPersonales = () => {
     
     const handleGuardar = (e) => {
         e.preventDefault();
-        
+
         ajaxAxios({
             url: `${import.meta.env.VITE_API_URL}/updateUser`,
             method: 'PUT',
             data: usuario,
             fsuccess: (data) => {
                 setUser(data.user);
+                setExito(true);
+                setBarraProgreso(100);
+                const interval = setInterval(() => {
+                    setBarraProgreso((prev) => {
+                        if (prev <= 0) {
+                            clearInterval(interval);
+                            setExito(false);
+                            return 0;
+                        }
+                        return prev - 1;
+                    });
+                }, 30);
             },
             ferror: (error) => {
             }
@@ -330,6 +343,14 @@ const DatosPersonales = () => {
                     <div className="alert alert-danger" role="alert">
                         {alerta}
                         <div className="progress-bar-error" style={{ width: `${barraProgreso}%` }}></div>
+                    </div>
+                </div>
+            }
+            {exito &&
+                <div className="alert-container">
+                    <div className="alert alert-success" role="alert">
+                        Cambios guardados con éxito.
+                        <div className="progress-bar" style={{ width: `${barraProgreso}%` }}></div>
                     </div>
                 </div>
             }

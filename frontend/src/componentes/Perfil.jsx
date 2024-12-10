@@ -48,14 +48,12 @@ const Perfil = () => {
         })
         .then((resp) => {
             const newPfp = resp.data.image;
-            console.log(newPfp);
             setUser((prevUsuario) => ({
                 ...prevUsuario,
                 image: newPfp
             }));
         })
         .catch((error) => {
-            console.log(error);
         });
     };
     

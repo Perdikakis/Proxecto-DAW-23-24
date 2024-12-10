@@ -16,7 +16,6 @@ class UsuarioController extends Controller
     }
 
     public function updateUser(Request $request) {
-        Log::info(Auth::user());
         try {
             $user = $request->user();
 
