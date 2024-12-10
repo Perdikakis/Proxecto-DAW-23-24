@@ -34,21 +34,11 @@ class AuthController extends Controller
 
                 $token = $usuario->createToken('authToken')->plainTextToken;
 
-                /*$cookie = cookie(
-                    'token-sesion', // Nombre de la cookie
-                    $token,          // Valor de la cookie (el token)
-                    60,              // Duración en minutos
-                    '/',             // Path (disponible en todo el dominio)
-                    null,            // Dominio (usar por defecto)
-                    false,           // HTTPS solo (true para producción con HTTPS)
-                    true             // Acceso solo HTTP (mejora de seguridad)
-                );*/
+                $usuario->image = $usuario->imagen ? env('APP_URL') . $usuario->imagen->ruta : '';
 
-                $user = Auth::user();
-                $user->image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
                 return response()->json([
                     'success' => true,
-                    'user' => $user,
+                    'user' => $usuario,
                     'token' => $token
                 ]);
             }

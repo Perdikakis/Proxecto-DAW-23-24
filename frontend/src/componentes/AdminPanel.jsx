@@ -182,14 +182,39 @@ const AdminPanel = () => {
                 : camiseta
             )
           );
+          setMsg(response.message);
+          setBarraProgreso(100);
+          const interval = setInterval(() => {
+            setBarraProgreso((prev) => {
+              if (prev <= 0) {
+                clearInterval(interval);
+                setMsg('');
+                return 0;
+              }
+              return prev - 1;
+            });
+          }, 30);
         } else {
           setCamisetas((prevCamisetas) => [
             ...prevCamisetas,
             {
               ...updatedCamiseta,
+              id: response.id,
               temporada: `${updatedCamiseta.year_inicio.toString().slice(-2)}/${updatedCamiseta.year_fin.toString().slice(-2)}`
             }
           ]);
+          setMsg(response.message);
+          setBarraProgreso(100);
+          const interval = setInterval(() => {
+            setBarraProgreso((prev) => {
+              if (prev <= 0) {
+                clearInterval(interval);
+                setMsg('');
+                return 0;
+              }
+              return prev - 1;
+            });
+          }, 30);
         }
       },
       ferror: (error) => {
@@ -251,7 +276,7 @@ const AdminPanel = () => {
       <td>{camiseta.equipo}</td>
       <td>{camiseta.temporada}</td>
       <td>{camiseta.nombre}</td>
-      <td>{camiseta.precio}</td>
+      <td>{Number(camiseta.precio).toFixed(2)}</td>
       <td>{camiseta.estado}</td>
       <td className="iconos-camiseta">
         <i

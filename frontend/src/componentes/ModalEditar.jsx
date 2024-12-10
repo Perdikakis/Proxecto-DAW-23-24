@@ -4,15 +4,15 @@ const ModalEditar = ({ onClose, onSubmit, camiseta, equipos, accion }) => {
   const [errors, setErrors] = useState('');
 
   const [formData, setFormData] = useState({
-        id: camiseta.id,
-        equipo: camiseta.equipo,
-        temporada: camiseta.temporada,
-        year_inicio: camiseta.year_inicio,
-        year_fin: camiseta.year_fin,
-        nombre: camiseta.nombre,
-        precio: camiseta.precio,
-        estado: camiseta.estado,
-        imagenes: camiseta.imagenes
+    id: camiseta.id,
+    equipo: camiseta.equipo,
+    temporada: camiseta.temporada,
+    year_inicio: camiseta.year_inicio,
+    year_fin: camiseta.year_fin,
+    nombre: camiseta.nombre,
+    precio: camiseta.precio,
+    estado: camiseta.estado,
+    imagenes: camiseta.imagenes
   });
 
   const handleChange = (e) => {

@@ -207,7 +207,7 @@ class CamisetaController extends Controller {
                 $camiseta->estado = $request->input('estado');
                 $camiseta->save();
 
-                return response()->json(['success' => true, 'message' => 'Camiseta creada correctamente']);
+                return response()->json(['id' => $camiseta->id, 'message' => 'Camiseta creada correctamente']);
             }
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al editar la camiseta'], 500);
@@ -215,7 +215,6 @@ class CamisetaController extends Controller {
     }
 
     public function deleteCamisetas(Request $request){
-        return response()->json(['error' => 'Error al eliminar las camisetas']);
         $validator = Validator::make($request->all(), [
             'ids' => 'required|array',
             'ids.*' => 'integer|exists:camisetas,id',
