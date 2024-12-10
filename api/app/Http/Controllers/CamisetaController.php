@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Camiseta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class CamisetaController extends Controller {
@@ -225,20 +224,25 @@ class CamisetaController extends Controller {
         }
 
         try {
+            DB::beginTransaction();
             $ids = $request->input('ids');
             $camisetas = Camiseta::with('images')->whereIn('id', $ids)->get();
             
             foreach ($camisetas as $camiseta) {
                 foreach ($camiseta->images as $imagen) {
-                    Storage::delete($imagen->ruta);
-                    $imagen->delete();
+                    $filePath = public_path($imagen->ruta);
+                    if (File::exists($filePath)) {
+                        File::delete($filePath);
+                    }
+                $imagen->delete();
                 }
             }
             
             Camiseta::destroy($ids);
-
+            DB::commit();
             return response()->json(['message' => 'Camisetas eliminadas correctamente']);
         } catch (\Exception $e) {
+            DB::rollBack();
             return response()->json(['error' => 'Error al eliminar las camisetas']);
         }
     }

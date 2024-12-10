@@ -11,22 +11,35 @@
 
 ### 1.1- Instalación
 
-> *EXPLICACIÓN:* Neste apartado describiranse todos os pasos necesarios para que calquera persoa poida descargar o código do proxecto e continuar o seu desenvolvemento.
->
-> Como:
-> 
-> - Requirimentos de hardware, servidores na nube, etc.
-> - Software necesario: servidores (Exemplo servidor Web), software externo co que interaciona a nosa aplicación, contenedores, etc.
-> - Carga inicial de datos na base de datos. Migración de datos xa existentes noutros formatos.
-> - Usuarios da aplicación.
-> - Diagrama final de despregue (se hai variacións con respecto ó realizado na anterior fase).
+Software necesario:
+
+* PHP 8.2
+* Node 20.18
+* Composer 2.8.1
+* MariaDB
+
+Pasos para el despliegue:
+
+1. Descargar codigo del repositorio
+2. Navegar hasta la carpeta frontend, ejecutar npm install y crear archivo .env con el siguiente contenido:
+   1. VITE_API_URL=direcciondelaapi (http://localhost:8000)
+3. Navegar hasta la carpeta api ejecutar composer install
+   1. Configurar archivo .env (copiar el env example) con el siguiente contenido:
+      APP_ENV=local
+
+      APP_URL=http://lovalhost:8000
+
+      Configurar el apartado de la conexion a la base de datos
+4. Ejecutar php artisan key:generate y asegurarse de que la key se agregó correctamente al archivo .env
+5. Ejecutar php artisan migrate para ejecutar la carga inicial de la base de datos
+6. Usuarios iniciales: Administrador password (no hay usuario normales)
 
 ### 1.2- Administración do sistema
 
 > *EXPLICACIÓN:* Neste apartado indicarase información relativa á administración do sistema, é dicir, tarefas que se deberán realizar unha vez que o sistema estea funcionando.
 >
 > Como:
-> 
+>
 > - Copias de seguridade do sistema.
 > - Copias de seguridade da base de datos.
 > - Xestión de usuarios.
@@ -45,5 +58,21 @@
 > Todo esto se a aplicación require de manual de usuario.
 
 ## 3- Melloras futuras
+
+Implementar OAuth
+
+Ampliar las opciones del panel de administrador
+
+Configurar correctamente la pantalla de carga mientras se realizan peticiones
+
+Modificar el manejo del token de sesion para emplear tambien cookies con el, no solo con datos de las ventas
+
+Añadir una funcionalidad para agregar camisetas a favoritos y notificar al usuario cuando ocurre algo (restock, oferta, etc)
+
+Implementar método de pago
+
+Obtener las imagenes de los sliders, destacadas etc de la base de datos
+
+Almacenar imágenes en otro lugar que no sea el public de la api (usar servidor externo o el metodo Storage de laravel)
 
 > *EXPLICACIÓN:* Neste apartado incluiranse as posibilidades de mellora da aplicación no futuro.

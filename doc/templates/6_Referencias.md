@@ -10,8 +10,20 @@
 
 ## 1- Sitios web de documentación técnica
 
+[Laravel](https://laravel.com/docs/11.x/readme)
+
+[Bootstrap](https://getbootstrap.com/)
+
 ## 2- Fontes de interes
 
+[Codepen](https://codepen.io/)
+
 ## 3- Sitios oficiais do software utilizado
+
+[Laravel](https://laravel.com/docs/11.x/readme)
+
+[React](https://es.react.dev/)
+
+[Bootstrap](https://getbootstrap.com/)
 
 ## 4- Normas ou documentos legais
