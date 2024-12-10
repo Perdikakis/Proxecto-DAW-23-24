@@ -62,8 +62,19 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
+            $errors = $validator->errors();
+            $customMessages = [];
+            
+            if ($errors->has('usuario')) {
+                $customMessages['usuario'] = 'El nombre de usuario ya existe.';
+            }
+
+            if ($errors->has('correo')) {
+                $customMessages['correo'] = 'El correo electrónico ya existe.';
+            }
+
             return response()->json([
-                'errors' => $validator->errors(),
+                'errors' => $customMessages,
             ], 422);
         }
 

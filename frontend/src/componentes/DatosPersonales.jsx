@@ -133,11 +133,11 @@ const DatosPersonales = () => {
     };
 
     const confirmarBorrarCuenta = () => {
-        localStorage.removeItem('token');
         ajaxAxios({
             url: `${import.meta.env.VITE_API_URL}/deleteUser`,
             method: 'DELETE',
             fsuccess: (data) => {
+                localStorage.removeItem('session_token');
                 window.location.reload();
             },
             ferror: (error) => {

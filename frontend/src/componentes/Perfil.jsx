@@ -107,7 +107,11 @@ const Perfil = () => {
                         <img src="/icons/power.svg" alt="" className="icono-default"/>
                         <img src="/icons/power2.svg" alt="" className="icono-hover"/>
                     </figure>
-                    <span>{user ? user.usuario : 'usuario'}</span>
+                    <span>
+                        {user.rol_id === 1 ? (
+                            <Link to="/admin">{user.usuario}</Link>
+                        ) : (user.usuario)}
+                    </span>
                     <figure className="pfp" onClick={() => document.getElementById('fileInput').click()}>
                         {user && user.image ? <img src={user.image} alt=""/> : <img src="/icons/pfp.svg" alt=""/>}
                     </figure>

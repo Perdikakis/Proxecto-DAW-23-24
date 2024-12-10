@@ -52,6 +52,12 @@ const Login = () => {
         return regex.test(password);
     };
 
+    const handleErrors = (errors) => {
+        const errorMessages = Object.values(errors)
+          .flat()
+          .join('\n');
+        return errorMessages;
+    };
     const handleSubmitSignIn = async (e) => {
         e.preventDefault();
         const correoValido = validarCorreo();
@@ -82,7 +88,10 @@ const Login = () => {
 
           login(response.data);
       } catch (error) {
-          setError('Error');
+        if (error.response && error.response.data.errors) {
+            const formattedErrors = handleErrors(error.response.data.errors);
+            setError(formattedErrors);
+        }
       }
     };
 
