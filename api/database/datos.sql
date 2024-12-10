@@ -1,3 +1,7 @@
+INSERT INTO `roles` (`id`, `nombre`) VALUES
+(1, 'Administrador'),
+(2, 'Usuario');
+
 INSERT INTO `equipos` (`id`, `nombre`) VALUES
 (1, 'Real Madrid'),
 (2, 'FC Barcelona'),

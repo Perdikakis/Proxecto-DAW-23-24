@@ -15,11 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 255);
         });
-
-        DB::table('roles')->insert([
-            ['id' => 1, 'nombre' => 'Administrador'],
-            ['id' => 2, 'nombre' => 'Usuario'],
-        ]);
     }
 
     public function down()
