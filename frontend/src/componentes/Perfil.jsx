@@ -47,13 +47,15 @@ const Perfil = () => {
             withCredentials: true
         })
         .then((resp) => {
-            const newPfp = resp.image;
+            const newPfp = resp.data.image;
+            console.log(newPfp);
             setUser((prevUsuario) => ({
                 ...prevUsuario,
-                imge: newPfp
+                image: newPfp
             }));
         })
         .catch((error) => {
+            console.log(error);
         });
     };
     

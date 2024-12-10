@@ -97,13 +97,13 @@ const DatosPersonales = () => {
     
     const handleGuardar = (e) => {
         e.preventDefault();
-    
+        
         ajaxAxios({
             url: `${import.meta.env.VITE_API_URL}/updateUser`,
             method: 'PUT',
-            data: usuario.user,
+            data: usuario,
             fsuccess: (data) => {
-                setUser(data);
+                setUser(data.user);
             },
             ferror: (error) => {
             }
