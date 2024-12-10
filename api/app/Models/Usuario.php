@@ -22,7 +22,7 @@ class Usuario extends Authenticatable
         'apellidos',
         'direccion',
         'telefono',
-        'rol',
+        'rol_id',
         'fecha_alta',
         'fecha_ultimo_acceso',
     ];
@@ -31,10 +31,6 @@ class Usuario extends Authenticatable
 
     public $timestamps = false;
 
-    /**
-     * Relación con el modelo Pedido.
-     * Un usuario puede tener muchos pedidos.
-     */
     public function pedidos()
     {
         return $this->hasMany(Pedido::class);

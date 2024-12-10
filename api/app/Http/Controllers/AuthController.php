@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,8 +44,11 @@ class AuthController extends Controller
                     true             // Acceso solo HTTP (mejora de seguridad)
                 );*/
 
+                $user = Auth::user();
+                $user->image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
                 return response()->json([
                     'success' => true,
+                    'user' => $user,
                     'token' => $token
                 ]);
             }
@@ -78,16 +82,19 @@ class AuthController extends Controller
                 'usuario' => $request->input('usuario'),
                 'password' => Hash::make($request->input('password')),
                 'correo' => $request->input('correo'),
-                'rol_id' => 1,
+                'rol_id' => 2,
                 'fecha_alta' => Carbon::now(),
                 'fecha_ultimo_acceso' => Carbon::now(),
             ]);
 
             $token = $usuario->createToken('authToken')->plainTextToken;
-    
+            $user = Auth::user();
+            $user->image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
+
             return response()->json([
                 'success' => true,
                 'token' => $token,
+                'user' => $user,
             ]);
         } catch (\Exception $e) {
             return response()->json([

@@ -31,7 +31,7 @@ const Login = () => {
                 withCredentials: true,
             });
 
-            login(response.data.token);
+            login(response.data);
         } catch (error) {
             setError('Usuario o contraseña incorrectos');
         }

@@ -64,7 +64,7 @@
     bottom: 0;
     left: 0;
     height: 4px;
-    background-color: #3c763d;
+    background-color: #3c763d !important;
 }
 
 .progress-bar-error {
@@ -72,5 +72,5 @@
     bottom: 0;
     left: 0;
     height: 4px;
-    background-color: #a94442;
+    background-color: #a94442 !important;
 }

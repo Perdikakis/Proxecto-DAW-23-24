@@ -13,7 +13,6 @@ import axios from "axios";
 const Perfil = () => {
     const location = useLocation();
     const { user, setUser, logout } = useContext(AuthContext);
-    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleLogout = async () => {
         ajaxAxios({
@@ -30,7 +29,6 @@ const Perfil = () => {
     };
 
     const handleFileChange = (e) => {
-        setSelectedFile(e.target.files[0]);
         handleUpload(e.target.files[0]);
     }
 
@@ -49,11 +47,11 @@ const Perfil = () => {
             withCredentials: true
         })
         .then((resp) => {
-            const newPfp = resp.data.image;
-            setUser((prevUser) => {
-                const updatedUser = { ...prevUser, image: newPfp };
-                return updatedUser;
-            });
+            const newPfp = resp.image;
+            setUser((prevUsuario) => ({
+                ...prevUsuario,
+                imge: newPfp
+            }));
         })
         .catch((error) => {
         });
@@ -109,7 +107,7 @@ const Perfil = () => {
                         <img src="/icons/power.svg" alt="" className="icono-default"/>
                         <img src="/icons/power2.svg" alt="" className="icono-hover"/>
                     </figure>
-                    <span>{user ? user.user.usuario : 'usuario'}</span>
+                    <span>{user ? user.usuario : 'usuario'}</span>
                     <figure className="pfp" onClick={() => document.getElementById('fileInput').click()}>
                         {user && user.image ? <img src={user.image} alt=""/> : <img src="/icons/pfp.svg" alt=""/>}
                     </figure>

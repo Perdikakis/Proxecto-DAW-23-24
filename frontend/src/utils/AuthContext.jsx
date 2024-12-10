@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
       url: `${import.meta.env.VITE_API_URL}/user`,
       method: 'GET',
       fsuccess: (data) => {
-        setUser(data);
+        setUser(data.user);
         setIsAuthenticated(true);
         setLoading(false);
       },
@@ -36,12 +36,16 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  const login = async (token) => {
-    localStorage.setItem('session_token', token);
-    setIsAuthenticated(true);
-
-    await getUserData();
-    navigate('/perfil');
+  const login = async (data) => {
+    try {
+      localStorage.setItem('session_token', data.token);
+      setIsAuthenticated(true);
+      setUser(data.user);
+      setLoading(false);
+      navigate('/perfil');
+    } catch (error) {
+      console.error('Error al iniciar sesión', error);
+    }
   };
 
   const logout = () => {

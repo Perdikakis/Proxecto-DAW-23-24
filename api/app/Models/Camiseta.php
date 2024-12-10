@@ -20,6 +20,8 @@ class Camiseta extends Model
         'precio',
     ];
 
+    public $timestamps = false;
+    
     public function equipo()
     {
         return $this->belongsTo(Equipo::class);

@@ -28,7 +28,7 @@ return new class extends Migration
             'correo' => 'correo@ejemplo.com',
             'password' => bcrypt('password'),
             'fecha_ultimo_acceso' => now(),
-            'id_rol' => 2,
+            'id_rol' => 1,
         ]);
     }
 

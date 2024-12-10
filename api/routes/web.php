@@ -1,6 +1,7 @@
 <?php
 
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\File;
@@ -19,6 +20,11 @@ Route::middleware([EnsureFrontendRequestsAreStateful::class, 'auth:sanctum'])->g
     Route::post('/realizarPedido', [Controllers\PedidoController::class, 'realizarPedido']);
     Route::get('/pedidos', [Controllers\PedidoController::class, 'getPedidos']);
     Route::get('/getDetallesPedido/{id}', [Controllers\PedidoController::class, 'getDetallesPedido']);
+
+    Route::middleware([CheckAdmin::class])->group(function () {
+        Route::put('/updateCamiseta', [Controllers\CamisetaController::class, 'editCamiseta']);
+        Route::delete('/deleteCamisetas', [Controllers\CamisetaController::class, 'deleteCamisetas']);
+    });
 });
 
 Route::post('/login', [Controllers\AuthController::class, 'login']);

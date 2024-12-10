@@ -32,7 +32,7 @@ return (
     <div className="location">
       <img src="/icons/location-pin.svg" alt="Icono de ubicacion" />
       <p>Localización</p>
-      <p>Av. Avenida nº0, Poblacion, Procinvia</p>
+      <p>Av. Avenida nº0, Poblacion, Provincia</p>
     </div>
     <div className="contact">
       <img src="/icons/contact-us.svg" alt="Icono de contacto" />

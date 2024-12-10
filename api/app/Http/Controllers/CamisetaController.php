@@ -6,6 +6,7 @@ use App\Models\Camiseta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class CamisetaController extends Controller {
@@ -68,28 +69,27 @@ class CamisetaController extends Controller {
                     ->where('year_fin', $yearFin);
             }
 
-            $camisetas = $query->with('equipo:id,nombre')->get();
+            $camisetas = $query->with('equipo:id,nombre', 'images')->get();
 
             $result = $camisetas->map(function($camiseta) {
                 $yearInicio = substr($camiseta->year_inicio, -2);
                 $yearFin = substr($camiseta->year_fin, -2);
 
-                $imagenes = DB::table('images')
-                    ->where('imageable_type', 'App\\Models\\Camiseta')
-                    ->where('imageable_id', $camiseta->id)
-                    ->pluck('ruta')
-                    ->map(function($ruta) {
-                        return env('APP_URL') . $ruta;
-                    });
-
+                $imagenes = $camiseta->images->map(function($imagen) {
+                    return env('APP_URL') . $imagen->ruta;
+                });
+                
                 return [
                     'id' => $camiseta->id,
                     'estado' => $camiseta->estado,
                     'nombre' => $camiseta->version,
                     'equipo' => $camiseta->equipo->nombre,
+                    'year_inicio' => $camiseta->year_inicio,
+                    'year_fin' => $camiseta->year_fin,
                     'temporada' => "{$yearInicio}/{$yearFin}",
                     'precio' => $camiseta->precio,
-                    'imagenes' => $imagenes ? $imagenes->toArray() : []
+                    'imagenes' => $imagenes ? $imagenes->toArray() : [],
+                    'competiciones' => $camiseta->equipo->competiciones->pluck('id')->toArray()
                 ];
             });
 
@@ -162,6 +162,86 @@ class CamisetaController extends Controller {
             return response()->json(['camisetas' => $result, 'ids' => $camisetasIds]);
         } catch (\Exception $e) {
             return response()->json(['error' => 'error al obtener top ventas'], 500);
+        }
+    }
+
+    public function editCamiseta(Request $request){
+        $validator = Validator::make($request->all(), [
+            'id' => 'nullable|integer|exists:camisetas,id',
+            'equipo' => 'required|integer|exists:equipos,id',
+            'year_inicio' => 'required|integer|min:1970|max:' . date('Y'),
+            'year_fin' => 'required|integer|min:1970|max:' . date('Y'),
+            'nombre' => 'required|string|max:255',
+            'precio' => 'required|numeric|min:0',
+            'estado' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        try {
+            if ($request->input('id') !== null) {
+                $camiseta = Camiseta::find($request->input('id'));
+
+                if (!$camiseta) {
+                    return response()->json(['error' => 'Camiseta no encontrada'], 404);
+                }
+
+                $camiseta->equipo_id = $request->input('equipo');
+                $camiseta->year_inicio = $request->input('year_inicio');
+                $camiseta->year_fin = $request->input('year_fin');
+                $camiseta->version = $request->input('nombre');
+                $camiseta->precio = number_format((float)$request->input('precio'), 2, '.', '');
+                $camiseta->estado = $request->input('estado');
+                $camiseta->save();
+
+                return response()->json(['message' => 'Camiseta editada correctamente', 'camiseta' => $camiseta]);
+            } else {
+                $camiseta = new Camiseta();
+                $camiseta->equipo_id = $request->input('equipo');
+                $camiseta->year_inicio = $request->input('year_inicio');
+                $camiseta->year_fin = $request->input('year_fin');
+                $camiseta->version = $request->input('nombre');
+                $camiseta->precio = number_format((float)$request->input('precio'), 2, '.', '');
+                $camiseta->estado = $request->input('estado');
+                $camiseta->save();
+
+                return response()->json(['success' => true, 'message' => 'Camiseta creada correctamente']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al editar la camiseta'], 500);
+        }
+    }
+
+    public function deleteCamisetas(Request $request){
+        return response()->json(['error' => 'Error al eliminar las camisetas']);
+        $validator = Validator::make($request->all(), [
+            'ids' => 'required|array',
+            'ids.*' => 'integer|exists:camisetas,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        try {
+            $ids = $request->input('ids');
+            $camisetas = Camiseta::with('images')->whereIn('id', $ids)->get();
+            
+            foreach ($camisetas as $camiseta) {
+                foreach ($camiseta->images as $imagen) {
+                    Storage::delete($imagen->ruta);
+                    $imagen->delete();
+                }
+            }
+            
+            Camiseta::destroy($ids);
+
+            return response()->json(['message' => 'Camisetas eliminadas correctamente']);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json(['error' => 'Error al eliminar las camisetas']);
         }
     }
 }

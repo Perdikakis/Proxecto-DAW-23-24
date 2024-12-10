@@ -10,8 +10,8 @@ class UsuarioController extends Controller
 {
     public function getUser() {
         $user = Auth::user();
-        $image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
-        return response()->json(['user' => $user, 'image' => $image]);
+        $user->image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
+        return response()->json(['user' => $user]);
     }
 
     public function updateUser(Request $request) {
@@ -35,9 +35,8 @@ class UsuarioController extends Controller
 
             $user->update($validatedData);
 
-            $image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
-            
-            return response()->json(['user' => $user, 'image' => $image]);
+            $user->image = $user->imagen ? env('APP_URL') . $user->imagen->ruta : '';
+            return response()->json(['user' => $user]);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error al actualizar usuario', 'error' => $e->getMessage()], 500);
         }
